@@ -23,17 +23,17 @@ public class LinkedList_Stack<Item> implements Iterable<Item>
      N--; return top;
   }
 
-@Override public Iterator<Item> iterator() {return new MyIterator();}
+  public Iterator<Item> iterator() {return new MyIterator();}
 
   private class MyIterator implements Iterator<Item> 
   {  private Node p = first; //starts at top (if any)
      public boolean hasNext() {return p!=null;}
-     public Item next() {Item top = first.item; p=p.next; return top;}
+     public Item next() {Item it = p.item; p=p.next; return it;}
      public void remove()     {}
   }
   
   public static void main(String[] args)
-  {  ResizingArray_Stack<String> s = new ResizingArray_Stack<String>();
+  {  LinkedList_Stack<String> s = new LinkedList_Stack<String>();
      s.push("hello"); s.push("world"); s.push("goodbye"); 
      StdOut.println(s.pop()); for (String word : s) StdOut.println(word);
   } 
