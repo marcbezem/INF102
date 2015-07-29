@@ -21,7 +21,7 @@ public class ResizingArray_Stack<Item> implements Iterable<Item>
   public Item pop() //unchecked precondition N>0
   {  Item top = a[--N];
      a[N] = null; //remove an obsolete pointer; why??
-     if (N>0 && N == a.length/4) resize(2*N); //what if 10 == a.length ?
+     if (N>0 && N == a.length/4) resize(2*N); //what if a.length is 10?
      return top;
   }
 
@@ -36,8 +36,8 @@ public class ResizingArray_Stack<Item> implements Iterable<Item>
   
   public static void main(String[] args)
   {  ResizingArray_Stack<String> s = new ResizingArray_Stack<String>();
-     s.push("hello"); s.push("world"); StdOut.println(s.pop()); 
-     for (String word : s) StdOut.println(word);
+     s.push("hello"); s.push("world"); s.push("goodbye"); 
+     StdOut.println(s.pop()); for (String word : s) StdOut.println(word);
   } 
 }//End of ResizingArrayStack based on Algorithms, 4th Edition, p. 141
 
