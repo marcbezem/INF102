@@ -44,4 +44,4 @@ public static void main(String[] args){
   }
 }//End of main
 }//End of WeightedUF based on Algorithms, 4th Edition, p. 228
-//last p q count aacost: 943868 727438 6 xxx
+//last p q count aacost: 943868 727438 6 328912302594
