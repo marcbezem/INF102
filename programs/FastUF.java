@@ -38,5 +38,5 @@ public static void main(String[] args){
     StdOut.println(p+" "+q+" "+uf.count()+" "+uf.cost());
   }
 }//End of main
-}//End of FastUF based on Algorithms, 4th Edition, p. 221
+}//End of FastUF based on Algorithms, 4th Edition, p. 221,224
 //last p q count aacost: 943868 727438 6 561290740942

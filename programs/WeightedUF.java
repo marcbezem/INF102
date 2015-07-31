@@ -43,5 +43,5 @@ public static void main(String[] args){
     StdOut.println(p+" "+q+" "+uf.count()+" "+uf.cost());
   }
 }//End of main
-}//End of WeightedUF based on Algorithms, 4th Edition, p. 221
+}//End of WeightedUF based on Algorithms, 4th Edition, p. 228
 //last p q count aacost: 943868 727438 6 xxx
