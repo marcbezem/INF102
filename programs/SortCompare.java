@@ -23,7 +23,7 @@ public static double timeRandomInputs(String sortalg, int N, int T){
 //running sortalg T times on array of N random doubles
   double total = 0.0;
   Double[] a = new Double[N];
-  for (int t=0; t<T; t++){   StdOut.println(total);
+  for (int t=0; t<T; t++){
     for (int i=0; i<N; i++) a[i] = StdRandom.uniform();
     total += time(sortalg,a);
   }
