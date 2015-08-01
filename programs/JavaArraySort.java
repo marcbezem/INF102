@@ -1,9 +1,9 @@
-public class ExampleSort {
+import java.util.Arrays;
+
+public class JavaArraySort {
   
-public static void sort(Comparable[] a){ // good old bubblesort
-  for (int i=a.length -1; i>0; i--) 
-     for (int j=1; j<=i; j++)
-        if (less(a[j],a[j-1])) exch(a,j-1,j);
+public static void sort(Comparable[] a){ // Java's own sort
+  java.util.Arrays.sort(a);
 }
 
 private static boolean less(Comparable v, Comparable w){
@@ -23,5 +23,5 @@ public static void main(String[] args){
   String[] a = In.readStrings();
   sort(a); assert isSorted(a); show(a);
 }//End of main
-}//End of ExampleSort based on Algorithms, 4th Edition, p. 245
+}//End of JavaArraySort based on Algorithms, 4th Edition, p. 245
 
