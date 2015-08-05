@@ -6,9 +6,9 @@ public static void run(String sortalg, Double[] a){ // running sortalg on a
                      break;
             case "JavaArraySort"  :  JavaArraySort.sort(a);
                      break;
-            case "Insertion"      :  Insertion.sort(a);
+            case "InsertionSort"  :  InsertionSort.sort(a);
                      break;
-            case "Selection"      :  Selection.sort(a);
+            case "ShellSort"      :  ShellSort.sort(a);
                      break;
    }
 }
