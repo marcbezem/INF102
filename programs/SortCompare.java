@@ -10,6 +10,11 @@ public static void run(String sortalg, Double[] a){ // running sortalg on a
                      break;
             case "ShellSort"      :  ShellSort.sort(a);
                      break;
+            case "TopDownMergeSort" :  TopDownMergeSort.sort(a);
+                     break;
+            case "BottomUpMergeSort" :  BottomUpMergeSort.sort(a);
+                     break;
+            default              : StdOut.println(sortalg + " not known");
    }
 }
 
