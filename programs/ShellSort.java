@@ -2,10 +2,9 @@ public class ShellSort {
   
 public  static void hsort(int h, Comparable[] a) {
  int N = a.length;
- for (int i=h; i<N; i++){
+ for (int i=h; i<N; i++)
   for (int j=i; j-h>=0 && less(a[j],a[j-h]); j-=h)
    exch(a,j,j-h);
- }
 }
 
 public  static void sort(Comparable[] a) {hsort(100,a); hsort(10,a); hsort(1,a);}  

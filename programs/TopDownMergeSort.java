@@ -1,25 +1,28 @@
 public class TopDownMergeSort {
   
-public  static void mergesort(Comparable[] a, int lo, int hi) {
-  if (hi==lo) return;
-  int mid = lo + (hi-lo)/2;
-  mergesort(a,lo,mid); // left half
-  mergesort(a,mid+1,hi); // right half
-  merge(a,lo,mid+1,hi);
+public  static void mergesort(Comparable[] a, int lo, int hi, Comparable[] aux) {
+  if (hi==lo) return; // length one array is sorted
+  int mid = lo + (hi-lo)/2; // in the "middle"
+  mergesort(a,lo,mid,aux); // left "half"
+  mergesort(a,mid+1,hi,aux); // right "half"
+  merge(a,lo,mid+1,hi,aux); // merge the two sorted parts
 }
 
-public static void merge(Comparable[] a,  int lo, int m, int hi) {
-  Comparable[] aux = new Comparable[a.length]; // in general too long
+public static void merge(Comparable[] a,  int lo, int m, int hi, Comparable[] aux) {
   for (int k=lo; k<=hi; k++) aux[k] = a[k];
   int l = lo, r = m;
   for (int k=lo; k<=hi; k++){ // assert (l+r-k == m);
-   if (l==m) {a[k] = aux[r++]; continue;}
-   if (r==hi+1) {a[k] = aux[l++]; continue;}
-   if (less(aux[l],aux[r])) {a[k] = aux[l++];} else {a[k] = aux[r++];} // max N compares
+    if (l==m) {a[k] = aux[r++]; continue;}
+    if (r==hi+1) {a[k] = aux[l++]; continue;}
+    if (less(aux[l],aux[r])) {a[k] = aux[l++];} else {a[k] = aux[r++];} // max N compares
   } 
 }
 
-public  static void sort(Comparable[] a) { mergesort(a,0,a.length-1);}  
+public  static void sort(Comparable[] a) {
+  int N = a.length;
+  Comparable[] aux = new Comparable[N];
+  if (N >1) mergesort(a,0,N-1,aux);
+}  
 
 private static boolean less(Comparable v, Comparable w){
   return v.compareTo(w) < 0; }
