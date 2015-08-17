@@ -1,4 +1,4 @@
-public class BottomUpMergeSort { // still VERY ugly
+public class BottomUpMergeSort {
   
 public static void merge(Comparable[] a,  int lo, int m, int hi, Comparable[] aux) {
   for (int k=lo; k<=hi; k++) aux[k] = a[k];
@@ -36,5 +36,5 @@ public static void main(String[] args){
   String[] a = In.readStrings();
   sort(a); show(a); assert isSorted(a); 
 }//End of main
-}//End of BottomUpMergeSort based on Algorithms, 4th Edition, p. 2xx
+}//End of BottomUpMergeSort based on Algorithms, 4th Edition, p. 278
 
