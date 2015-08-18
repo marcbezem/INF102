@@ -1,20 +1,22 @@
 public class SortCompare {
   
-public static void run(String sortalg, Double[] a){ // running sortalg on a
+public static void run(String sortalg, Double[] a){ // sort a using "sortalg"
   switch (sortalg) {
-            case "ExampleSort"    :  ExampleSort.sort(a);
+            case "ExampleSort"      :  ExampleSort.sort(a);
                      break;
-            case "JavaArraySort"  :  JavaArraySort.sort(a);
+            case "JavaArraySort"    :  JavaArraySort.sort(a);
                      break;
-            case "InsertionSort"  :  InsertionSort.sort(a);
+            case "InsertionSort"    :  InsertionSort.sort(a);
                      break;
-            case "ShellSort"      :  ShellSort.sort(a);
+            case "ShellSort"        :  ShellSort.sort(a);
                      break;
             case "TopDownMergeSort" :  TopDownMergeSort.sort(a);
                      break;
-            case "BottomUpMergeSort" :  BottomUpMergeSort.sort(a);
+            case "BottomUpMergeSort":  BottomUpMergeSort.sort(a);
                      break;
-            default              : StdOut.println(sortalg + " not known");
+            case "QuickSort"        :  QuickSort.sort(a);
+                     break;
+            default                 : StdOut.println(sortalg + " not known");
    }
 }
 
@@ -25,14 +27,13 @@ public static double time(String sortalg, Double[] a){ // timing the run
 }
 
 public static double timeRandomInputs(String sortalg, int N, int T){
-//running sortalg T times on array of N random doubles
+//running algorithm "sortalg" T times on array of N random doubles
   double total = 0.0;
   Double[] a = new Double[N];
   for (int t=0; t<T; t++){
     for (int i=0; i<N; i++) a[i] = StdRandom.uniform();
     total += time(sortalg,a);
   }
-
   return total;
 }
 

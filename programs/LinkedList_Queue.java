@@ -39,7 +39,7 @@ public class LinkedList_Queue<Item> implements Iterable<Item>
   
   public static void main(String[] args)
   {  LinkedList_Queue<String> s = new LinkedList_Queue<String>();
-     s.enqueue("hello "); s.enqueue("world "); s.enqueue("goodbye!"); 
+     s.enqueue("hello"); s.enqueue("world"); s.enqueue("goodbye!"); 
      StdOut.println(s.dequeue()); for (String word : s) StdOut.println(word);
   } 
 }//End of LinkedList_Queue based on Algorithms, 4th Edition, p. 151

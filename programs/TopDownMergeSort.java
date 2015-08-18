@@ -41,5 +41,5 @@ public static void main(String[] args){
   String[] a = In.readStrings();
   sort(a); assert isSorted(a); show(a);
 }//End of main
-}//End of TopDownMergeSort based on Algorithms, 4th Edition, p. 2xx
+}//End of TopDownMergeSort based on Algorithms, 4th Edition, p. 273
 
