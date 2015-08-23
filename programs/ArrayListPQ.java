@@ -4,6 +4,7 @@ public class ArrayListPQ<Key extends Comparable<Key>> { //implements Iterable<Ke
   
 private int N = 0;     // number of items           
 private ArrayList<Key> pq = new ArrayList<Key>(); // contents pq[0..N-1]
+
 private int parent(int k) {return (k-1)/2;}
 private int leftchild(int k) {return 2*k+1;}
 private int rightchild(int k) {return 2*k+2;}
@@ -33,8 +34,16 @@ public boolean isEmpty() {return N == 0;}
 public int     size()    {return N;}
 
 public static void main(String[] args)  { 
-  ArrayListPQ<Integer> pq = new ArrayListPQ<Integer>();
-  pq.insert(1); pq.insert(0); pq.insert(-13);pq.insert(99);
-  while (!pq.isEmpty()) StdOut.println(pq.delMax());
+//keeps the M smallest of random Doubles, prints the largest of these M smallest
+  ArrayListPQ<Double> pq = new ArrayListPQ<Double>();
+  int M = Integer.parseInt(args[0]);
+  for(long i=0; true; i++){ // infinite loop with counter
+    double r = StdRandom.uniform();
+    if (pq.size() < M) {pq.insert(r); continue;}
+    if (r >= pq.max()) continue;
+    double maxMsmallest = pq.delMax();
+    pq.insert(r);
+    StdOut.println("the maximum of the M smallest " + i + " is " + maxMsmallest);
+  }
 }//End of main
 }//End of ArrayListPQ, based on Algorithms, 4th Edition, Alg. 2.6
