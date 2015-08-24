@@ -16,7 +16,9 @@ public static void run(String sortalg, Double[] a){ // sort a using "sortalg"
                      break;
             case "QuickSort"        :  QuickSort.sort(a);
                      break;
-            default                 : StdOut.println(sortalg + " not known");
+            case "NaiveHeapSort"        :  NaiveHeapSort.sort(a);
+                     break;
+           default                  : StdOut.println(sortalg + " not known");
    }
 }
 

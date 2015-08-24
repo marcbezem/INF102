@@ -1,6 +1,6 @@
-public class ArrayListHeapSort{ // better generics with <Key extends ... >
+public class NaiveHeapSort{ // better generics with <Key extends ... >
   
-private ArrayListHeapSort(){} // keep your hands off my class!
+private NaiveHeapSort(){} // keep your hands off my class!
 
 public static <Key extends Comparable<Key>> void sort(Key[] a) {
   ArrayListPQ<Key> pq = new ArrayListPQ<Key>();
@@ -22,5 +22,5 @@ public static void main(String[] args){
   String[] a = In.readStrings();
   sort(a); show(a); assert isSorted(a); 
 }//End of main
-}//End of ArrayListHeapSort based on Algorithms, 4th Edition
+}//End of NaiveHeapSort based on Algorithms, 4th Edition
 

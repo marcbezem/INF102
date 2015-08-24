@@ -1,16 +1,16 @@
 public class BottomM{
-//keeps the M smallest of random Doubles, prints the smallest and its number 
+//keeps the M smallest of random Doubles, prints the largest of these M smallest
 
 public static void main(String[] args){
   ArrayListPQ<Double> pq = new ArrayListPQ<Double>();
   int M = Integer.parseInt(args[0]);
-  for(int i=0; true; i++){ // infinite loop with counter
+  for(long i=0; true; i++){ // infinite loop with counter
     double r = StdRandom.uniform();
     if (pq.size() < M) {pq.insert(r); continue;}
     if (r >= pq.max()) continue;
-    pq.delmax();
+    double maxMsmallest = pq.delMax();
     pq.insert(r);
-    StdOut.println("the minimum of the first " + i + " is " + r);
+    StdOut.println("the maximum of the M smallest " + i + " is " + maxMsmallest);
   }
 }//End of main
 }//End of BottomM, a variation on TopM from Algorithms, 4th Edition, p. 311
