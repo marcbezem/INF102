@@ -1,18 +1,18 @@
-public class QuickSort {
+public class QuickSort { // better generics than in the book
   
-public static void sort(Comparable[] a) {
+public static <Key extends Comparable<Key>> void sort(Key[] a) {
   StdRandom.shuffle(a); quicksort(a,0,a.length-1);
 }
 
-public static void quicksort(Comparable[] a, int lo, int hi) {
+public static <Key extends Comparable<Key>> void quicksort(Key[] a, int lo, int hi) {
   if (lo>=hi) return;
   int m = partition(a,lo,hi);
   quicksort(a,lo,m-1);
   quicksort(a,m+1,hi);
 }
 
-public static int partition(Comparable[] a, int lo, int hi) {
-  Comparable v = a[lo];
+public static <Key extends Comparable<Key>> int partition(Key[] a, int lo, int hi) {
+  Key v = a[lo];
   int l=lo, h=hi;
   for(;;){ // inv: if lo<=i<=l, then leq(a[i],v); if h<j<=hi, then less(v,a[j]) 
     while (less(v,a[h])) h--; // inv: l<=h
@@ -24,16 +24,16 @@ public static int partition(Comparable[] a, int lo, int hi) {
   return l;  
 }
 
-private static boolean less(Comparable v, Comparable w){
+private static <Key extends Comparable<Key>> boolean less(Key v, Key w){
   return v.compareTo(w) < 0; }
 
-private static void exch(Comparable[] a, int i, int j){
-  Comparable t = a[i]; a[i] = a[j]; a[j] = t; }
+private static <Key extends Comparable<Key>> void exch(Key[] a, int i, int j){
+  Key t = a[i]; a[i] = a[j]; a[j] = t; }
 
-private static void show(Comparable[] a){
-  for (Comparable o : a) StdOut.print(o+" "); StdOut.println();}
+private static <Key extends Comparable<Key>> void show(Key[] a){
+  for (Key o : a) StdOut.print(o+" "); StdOut.println();}
 
-public static boolean isSorted(Comparable[] a){
+public static <Key extends Comparable<Key>> boolean isSorted(Key[] a){
   for (int i=1; i<a.length; i++) if (less(a[i],a[i-1])) return false;
   return true;}
 
