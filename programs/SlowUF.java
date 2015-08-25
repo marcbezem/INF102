@@ -11,14 +11,20 @@ public SlowUF(int N){
 }
 
 public int count() {return count;}
+
 public long cost() {return aacost;}
+
+public void show() {for (int i=0; i<id.length; i++) StdOut.print(id[i]);}
+
 public int find(int p) {aacost++; return id[p];}
+
 public boolean connected(int p, int q) {return find(p) == find(q);}
+
 public void union(int p, int q) {
   int idp = find(p);
   int idq = find(q);
   if (idp != idq){ 
-    for (int i=0; i<id.length; i++) if (id[i]==idq) {aacost++; id[i]=idp;}
+    for (int i=0; i<id.length; i++) if (id[i]==idp) {aacost++; id[i]=idq;}
     count--; // one component less
     aacost+=id.length; // cost of the previous N tests id[i]==idp
   }
@@ -31,7 +37,7 @@ public static void main(String[] args){
     int p = StdIn.readInt(); 
     int q = StdIn.readInt();
     if (!uf.connected(p,q)) uf.union(p,q);
-    StdOut.println(p+" "+q+" "+uf.count()+" "+uf.cost());
+    StdOut.print(p+" "+q+" "); uf.show(); StdOut.println(" #components: " + uf.count()); 
   }
 }//End of main
 }//End of SlowUF based on Algorithms, 4th Edition, p. 221,222 

@@ -11,13 +11,19 @@ public FastUF(int N){
 }
 
 public int count() {return count;}
+
 public long cost() {return aacost;}
+
+public void show() {for (int i=0; i<id.length; i++) StdOut.print(id[i]);}
+
 public int find(int p){
   while (p != id[p]) {p=id[p]; aacost+=2;} // one aa for the test, one in the loop
   aacost++; // one aa for failing test
   return p;
 }
+
 public boolean connected(int p, int q) {return find(p) == find(q);}
+
 public void union(int p, int q) {
   int idp = find(p);
   int idq = find(q);
@@ -35,7 +41,7 @@ public static void main(String[] args){
     int p = StdIn.readInt(); 
     int q = StdIn.readInt();
     if (!uf.connected(p,q)) uf.union(p,q);
-    StdOut.println(p+" "+q+" "+uf.count()+" "+uf.cost());
+    StdOut.print(p+" "+q+" "); uf.show(); StdOut.println(" #components: " + uf.count()); 
   }
 }//End of main
 }//End of FastUF based on Algorithms, 4th Edition, p. 221,224
