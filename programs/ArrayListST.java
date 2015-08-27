@@ -1,0 +1,47 @@
+import java.util.Iterator; import java.util.ArrayList;
+public class ArrayListST<Key extends Comparable<Key>, Value> {
+  
+private int N = 0;     // number of key-value pairs         
+private ArrayList<Key> keys = new ArrayList<Key>();
+private ArrayList<Value> values = new ArrayList<Value>();
+
+public boolean isEmpty() {return N == 0;}
+public int     size()    {return N;}
+public Iterator<Key> keysIterator() {return keys.iterator();}
+
+public int rank(Key key){ // NB keys are sorted and unique
+  int lo = 0, hi = N-1;
+  while (lo <= hi) { // inv: all keys to the left of lo are smaller than key,
+  // and all keys to the right of hi are larger than key, and lo <= N
+    int mid = (lo+hi)/2;
+    int cmp = key.compareTo(keys.get(mid));
+    if (cmp == 0) return mid;
+    if (cmp < 0) {hi = mid-1;}
+    else         {lo = mid+1;}
+  }
+  return lo;
+}
+public void put(Key key, Value v) { 
+  int maybe = rank(key); // if key occurs, then at position maybe
+  if (maybe < N && key.equals(keys.get(maybe))) {values.set(maybe,v);}
+  else {keys.add(maybe,key); values.add(maybe,v); N++;}
+}
+public Value get(Key key){
+  if (isEmpty()) return null;
+  int maybe = rank(key); // if key occurs, then at position maybe
+  if (maybe < N && key.equals(keys.get(maybe))) {return values.get(maybe);}
+  else {return null;}
+}
+public static void main(String[] args)  { 
+  ArrayListST<String,Integer> st = new ArrayListST<String,Integer>();
+  while (!StdIn.isEmpty()) {
+    String key = StdIn.readString(); 
+    Integer i = st.get(key); if (i!=null){st.put(key,i+1);} else {st.put(key,1);}
+  }
+  Iterator<String> iter = st.keysIterator();
+  while (iter.hasNext()) {
+    String next = iter.next(); 
+    StdOut.println(st.get(next) + "\t" + next);
+  }
+}//End of main
+}//End of ArrayListST, based on Algorithms, 4th Edition, Alg. 3.2
