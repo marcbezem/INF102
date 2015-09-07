@@ -1,12 +1,14 @@
 public class QuickSort { // better generics than in the book
   
 public static <Key extends Comparable<Key>> void sort(Key[] a) {
-  StdRandom.shuffle(a); quicksort(a,0,a.length-1);
+  // StdRandom.shuffle(a); 
+  quicksort(a,0,a.length-1);
 }
 
 public static <Key extends Comparable<Key>> void quicksort(Key[] a, int lo, int hi) {
   if (lo>=hi) return;
   int m = partition(a,lo,hi);
+  assert show(a,m); // misuse of assert
   quicksort(a,lo,m-1);
   quicksort(a,m+1,hi);
 }
@@ -30,8 +32,9 @@ private static <Key extends Comparable<Key>> boolean less(Key v, Key w){
 private static <Key extends Comparable<Key>> void exch(Key[] a, int i, int j){
   Key t = a[i]; a[i] = a[j]; a[j] = t; }
 
-private static <Key extends Comparable<Key>> void show(Key[] a){
-  for (Key o : a) StdOut.print(o+" "); StdOut.println();}
+private static <Key extends Comparable<Key>> boolean show(Key[] a, int m){
+  StdOut.print("position " + m + " in ");
+  for (Key key : a) StdOut.print(key + " "); StdOut.println(); return true;}
 
 public static <Key extends Comparable<Key>> boolean isSorted(Key[] a){
   for (int i=1; i<a.length; i++) if (less(a[i],a[i-1])) return false;
@@ -39,7 +42,7 @@ public static <Key extends Comparable<Key>> boolean isSorted(Key[] a){
 
 public static void main(String[] args){
   String[] a = In.readStrings();
-  sort(a); show(a); assert isSorted(a); 
+  sort(a); assert isSorted(a); 
 }//End of main
 }//End of QuickSort based on Algorithms, 4th Edition, p. 278
 
