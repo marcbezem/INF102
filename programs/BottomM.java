@@ -10,7 +10,9 @@ public static void main(String[] args){
     if (r >= pq.max()) continue;
     double maxMsmallest = pq.delMax();
     pq.insert(r);
-    StdOut.println("the maximum of the M smallest " + i + " is " + maxMsmallest);
+    StdOut.println(" the maximum of the " + M + 
+                   " smallest of the first " + i + 
+                   " random doubles is " + maxMsmallest);
   }
 }//End of main
 }//End of BottomM, a variation on TopM from Algorithms, 4th Edition, p. 311
