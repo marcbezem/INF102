@@ -33,8 +33,7 @@ private void sink(int k) {
 public boolean isEmpty() {return N == 0;}
 public int     size()    {return N;}
 
-public static void main(String[] args)  { 
-//keeps the M smallest of random Doubles, prints the largest of these M smallest
+public static void main(String[] args){
   ArrayListPQ<Double> pq = new ArrayListPQ<Double>();
   int M = Integer.parseInt(args[0]);
   for(long i=0; true; i++){ // infinite loop with counter
@@ -43,7 +42,9 @@ public static void main(String[] args)  {
     if (r >= pq.max()) continue;
     double maxMsmallest = pq.delMax();
     pq.insert(r);
-    StdOut.println("the maximum of the M smallest " + i + " is " + maxMsmallest);
+    StdOut.println(" the maximum of the " + M + 
+                   " smallest of the first " + i + 
+                   " random doubles is " + maxMsmallest);
   }
 }//End of main
 }//End of ArrayListPQ, based on Algorithms, 4th Edition, Alg. 2.6
