@@ -12,23 +12,23 @@ public Iterator<Key> keysIterator() {return keys.iterator();}
 public int rank(Key key){ // NB keys are sorted and unique
   int lo = 0, hi = N-1;
   while (lo <= hi) { // inv: all keys to the left of lo are smaller than key,
-  // and all keys to the right of hi are larger than key, and lo <= N
+                      // and all keys to the right of hi are larger than key
     int mid = (lo+hi)/2;
     int cmp = key.compareTo(keys.get(mid));
-    if (cmp == 0) return mid;
+    if (cmp == 0) return mid; // key found at position mid
     if (cmp < 0) {hi = mid-1;}
     else         {lo = mid+1;}
   }
-  return lo;
+  return lo; // hi+1 = lo <= N and key not present, but "should be" at lo
 }
 public void put(Key key, Value v) { 
-  int maybe = rank(key); // if key occurs, then at position maybe
+  int maybe = rank(key); // key is or "should be" at position maybe
   if (maybe < N && key.equals(keys.get(maybe))) {values.set(maybe,v);}
   else {keys.add(maybe,key); values.add(maybe,v); N++;}
 }
 public Value get(Key key){
   if (isEmpty()) return null;
-  int maybe = rank(key); // if key occurs, then at position maybe
+  int maybe = rank(key); // key is or "should be" at position maybe
   if (maybe < N && key.equals(keys.get(maybe))) {return values.get(maybe);}
   else {return null;}
 }
