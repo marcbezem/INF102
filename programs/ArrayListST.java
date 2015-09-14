@@ -34,8 +34,9 @@ public Value get(Key key){
 }
 public static void main(String[] args)  { 
   ArrayListST<String,Integer> st = new ArrayListST<String,Integer>();
-  while (!StdIn.isEmpty()) {
-    String key = StdIn.readString(); 
+  In infile = new In(args[0]);
+  while (!infile.isEmpty()) {
+    String key = infile.readString(); 
     Integer i = st.get(key); if (i!=null){st.put(key,i+1);} else {st.put(key,1);}
   }
   Iterator<String> iter = st.keysIterator();

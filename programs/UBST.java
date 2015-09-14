@@ -37,8 +37,9 @@ private Node put(Key k, Value v, Node r) {
 
 public static void main(String[] args)  { 
   UBST<String,Integer> st = new UBST<String,Integer>();
-  while (!StdIn.isEmpty()) {
-    String key = StdIn.readString(); 
+  In infile = new In(args[0]);
+  while (!infile.isEmpty()) {
+    String key = infile.readString(); 
     Integer i = st.get(key); if (i!=null){st.put(key,i+1);} else {st.put(key,1);}
   }
   st.show();
