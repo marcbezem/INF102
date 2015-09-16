@@ -9,7 +9,7 @@ public boolean isEmpty() {return N == 0;}
 public int     size()    {return N;}
 public Iterator<Key> keysIterator() {return keys.iterator();}
 
-private int rank(Key key){ // NB keys are sorted and unique
+public int rank(Key key){ // NB keys are sorted and unique
   int lo = 0, hi = N-1;
   while (lo <= hi) { // inv: all keys to the left of lo are smaller than key,
                       // and all keys to the right of hi are larger than key
