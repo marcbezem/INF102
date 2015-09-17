@@ -12,7 +12,6 @@ public ArrayListHashST(int M){
 
 //public boolean isEmpty() {return N == 0;}
 //public int     size()    {return N;}
-//public Iterator<Key> keysIterator() {return keys.iterator();}
 
 private int hash(Key key){ return ( key.hashCode() & 0x7fffffff ) % M; }
 
@@ -27,11 +26,17 @@ public static void main(String[] args)  {
     String key = StdIn.readString(); 
     Integer i = st.get(key); if (i!=null){st.put(key,i+1);} else {st.put(key,1);}
   }
-  for (ArrayListST<String,Integer> sti : st) StdOut.println(sti);
-//  Iterator<String> iter = st.keysIterator();
-//  while (iter.hasNext()) {
-//    String next = iter.next(); 
-//    StdOut.println(st.get(next) + "\t" + next);
-//  }
+  assert st.show();
 }//End of main
+
+public boolean show(){
+  for (int i=0; i<M; i++) {
+    Iterator<Key> iter = st[i].keysIterator();
+    while (iter.hasNext()) {
+      Key next = iter.next(); 
+      StdOut.println(i + "\t" + st[i].get(next) + "\t" + next);
+    }
+  }
+return true;
+}
 }//End of ArrayListHashST, based on Algorithms, 4th Edition, Alg. 3.6
