@@ -1,3 +1,11 @@
+// SortCompare compares two sorting algorithms on 2T randomized arrays of N Doubles
+// More precisely, one algorithm is run on T such arrays, measuring total runtime, 
+// and then the other algorithm proceeds similarly with the next T arrays, 
+// after which the respective total runtimes are compared.
+// Methodological remark: the two sorting algorithms are never compared directly,
+// running them on the same arrays. Our CompareSort does this. On large samples there
+// should be no difference. On small samples we hope to get more stability.
+
 public class SortCompare {
   
 public static void run(String sortalg, Double[] a){ // sort a using "sortalg"
@@ -16,7 +24,7 @@ public static void run(String sortalg, Double[] a){ // sort a using "sortalg"
                      break;
             case "QuickSort"        :  QuickSort.sort(a);
                      break;
-            case "NaiveHeapSort"        :  NaiveHeapSort.sort(a);
+            case "NaiveHeapSort"    :  NaiveHeapSort.sort(a);
                      break;
            default                  : StdOut.println(sortalg + " not known");
    }

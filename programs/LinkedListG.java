@@ -1,12 +1,12 @@
-import java.util.LinkedList;
+import java.util.LinkedList; // supports efficient add(0,_) and toString()
 
-public class ArrayListG {
+public class LinkedListG {
   
 private int V; public int V() {return V;} // number of vertices
 private int E; public int E() {return E;} // number of edges
-private LinkedList<Integer>[] adj; // adjacency lists
+private LinkedList<Integer>[] adj;        // adjacency lists
 
-public ArrayListG(In in) {
+public LinkedListG(In in) {
   V = in.readInt(); E = in.readInt(); 
   adj = (LinkedList<Integer>[]) new LinkedList[V];
   for (int v=0; v<V; v++) adj[v] = new LinkedList<Integer>();
@@ -20,7 +20,7 @@ public ArrayListG(In in) {
 public void addEdge(Integer v, Integer w) {adj[v].add(0,w); adj[w].add(0,v);}
 
 public String toString(){
-  String s = "";
+  String s = ""; // in the following line we use the method toString()
   for (int v=0; v<V; v++) s += (v + " : " + adj[v] + "\n");
   return s;
 }
@@ -62,10 +62,16 @@ public void testpathdfs(){
 }
 
 public static void main(String[] args)  {
-    ArrayListG g = new ArrayListG(new In(args[0]));
+    LinkedListG g = new LinkedListG(new In(args[0]));
     StdOut.print(g.toString());
     g.testdfs();
     g.testpathdfs();
-  
-}//End of main
+  }//End of main
+
+public LinkedListG(int V) { // for later use
+  this.V = V; this.E = 0; 
+  adj = (LinkedList<Integer>[]) new LinkedList[V];
+  for (int v=0; v<V; v++) adj[v] = new LinkedList<Integer>();
+}
+
 }//End of LinkedListG, based on Algorithms, 4th Edition, Sec. 4.1
