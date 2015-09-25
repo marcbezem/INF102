@@ -1,15 +1,15 @@
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class ArrayListG {
   
 private int V; public int V() {return V;} // number of vertices
 private int E; public int E() {return E;} // number of edges
-private ArrayList<Integer>[] adj; // adjacency lists
+private LinkedList<Integer>[] adj; // adjacency lists
 
 public ArrayListG(In in) {
   V = in.readInt(); E = in.readInt(); 
-  adj = (ArrayList<Integer>[]) new ArrayList[V];
-  for (int v=0; v<V; v++) adj[v] = new ArrayList<Integer>();
+  adj = (LinkedList<Integer>[]) new LinkedList[V];
+  for (int v=0; v<V; v++) adj[v] = new LinkedList<Integer>();
   for (int e=0; e<E; e++) {
     int v = in.readInt();
     int w = in.readInt();
@@ -68,4 +68,4 @@ public static void main(String[] args)  {
     g.testpathdfs();
   
 }//End of main
-}//End of ArrayListG, based on Algorithms, 4th Edition, Sec. 4.1
+}//End of LinkedListG, based on Algorithms, 4th Edition, Sec. 4.1
