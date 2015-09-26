@@ -26,21 +26,23 @@ public StringSTG(In in) {
     G.addEdge(strnr.get(ai),strnr.get(aj)); // add the edge to the graph on indices
   }
 }
-public String toString(){
-  Iterator<String> iter = strnr.keysIterator();
-  String s = "";
-  while (iter.hasNext()) { 
-    String next = iter.next(); 
-    s += (next + " : " + strnr.get(next) + "\n");
-  }
-  return s;
+
+public void stringpathdfs(String s){
+  Integer[] paths = new Integer[V];
+  Integer n = strnr.get(s);
+  G.pathdfs(n,n,paths);
+  StdOut.println("Possible travels to " + s);
+  for(int v=0;v<V;v++) if (paths[v]!=null) {
+    int i = v;
+    while (i!=paths[i]) { StdOut.print(nrstr[i]+"-"); i = paths[i]; }
+    StdOut.println(nrstr[n]);
+  }  
 }
 
 public static void main(String[] args)  {
     StringSTG g = new StringSTG(new In(args[0]));
-    StdOut.print(g.toString());
- //   g.testdfs();
- //   g.testpathdfs();
+    g.stringpathdfs("ORD");
+    g.stringpathdfs("JFK");
   
 }//End of main
 }//End of LinkedListG, based on Algorithms, 4th Edition, Sec. 4.1
