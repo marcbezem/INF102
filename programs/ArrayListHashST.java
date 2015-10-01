@@ -26,15 +26,16 @@ public static void main(String[] args)  {
     String key = StdIn.readString(); 
     Integer i = st.get(key); if (i!=null){st.put(key,i+1);} else {st.put(key,1);}
   }
-  assert st.show();
+  assert st.show(); // convenient misuse of assertion
 }//End of main
 
 public boolean show(){
   for (int i=0; i<M; i++) {
+    int n = st[i].size();
+    if (n>0){ StdOut.print(i+":"+n+"\t");
     Iterator<Key> iter = st[i].keysIterator();
-    while (iter.hasNext()) {
-      Key next = iter.next(); 
-      StdOut.println(i + "\t" + st[i].get(next) + "\t" + next);
+    while (iter.hasNext()) {Key next = iter.next(); StdOut.print(next+" ");}
+    StdOut.println();
     }
   }
 return true;
