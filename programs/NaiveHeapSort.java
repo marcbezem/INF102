@@ -1,3 +1,4 @@
+import edu.princeton.cs.algs4.In; import edu.princeton.cs.algs4.StdOut;
 public class NaiveHeapSort{ // better generics with <Key extends ... >
   
 private NaiveHeapSort(){} // keep your hands off my class!

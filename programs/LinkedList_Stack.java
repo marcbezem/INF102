@@ -1,4 +1,4 @@
-import java.util.Iterator;
+import edu.princeton.cs.algs4.StdOut; import java.util.Iterator;
 
 public class LinkedList_Stack<Item> implements Iterable<Item> 
 {  

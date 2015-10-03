@@ -1,3 +1,4 @@
+import edu.princeton.cs.algs4.In; import edu.princeton.cs.algs4.StdOut; import edu.princeton.cs.algs4.Stopwatch; 
 import java.util.Arrays;
 
 public class ThreeSumOptimized{

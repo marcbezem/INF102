@@ -1,3 +1,4 @@
+import edu.princeton.cs.algs4.StdIn; import edu.princeton.cs.algs4.StdOut;
 public class SlowUF {
   
 private int[] id; // id[p] is the identifier of p

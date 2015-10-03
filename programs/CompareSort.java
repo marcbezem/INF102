@@ -5,6 +5,7 @@
 // Methodological remark: by comparing the two sorting algorithms directly,
 // running them on the same arrays, we hope to get a more realistic comparison.
 
+import edu.princeton.cs.algs4.StdOut; import edu.princeton.cs.algs4.Stopwatch; import edu.princeton.cs.algs4.StdRandom;
 public class CompareSort {
   
 public static void run(String sortalg, Double[] a){ // sort a using "sortalg"

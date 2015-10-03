@@ -1,4 +1,5 @@
-import java.util.Iterator; import java.util.ArrayList;
+import java.util.Iterator; import java.util.ArrayList; import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdOut;
 public class ArrayListST<Key extends Comparable<Key>, Value> {
   
 private int N = 0;     // number of key-value pairs         

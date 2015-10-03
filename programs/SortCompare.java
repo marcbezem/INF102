@@ -6,6 +6,7 @@
 // running them on the same arrays. Our CompareSort does this. On large samples there
 // should be no difference. On small samples we hope to get more stability.
 
+import edu.princeton.cs.algs4.StdOut; import edu.princeton.cs.algs4.Stopwatch; import edu.princeton.cs.algs4.StdRandom;
 public class SortCompare {
   
 public static void run(String sortalg, Double[] a){ // sort a using "sortalg"

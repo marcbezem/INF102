@@ -1,3 +1,4 @@
+import edu.princeton.cs.algs4.StdOut; import edu.princeton.cs.algs4.StdRandom;
 public class BottomM{
 //keeps the M smallest of random Doubles, prints the largest of these M smallest
 

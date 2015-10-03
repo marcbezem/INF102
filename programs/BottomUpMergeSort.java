@@ -1,3 +1,4 @@
+import edu.princeton.cs.algs4.In; import edu.princeton.cs.algs4.StdOut;
 public class BottomUpMergeSort {
   
 // public static void merge(): similar to merge() in TopDownMergeSort,

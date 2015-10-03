@@ -1,4 +1,5 @@
-import java.util.ArrayList; import java.util.Collections;
+import edu.princeton.cs.algs4.StdOut; import edu.princeton.cs.algs4.StdRandom;
+import java.util.ArrayList; import java.util.Collections; 
 
 public class ArrayListPQ<Key extends Comparable<Key>> { //implements Iterable<Key>{
   

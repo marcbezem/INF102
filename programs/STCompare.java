@@ -1,3 +1,4 @@
+import edu.princeton.cs.algs4.StdOut;  import edu.princeton.cs.algs4.Stopwatch;
 public class STCompare {
   
 public static void run(String st_alg, String filename){ // symbol table "st_alg"

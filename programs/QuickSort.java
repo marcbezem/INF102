@@ -1,3 +1,4 @@
+import edu.princeton.cs.algs4.In; import edu.princeton.cs.algs4.StdOut;
 public class QuickSort { // better generics than in the book
   
 public static <Key extends Comparable<Key>> void sort(Key[] a) {

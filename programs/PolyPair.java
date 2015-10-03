@@ -1,3 +1,4 @@
+import edu.princeton.cs.algs4.StdOut;
 public class PolyPair <
   T1 extends Comparable<T1>,
   T2 extends Comparable<T2>> 

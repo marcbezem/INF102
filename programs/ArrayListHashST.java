@@ -1,4 +1,5 @@
-import java.util.Iterator; import java.util.ArrayList;
+import java.util.Iterator; import java.util.ArrayList; import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
 public class ArrayListHashST<Key extends Comparable<Key>, Value> {
   
 private int M;     // size of hash table
