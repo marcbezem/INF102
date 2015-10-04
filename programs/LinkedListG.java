@@ -42,7 +42,7 @@ public void testdfs(){
   for(;;) { // infinite loop
     boolean[] marked = new boolean[V];
     StdOut.print("Enter node: "); Integer n = StdIn.readInt();
-    if (n < 0) break;
+    if (n < 0 || n >= V) break;
     dfs(n,marked);
     for(int v=0;v<V;v++) StdOut.print(marked[v]?v+" ":". "); 
     StdOut.println();
@@ -53,7 +53,7 @@ public void testbfs(){
   for(;;) { // infinite loop
     boolean[] marked = new boolean[V];
     StdOut.print("Enter node: "); Integer n = StdIn.readInt();
-    if (n < 0) break;
+    if (n < 0 || n >= V) break;
     LinkedList_Queue<Integer> q = new LinkedList_Queue();
     q.enqueue(n); marked[n] = true;
     bfs(q,marked);
@@ -71,7 +71,7 @@ public void testpathdfs(){
   for(;;) { // infinite loop
   Integer[] paths = new Integer[V];
     StdOut.print("Enter node: "); Integer n = StdIn.readInt();
-    if (n < 0) break;
+    if (n < 0 || n >= V) break;
     pathdfs(n,n,paths);
     for(int v=0;v<V;v++) StdOut.print(paths[v]!=null?paths[v]+" ":". "); 
     StdOut.println();
@@ -93,7 +93,7 @@ public void testpathbfs(){
   for(;;) { // infinite loop
   Integer[] paths = new Integer[V];
     StdOut.print("Enter node: "); Integer n = StdIn.readInt();
-    if (n < 0) break;
+    if (n < 0 || n >= V) break;
     LinkedList_Queue<Integer> q = new LinkedList_Queue();
     q.enqueue(n); paths[n] = n; 
     pathbfs(q,paths);

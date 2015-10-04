@@ -35,44 +35,42 @@ public void testdfs(){
   for(;;) { // infinite loop
     boolean[] marked = new boolean[V];
     StdOut.print("Enter node: "); Integer n = StdIn.readInt();
-    if (n < 0) break;
+    if (n < 0 || n >= V) break;
     dfs(n,marked);
     for(int v=0;v<V;v++) StdOut.print(marked[v]?v+" ":". "); 
     StdOut.println();
   }  
 }
-
-  
-public void pathdfs(Integer u, Integer v, Integer[] paths) {
+ 
+public Integer slowCyclist(Integer u, Integer v, Integer[] paths) {
   paths[v] = u;
-  for (Integer w : adj[v]) if (paths[w]==null) pathdfs(v,w,paths);
+  for (Integer w : adj[v]) 
+    if (paths[w]==null) {Integer c = slowCyclist(v,w,paths); if (c!=null) return c;} 
+    else {int x=v; while (x!=w && x!=paths[x]) x=paths[x]; // inefficient!
+          if (x==w) {paths[w]=v; return w;}} // paths[w] updated to v
+  return null;
 }
 
-public void testpathdfs(){
+public void testslow(){
   for(;;) { // infinite loop
   Integer[] paths = new Integer[V];
     StdOut.print("Enter node: "); Integer n = StdIn.readInt();
-    if (n < 0) break;
-    pathdfs(n,n,paths);
-    for(int v=0;v<V;v++) StdOut.print(paths[v]!=null?paths[v]+" ":". "); 
-    StdOut.println();
-    for(int v=0;v<V;v++) if (paths[v]!=null) {
-      int i = v;
-      while (i!=paths[i]) { StdOut.print(i+"-"); i = paths[i]; }
-    StdOut.println(n);      }
+    if (n < 0 || n >= V) return;
+    Integer c = slowCyclist(n,n,paths);
+    if (c!=null) {
+      int x=c; do {StdOut.print(x+"<-"); x=paths[x];} while (x!=c); StdOut.println(c);}
+    else StdOut.println("no cycle");
   }  
 }
-
-
 
 public static void main(String[] args)  {
     LinkedListDiG dg = new LinkedListDiG(new In(args[0]));
     StdOut.print(dg.toString());
-    StdOut.print("Enter test (dfs/bfs/pathdfs/pathbfs/countcc): ");
+    StdOut.print("Enter test (dfs/testslow): ");
     switch (StdIn.readString()) {
             case "dfs"      :  dg.testdfs();
                      break;
-            case "pathdfs"  :  dg.testpathdfs();
+            case "testslow"  :  dg.testslow();
                      break;
            default          :   StdOut.println("test not known");
      }
