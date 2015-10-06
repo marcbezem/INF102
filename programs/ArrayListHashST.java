@@ -2,17 +2,14 @@ import java.util.Iterator; import java.util.ArrayList; import edu.princeton.cs.a
 import edu.princeton.cs.algs4.StdOut;
 public class ArrayListHashST<Key extends Comparable<Key>, Value> {
   
-private int M;     // size of hash table
+private int M;     // size of hash table, NOT number of keys in ST
 private ArrayListST<Key,Value>[] st; // array of ArrrayListST objects
 
 public ArrayListHashST(int M){
-  this.M = M;
+  this.M = M; // typical values of M are 31, 997, 65521, 1048573 
   st  = (ArrayListST<Key,Value>[]) new ArrayListST[M]; // array generics :-(
   for (int i=0; i<M; i++) st[i] = new ArrayListST<Key,Value>();
 }
-
-//public boolean isEmpty() {return N == 0;}
-//public int     size()    {return N;}
 
 private int hash(Key key){ return ( key.hashCode() & 0x7fffffff ) % M; }
 
