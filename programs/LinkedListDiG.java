@@ -51,6 +51,14 @@ public Integer slowCyclist(Integer u, Integer v, Integer[] paths) {
   return null;
 }
 
+public Integer hasCycle(Integer[] paths){//returns node on cycle in paths, null if acyclic
+  Integer cycle = null;
+  for(int v=0;v<V;v++){
+    if (paths[v]==null) { cycle = slowCyclist(v,v,paths); if (cycle != null) break; }
+  }
+  return cycle;
+}
+
 public void testslow(){
   for(;;) { // infinite loop
   Integer[] paths = new Integer[V];
