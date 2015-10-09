@@ -26,10 +26,13 @@ public String toString(){
   return s;
 }
 
-public void dfs(Integer v, boolean[] marked) {
-  marked[v] = true;
-  for (Integer w : adj[v]) if (! marked[w]) dfs(w,marked);
+public String dfs(Integer v, boolean[] marked) {// return type String !
+  marked[v] = true; 
+  String sv = v.toString(); String s = sv; // all new
+  for (Integer w : adj[v]) if (! marked[w]) s += "->"+dfs(w,marked); // some new
+  s += "(" + sv + ")"; return s; // all new
 }
+
 
 public void testdfs(){
   for(;;) { // infinite loop
