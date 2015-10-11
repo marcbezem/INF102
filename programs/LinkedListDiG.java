@@ -49,16 +49,25 @@ public boolean slowCyclist(Integer u, Integer v, Integer[] paths) {
   for (Integer w : adj[v]) 
     if (paths[w]==null) {if (slowCyclist(v,w,paths)) return true;}
     else {for (int x=v; x!=paths[x]; x=paths[x]) // Inefficient! Why?
+  // Early optimization is the source of all evil (D.E. Knuth).
            if (x==w) return true;}
   return false;
 }
 
-public void testSlow(){
+public boolean fastCyclist(Integer u, Integer v, Integer[] paths, boolean[] op) {
+  op[v] = true; paths[v] = u;
+  for (Integer w : adj[v]) 
+    if (paths[w]==null) {if (slowCyclist(v,w,paths)) return true;}
+    else {if (op[w]) return true;} // Efficient! But uses extra space.
+  op[v] = false; return false;
+}
+
+public void testFast(){
   for(;;) { // infinite loop
-  Integer[] paths = new Integer[V];
+  boolean[] op = new boolean[V]; Integer[] paths = new Integer[V];
     StdOut.print("Enter node: "); Integer n = StdIn.readInt();
     if (n < 0 || n >= V) return;
-    if (slowCyclist(n,n,paths)) StdOut.println("cycle in subtree below " + n);
+    if (fastCyclist(n,n,paths,op)) StdOut.println("cycle in subtree below " + n);
     else StdOut.println("no cycle in subtree below " + n);
   }  
 }
@@ -74,26 +83,50 @@ public void testCycle(){
   else StdOut.println("no cycle"); 
 }
 
+public void preDfs(int v, boolean[] marked, LinkedList_Queue<Integer> q) {
+  marked[v] = true; q.enqueue(v);
+  for (int w : adj[v]) if (! marked[w]) preDfs(w,marked,q);
+}
+
+public void testPre(){
+  boolean[] marked = new boolean[V]; 
+  LinkedList_Queue<Integer> q = new LinkedList_Queue<Integer>(); 
+  for(int v=0;v<V;v++) if (!marked[v]) preDfs(v,marked,q);
+  for (Integer v: q) StdOut.print(v + " ");
+  StdOut.println("is the preorder"); 
+}
+
+public void postDfs(int v, boolean[] marked, LinkedList_Queue<Integer> q) {
+  marked[v] = true;
+  for (int w : adj[v]) if (! marked[w]) postDfs(w,marked,q);
+  q.enqueue(v);
+}
+
+public void testPost(){
+  boolean[] marked = new boolean[V]; 
+  LinkedList_Queue<Integer> q = new LinkedList_Queue<Integer>(); 
+  for(int v=0;v<V;v++) if (!marked[v]) postDfs(v,marked,q);
+  for (Integer v: q) StdOut.print(v + " ");
+  StdOut.println("is the postorder (topological if digraph acyclic)"); 
+}
+
 public static void main(String[] args)  {
-    LinkedListDiG dg = new LinkedListDiG(new In(args[0]));
-    StdOut.print(dg.toString());
-    StdOut.print("Enter test (testDfs/testSlow/testCycle): ");
-    switch (StdIn.readString()) {
+  LinkedListDiG dg = new LinkedListDiG(new In(args[0]));
+  StdOut.print(dg.toString());
+  StdOut.print("Enter testDfs/testFast/testCycle/testPre/testPost: ");
+  switch (StdIn.readString()) {
             case "testDfs"   :  dg.testDfs();
                      break;
-            case "testSlow"  :  dg.testSlow();
+            case "testFast"  :  dg.testFast();
                      break;
-            case "testCycle"   :  dg.testCycle();
+            case "testCycle" :  dg.testCycle();
                      break;
-           default           :   StdOut.println("test not known");
+            case "testPre"   :  dg.testPre();
+                     break;
+            case "testPost"  :  dg.testPost();
+                     break;
+           default           :  StdOut.println("test not known");
      }
     
   }//End of main
-
-public LinkedListDiG(int V) { // for later use
-  this.V = V; this.E = 0; 
-  adj = (LinkedList<Integer>[]) new LinkedList[V];
-  for (int v=0; v<V; v++) adj[v] = new LinkedList<Integer>();
-}
-
 }//End of LinkedListDiG, based on Algorithms, 4th Edition, Sec. 4.2
