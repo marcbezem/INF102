@@ -34,7 +34,7 @@ public void dfs(Integer v, boolean[] marked) {
 public void bfs(LinkedList_Queue<Integer> q, boolean[] marked) {
   while (!q.isEmpty()) {
      Integer v = q.dequeue();
-     for (Integer w : adj[v]) if (! marked[w]) {q.enqueue(w); marked[w]=true;}
+     for (Integer w : adj[v]) if (! marked[w]) {marked[w]=true; q.enqueue(w);}
   }
 }
 
@@ -55,7 +55,7 @@ public void testbfs(){
     StdOut.print("Enter node: "); Integer n = StdIn.readInt();
     if (n < 0 || n >= V) break;
     LinkedList_Queue<Integer> q = new LinkedList_Queue();
-    q.enqueue(n); marked[n] = true;
+    marked[n] = true; q.enqueue(n);
     bfs(q,marked);
     for(int v=0;v<V;v++) StdOut.print(marked[v]?v+" ":". "); 
     StdOut.println();
@@ -85,7 +85,7 @@ public void testpathdfs(){
 public void pathbfs(LinkedList_Queue<Integer> q, Integer[] paths) {
   while (!q.isEmpty()) {
      Integer v = q.dequeue();
-     for (Integer w : adj[v]) if (paths[w]==null) {q.enqueue(w); paths[w] = v; }
+     for (Integer w : adj[v]) if (paths[w]==null) {paths[w] = v; q.enqueue(w);}
      pathbfs(q,paths);          }
 }
 
@@ -95,7 +95,7 @@ public void testpathbfs(){
     StdOut.print("Enter node: "); Integer n = StdIn.readInt();
     if (n < 0 || n >= V) break;
     LinkedList_Queue<Integer> q = new LinkedList_Queue();
-    q.enqueue(n); paths[n] = n; 
+    paths[n] = n; q.enqueue(n); 
     pathbfs(q,paths);
     for(int v=0;v<V;v++) StdOut.print(paths[v]!=null?paths[v]+" ":". "); 
     StdOut.println();
