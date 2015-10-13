@@ -110,10 +110,18 @@ public void testPost(){
   StdOut.println("is the postorder (topological if digraph acyclic)"); 
 }
 
+public boolean[][] transitiveClosure(){ // returns reflexive-transitive closure
+  boolean[][] adjacencyMatrix = new boolean[V][V];
+  for (int v=0;v<V;v++){dfs(v,adjacencyMatrix[v]);}
+  for (int v=0;v<V;v++){for (int w=0;w<V;w++) StdOut.print(adjacencyMatrix[v][w]?1:0);
+                        StdOut.println();}
+  return adjacencyMatrix; // V^2 space, reachability test in constant time
+}
+
 public static void main(String[] args)  {
   LinkedListDiG dg = new LinkedListDiG(new In(args[0]));
   StdOut.print(dg.toString());
-  StdOut.print("Enter testDfs/testFast/testCycle/testPre/testPost: ");
+  StdOut.print("Enter testDfs/testFast/testCycle/testPre/testPost/testTC: ");
   switch (StdIn.readString()) {
             case "testDfs"   :  dg.testDfs();
                      break;
@@ -124,6 +132,8 @@ public static void main(String[] args)  {
             case "testPre"   :  dg.testPre();
                      break;
             case "testPost"  :  dg.testPost();
+                     break;
+            case "testTC"    :  dg.transitiveClosure();
                      break;
            default           :  StdOut.println("test not known");
      }
