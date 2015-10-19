@@ -49,7 +49,7 @@ public boolean slowCyclist(Integer u, Integer v, Integer[] paths) {
   for (Integer w : adj[v]) 
     if (paths[w]==null) {if (slowCyclist(v,w,paths)) return true;}
     else {for (int x=v; x!=paths[x]; x=paths[x]) // Inefficient! Why?
-  // Early optimization is the source of all evil (D.E. Knuth).
+  // Premature optimization is the root of all evil (D.E. Knuth).
            if (x==w) return true;}
   return false;
 }
