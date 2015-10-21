@@ -61,9 +61,10 @@ public void testbfs(){
     StdOut.println();
   }  
 }
-  
+
+// meaning of paths: edge v-paths[v] has been used, self loop = source 
 public void pathdfs(Integer u, Integer v, Integer[] paths) {
-  paths[v] = u;
+  paths[v] = u; // paths[v] == null means not marked
   for (Integer w : adj[v]) if (paths[w]==null) pathdfs(v,w,paths);
 }
 
@@ -72,7 +73,7 @@ public void testpathdfs(){
   Integer[] paths = new Integer[V];
     StdOut.print("Enter node: "); Integer n = StdIn.readInt();
     if (n < 0 || n >= V) break;
-    pathdfs(n,n,paths);
+    pathdfs(n,n,paths); // self loop = source
     for(int v=0;v<V;v++) StdOut.print(paths[v]!=null?paths[v]+" ":". "); 
     StdOut.println();
     for(int v=0;v<V;v++) if (paths[v]!=null) {
@@ -82,6 +83,7 @@ public void testpathdfs(){
   }  
 }
 
+// meaning of paths: edge v-paths[v] has been used, self loop = source 
 public void pathbfs(LinkedList_Queue<Integer> q, Integer[] paths) {
   while (!q.isEmpty()) {
      Integer v = q.dequeue();
@@ -95,7 +97,7 @@ public void testpathbfs(){
     StdOut.print("Enter node: "); Integer n = StdIn.readInt();
     if (n < 0 || n >= V) break;
     LinkedList_Queue<Integer> q = new LinkedList_Queue();
-    paths[n] = n; q.enqueue(n); 
+    q.enqueue(n); paths[n] = n; // self loop = source, null means not marked 
     pathbfs(q,paths);
     for(int v=0;v<V;v++) StdOut.print(paths[v]!=null?paths[v]+" ":". "); 
     StdOut.println();
@@ -137,7 +139,7 @@ public static void main(String[] args)  {
     
   }//End of main
 
-public LinkedListG(int V) { // for later use
+public LinkedListG(int V) { // for later use in StringSTG.java
   this.V = V; this.E = 0; 
   adj = (LinkedList<Integer>[]) new LinkedList[V];
   for (int v=0; v<V; v++) adj[v] = new LinkedList<Integer>();
