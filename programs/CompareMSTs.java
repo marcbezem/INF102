@@ -25,3 +25,4 @@ public static void main(String[] args) {
   run(args, "LazyPrim"); run(args, "EagerPrim"); run(args, "Kruskal"); 
   }//End of main
 }//End of CompareMSTs, based on Algorithms, 4th Edition, Sec. 4.3
+//Timings for largeEWG.txt: Lazy 9.322, Eager 2.155, Kruskal 11.729
