@@ -45,6 +45,7 @@ public void testDfs(){
 }
  
 public boolean slowCyclist(Integer u, Integer v, Integer[] paths) {
+// call: slowCyclist(s,s,paths) detects a cycle reachable from s
   paths[v] = u;
   for (Integer w : adj[v]) 
     if (paths[w]==null) {if (slowCyclist(v,w,paths)) return true;}
@@ -55,9 +56,10 @@ public boolean slowCyclist(Integer u, Integer v, Integer[] paths) {
 }
 
 public boolean fastCyclist(Integer u, Integer v, Integer[] paths, boolean[] op) {
+// call: fastCyclist(s,s,paths) detects a cycle reachable from s
   op[v] = true; paths[v] = u;
   for (Integer w : adj[v]) 
-    if (paths[w]==null) {if (slowCyclist(v,w,paths)) return true;}
+    if (paths[w]==null) {if (fastCyclist(v,w,paths,op)) return true;}
     else {if (op[w]) return true;} // Efficient! But uses extra space.
   op[v] = false; return false;
 }
