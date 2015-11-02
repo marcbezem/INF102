@@ -33,3 +33,5 @@ public static void main(String[] args) {
 run(args, "LazyPrim"); run(args, "EagerPrim"); run(args, "Kruskal"); 
   }//End of main
 }//End of CompareMSTs, based on Algorithms, 4th Edition, Sec. 4.3
+//time for LazyPrim: 16.371; EagerPrim: 3.47; Kruskal: 43.495
+
