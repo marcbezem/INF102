@@ -30,18 +30,18 @@ public void slowEWD (int s) {// non-negative weights
   // Marked nodes: known shortest path to s
   // Unmarked nodes: known shortest path to s THROUGH marked nodes if such path exists
   boolean[] marked = new boolean[V];
-  for(int v=0; v<V; v++) distToSource[v] = Double.POSITIVE_INFINITY;
+  for(int v=0; v<V; v++) { distToSource[v] = Double.POSITIVE_INFINITY; pathToSource[v] = null; }
   distToSource[s] = 0.0;
   for(;;) { // infinite loop, will be left when all reachable nodes are marked
     double minDistance = Double.POSITIVE_INFINITY; 
-    int minUnmarked = 0; // next loop: find unmarked node with minimum distance, SLOW
+    int minUnmarked = -1; // next loop: find unmarked node with minimum distance, SLOW
     // Premature optimization is the root of all evil (D.E. Knuth)
     // Can be improved by using an indexed minimum priority queue
     for(int v=0; v<V; v++) {
        double dTSv = distToSource[v];
        if (!marked[v] && dTSv < minDistance) { minUnmarked = v; minDistance = dTSv; }
     }
-    if  (minDistance == Double.POSITIVE_INFINITY) break; // no reachable unmarked nodes left
+    if  (minUnmarked == -1) return; // no reachable unmarked nodes left
     for(DirectedEdge e: adj[minUnmarked]) { // update distance and path for all neighbours
       int w = e.to(); double ew = e.weight();
       if (distToSource[w] > minDistance + ew) { distToSource[w] = minDistance + ew; pathToSource[w] = e; }
@@ -78,7 +78,7 @@ public void simpleBF (int s) {// negative weights allowed
     for(int v=0; v<V; v++) prettyPrint(distToSource[v]); StdOut.println(); // print current state
     improved = false; // detects whether some distance has been improved
     for(int v=0; v<V; v++)
-      for(DirectedEdge e: adj[v]) { // try and improve distances of all neighbours
+        for(DirectedEdge e: adj[v]) { // try and improve distances of all neighbours
         int w = e.to(); double ew = e.weight();
         if (distToSource[w] > distToSource[v] + ew) { distToSource[w] = distToSource[v] + ew; improved = true; }
       }
