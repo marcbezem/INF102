@@ -41,7 +41,7 @@ public StringSTG(In in) {
   for (int v=0; v<V; v++) StdOut.println(v + "\t" + nr2str[v]);
 }
 
-public void stringpathdfs(String s){
+public void stringPathBfs(String s){
   Integer[] paths = new Integer[V];
   LinkedList_Queue<Integer> q = new LinkedList_Queue();
   Integer n = str2nr.get(s); q.enqueue(n); paths[n] = n; 
@@ -56,7 +56,7 @@ public void stringpathdfs(String s){
 
 public static void main(String[] args)  {
   StringSTG g = new StringSTG(new In(args[0]));
-  g.stringpathdfs("ORD");
-  g.stringpathdfs("JFK");
+  g.stringPathBfs("ORD");
+  g.stringPathBfs("JFK");
   }//End of main
 }//End of StringSTG, based on Algorithms, 4th Edition, Sec. 4.1
