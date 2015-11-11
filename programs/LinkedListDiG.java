@@ -114,7 +114,7 @@ public void testPost(){
 
 public boolean[][] transitiveClosure(){ // returns reflexive-transitive closure
   boolean[][] adjacencyMatrix = new boolean[V][V];
-  for (int v=0;v<V;v++){dfs(v,adjacencyMatrix[v]);}
+  for (int v=0;v<V;v++){dfs(v,adjacencyMatrix[v]);} // "row of v" as array "marked"
   for (int v=0;v<V;v++){for (int w=0;w<V;w++) StdOut.print(adjacencyMatrix[v][w]?1:0);
                         StdOut.println();}
   return adjacencyMatrix; // V^2 space, reachability test in constant time
