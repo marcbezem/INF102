@@ -56,7 +56,7 @@ public boolean slowCyclist(Integer u, Integer v, Integer[] paths) {
 }
 
 public boolean fastCyclist(Integer u, Integer v, Integer[] paths, boolean[] op) {
-// call: fastCyclist(s,s,paths) detects a cycle reachable from s
+// call: fastCyclist(s,s,paths,op) detects a cycle reachable from s
   op[v] = true; paths[v] = u;
   for (Integer w : adj[v]) 
     if (paths[w]==null) {if (fastCyclist(v,w,paths,op)) return true;}
@@ -123,7 +123,7 @@ public boolean[][] transitiveClosure(){ // returns reflexive-transitive closure
 public static void main(String[] args)  {
   LinkedListDiG dg = new LinkedListDiG(new In(args[0]));
   StdOut.print(dg.toString());
-  StdOut.print("Enter testDfs/testFast/testCycle/testPre/testPost/testTC: ");
+  StdOut.print("Enter testDfs/testFast/testCycle/testPre/testPost/testTC/testExam: ");
   switch (StdIn.readString()) {
             case "testDfs"   :  dg.testDfs();
                      break;
@@ -137,8 +137,32 @@ public static void main(String[] args)  {
                      break;
             case "testTC"    :  dg.transitiveClosure();
                      break;
+            case "testExam"    :  dg.testExam();
+                     break;
            default           :  StdOut.println("test not known");
      }
     
   }//End of main
+
+public boolean examCyclist(Integer v, boolean[] marked, boolean[] op) {
+// tests the existence of a cycle reachable from v
+  marked[v] = true; 
+  op[v] = true;
+  for (Integer w : adj[v]) 
+    if (!marked[w]) {if (examCyclist(w,marked,op)) return true;}
+    else            {if (op[w]) return true;}
+  op[v] = false; 
+  return false;
+}
+
+public void testExam(){
+  for(;;) { // infinite loop
+  boolean[] marked = new boolean[V]; boolean[] op = new boolean[V];
+    StdOut.print("Enter node: "); Integer n = StdIn.readInt();
+    if (n < 0 || n >= V) return;
+    if (examCyclist(n,marked,op)) StdOut.println("cycle in subtree below " + n);
+    else StdOut.println("no cycle in subtree below " + n);
+  }  
+}
+
 }//End of LinkedListDiG, based on Algorithms, 4th Edition, Sec. 4.2
