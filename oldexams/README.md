@@ -2,6 +2,7 @@
 
 - h/v = the semester (Fall/Spring), followed by the year
 - b/n/e = language (bokmål/nynorsk/English)
+- s = short solution 
 
 # Important
 

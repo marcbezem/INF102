@@ -1,3 +1,5 @@
+Short solutions to the problems of the INF102 exam on 27 November 2015.
+
 1. Cubic solution: take ThreeSum.java on p. 173 of Algs4 and change "==0" to ">0".
 O(N^2 log N) solution: github.com/marcbezem/INF102/programs/ThreeSumPos.java
 
@@ -9,4 +11,3 @@ insert() and delMax(), or given as separate methods.
 
 4. Method examCycle() in github.com/marcbezem/INF102/programs/LinkedListDiG.java
 Should be applied to all nodes. Better: apply to the remaining unmarked nodes only.
-
