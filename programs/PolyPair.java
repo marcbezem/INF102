@@ -1,20 +1,18 @@
 import edu.princeton.cs.algs4.StdOut;
+
 public class PolyPair <
   T1 extends Comparable<T1>,
   T2 extends Comparable<T2>> 
 implements 
   Comparable<PolyPair<T1,T2>> {
   
-private T1 fst;
-private T2 snd;
+private T1 fst; public T1 getFst() {return fst;}
+private T2 snd; public T2 getSnd() {return snd;}
 
 public PolyPair(T1 fst, T2 snd){
   this.fst = fst;
   this.snd = snd;
 }
-
-public T1 getFst() {return fst;}
-public T2 getSnd() {return snd;}
 
 public int compareTo(PolyPair<T1,T2> p){
   int comparefst = this.fst.compareTo(p.getFst());
