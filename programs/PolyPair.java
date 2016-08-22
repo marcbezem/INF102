@@ -18,7 +18,7 @@ public int compareTo(PolyPair<T1,T2> p){
   int comparefst = this.fst.compareTo(p.getFst());
   if (comparefst != 0) return comparefst;
   return this.snd.compareTo(p.getSnd());
-}
+} // TODO: equals(), hashCode()
 
 @Override public String toString(){
   return "(" + this.getFst() + "," + this.getSnd() + ")";
