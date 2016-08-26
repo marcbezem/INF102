@@ -9,24 +9,33 @@ public static int countZeroSumTriples(int[] a) {
   int counter = 0;
   for (int i = 0; i < N; i++)
     for (int j = i+1; j < N; j++){
-      int left = myBinarySearch("leftmost", -(a[i] + a[j]), a, j+1, N-1);
+      int left = BinarySearchLeft(-(a[i] + a[j]), a, j+1, N-1);
       if (left == -1) continue;
-      int right = myBinarySearch("rightmost", -(a[i] + a[j]), a, j+1, N-1);
+      int right = BinarySearchRight(-(a[i] + a[j]), a, j+1, N-1);
       counter += right - left + 1;
     }
   return counter;
 }
 
-public static int myBinarySearch(String s, int key, int[] a, int lo, int hi){
-// binary search for leftmost or rightmost position of key in a[lo..hi]
+public static int BinarySearchLeft(int key, int[] a, int lo, int hi){
+// binary search for leftmost position of key in a[lo..hi]
   while (lo <= hi) {
-    int mid = (s=="leftmost") ? (lo+hi)/2 : (lo+hi+1)/2 ;
-    if (key == a[lo] && s == "leftmost") return lo;
-    if (key == a[hi] && s == "rightmost") return hi;
-    if (key == a[mid] && s == "leftmost") return myBinarySearch(s, key, a, lo, mid);
-    if (key == a[mid] && s == "rightmost") return myBinarySearch(s, key, a, mid, hi);
-    if (key < a[mid]) return myBinarySearch(s, key, a, lo, mid-1);
-    if (key > a[mid]) return myBinarySearch(s, key, a, mid+1, hi);
+    int mid = (lo+hi)/2 ; // rounding mid down for left
+    if (key == a[lo])  return lo;
+    if (key == a[mid]) return BinarySearchLeft(key, a, lo, mid); // terminates!
+    if (key < a[mid])  return BinarySearchLeft(key, a, lo, mid-1);
+    if (key > a[mid])  return BinarySearchLeft(key, a, mid+1, hi);
+  }
+  return -1;
+}
+public static int BinarySearchRight(int key, int[] a, int lo, int hi){
+// binary search for rightmost position of key in a[lo..hi]
+  while (lo <= hi) {
+    int mid = (lo+hi+1)/2 ; // rounding mid up for right
+    if (key == a[hi])  return hi;
+    if (key == a[mid]) return BinarySearchRight(key, a, mid, hi); // terminates!
+    if (key < a[mid])  return BinarySearchRight(key, a, lo, mid-1);
+    if (key > a[mid])  return BinarySearchRight(key, a, mid+1, hi);
   }
   return -1;
 } 
