@@ -1,4 +1,5 @@
 import edu.princeton.cs.algs4.StdIn; import edu.princeton.cs.algs4.StdOut;
+
 public class WeightedUF {
   
 private int[] id; // id[p] is the identifier of p
@@ -43,6 +44,7 @@ public static void main(String[] args){
     if (!uf.connected(p,q)) uf.union(p,q);
     StdOut.println(p+" "+q+" "+uf.count()+" "+uf.cost());
   }
+   StdOut.println("# array accesses: " + uf.cost());
 }//End of main
 }//End of WeightedUF based on Algorithms, 4th Edition, p. 228
 //last p q count aacost: 943868 727438 6 328912302594

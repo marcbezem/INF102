@@ -1,4 +1,5 @@
 import edu.princeton.cs.algs4.StdIn; import edu.princeton.cs.algs4.StdOut;
+
 public class SlowUF {
   
 private int[] id; // id[p] is the identifier of p
@@ -11,11 +12,10 @@ public SlowUF(int N){
   count = N; // initially, each element is only connected to itself
 }
 
+public void show() {for (int n : id) StdOut.print(n);}
 public int count() {return count;}
-
 public long cost() {return aacost;}
 
-public void show() {for (int i=0; i<id.length; i++) StdOut.print(id[i]);}
 
 public int find(int p) {aacost++; return id[p];}
 
@@ -25,7 +25,7 @@ public void union(int p, int q) {
   int idp = find(p);
   int idq = find(q);
   if (idp != idq){ 
-    for (int i=0; i<id.length; i++) if (id[i]==idp) {aacost++; id[i]=idq;}
+    for (int i=0; i<id.length; i++) if (id[i]==idp) {id[i]=idq; aacost++;}
     count--; // one component less
     aacost+=id.length; // cost of the previous N tests id[i]==idp
   }
@@ -38,7 +38,8 @@ public static void main(String[] args){
     int p = StdIn.readInt(); 
     int q = StdIn.readInt();
     if (!uf.connected(p,q)) uf.union(p,q);
-    StdOut.print(p+" "+q+" "); uf.show(); StdOut.println(" #components: " + uf.count()); 
+    StdOut.print(p+" "+q+" "); uf.show(); StdOut.println(" #components: " + uf.count());
   }
+  StdOut.println("# array accesses: " + uf.cost());
 }//End of main
 }//End of SlowUF based on Algorithms, 4th Edition, p. 221,222 

@@ -1,4 +1,5 @@
 import edu.princeton.cs.algs4.StdIn; import edu.princeton.cs.algs4.StdOut;
+
 public class FastUF {
   
 private int[] id; // id[p] is the identifier of p
@@ -11,11 +12,9 @@ public FastUF(int N){
   count = N; // initially, each element is only connected to itself
 }
 
+public void show() {for (int n : id) StdOut.print(n);}
 public int count() {return count;}
-
 public long cost() {return aacost;}
-
-public void show() {for (int i=0; i<id.length; i++) StdOut.print(id[i]);}
 
 public int find(int p){
   while (p != id[p]) {p=id[p]; aacost+=2;} // one aa for the test, one in the loop
@@ -44,6 +43,7 @@ public static void main(String[] args){
     if (!uf.connected(p,q)) uf.union(p,q);
     StdOut.print(p+" "+q+" "); uf.show(); StdOut.println(" #components: " + uf.count()); 
   }
+  StdOut.println("# array accesses: " + uf.cost());
 }//End of main
 }//End of FastUF based on Algorithms, 4th Edition, p. 221,224
 //last p q count aacost: 943868 727438 6 561290740942
