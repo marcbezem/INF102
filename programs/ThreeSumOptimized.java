@@ -19,25 +19,25 @@ public static int countZeroSumTriples(int[] a) {
 
 public static int BinarySearchLeft(int key, int[] a, int lo, int hi){
 // binary search for leftmost position of key in a[lo..hi]
-  while (lo <= hi) {
+  if (lo <= hi) {
     int mid = (lo+hi)/2 ; // rounding mid down for left
     if (key == a[lo])  return lo;
     if (key == a[mid]) return BinarySearchLeft(key, a, lo, mid); // terminates!
     if (key < a[mid])  return BinarySearchLeft(key, a, lo, mid-1);
     if (key > a[mid])  return BinarySearchLeft(key, a, mid+1, hi);
   }
-  return -1;
+  return -1; // key does not occur in a[lo..hi] 
 }
 public static int BinarySearchRight(int key, int[] a, int lo, int hi){
 // binary search for rightmost position of key in a[lo..hi]
-  while (lo <= hi) {
+  if (lo <= hi) {
     int mid = (lo+hi+1)/2 ; // rounding mid up for right
     if (key == a[hi])  return hi;
     if (key == a[mid]) return BinarySearchRight(key, a, mid, hi); // terminates!
     if (key < a[mid])  return BinarySearchRight(key, a, lo, mid-1);
     if (key > a[mid])  return BinarySearchRight(key, a, mid+1, hi);
   }
-  return -1;
+  return -1; // key does not occur in a[lo..hi]
 } 
 
 public static void main(String[] args)  { 
