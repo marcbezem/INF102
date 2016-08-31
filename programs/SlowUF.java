@@ -26,8 +26,8 @@ public void union(int p, int q) {
   int idq = find(q);
   if (idp != idq){ 
     for (int i=0; i<id.length; i++) if (id[i]==idp) {id[i]=idq; aacost++;}
-    count--; // one component less
     aacost+=id.length; // cost of the previous N tests id[i]==idp
+    count--; // one component less
   }
 }
 

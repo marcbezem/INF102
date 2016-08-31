@@ -41,9 +41,10 @@ public static void main(String[] args){
     int p = StdIn.readInt(); 
     int q = StdIn.readInt();
     if (!uf.connected(p,q)) uf.union(p,q);
+//  StdOut.println(p+" "+q+" "+uf.count()+" "+uf.cost());
     StdOut.print(p+" "+q+" "); uf.show(); StdOut.println(" #components: " + uf.count()); 
   }
   StdOut.println("# array accesses: " + uf.cost());
 }//End of main
 }//End of FastUF based on Algorithms, 4th Edition, p. 221,224
-//last p q count aacost: 943868 727438 6 561290740942
+//largeUF.txt: last p q count aacost = 943868 727438 6 561290740942
