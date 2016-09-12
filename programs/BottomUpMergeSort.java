@@ -10,7 +10,7 @@ public  static void sort(Comparable[] a) {
   for (int i=1; i<N; i*=2){
   // inv: a[0..i-1],a[i..2i-1],...,a[ni..N-1] all sorted
     assert show(a); // misuse of assert, don't do this
-    for (int j=0; i*(j+1) < N; j+=2) 
+    for (int j=0; i*(j+1) < N; j+=2) // i*j = 0,2i,4i,6i,... with i,3i,5i,7i,... < N
       merge(a,i*j,i*(j+1),Math.min(N-1,i*(j+2)-1),aux);
   }
 }  
@@ -33,7 +33,7 @@ public static void main(String[] args){
   sort(a); show(a); assert isSorted(a); 
 }//End of main
 
-public static void merge(Comparable[] a,  int lo, int m, int hi, Comparable[] aux) {
+private static void merge(Comparable[] a,  int lo, int m, int hi, Comparable[] aux) {
   for (int k=lo; k<=hi; k++) aux[k] = a[k];
   int l = lo, r = m;
   for (int k=lo; k<=hi; k++){

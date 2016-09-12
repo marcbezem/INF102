@@ -6,15 +6,15 @@ public  static void mergesort(Comparable[] a, int lo, int hi, Comparable[] aux) 
   int mid = (lo + hi)/2; // in the "middle"
   mergesort(a,lo,mid,aux); // left "half"
   mergesort(a,mid+1,hi,aux); // right "half"
-  assert show(a); // misuse of assert, don't do this
+  assert show(a); // misuse of assert, don't do this!
   merge(a,lo,mid+1,hi,aux); // merge the two sorted parts
 }
 
-public static void merge(Comparable[] a,  int lo, int m, int hi, Comparable[] aux) {
+private static void merge(Comparable[] a,  int lo, int m, int hi, Comparable[] aux) {
   for (int k=lo; k<=hi; k++) aux[k] = a[k]; // copy a[lo..hi] to aux[lo..hi]
   int l = lo, r = m; // running markers, inv: done with a[lo..l) and a[m..r)
-  for (int k=lo; k<=hi; k++){ // inv: k == l+(r-m), k is sum of progress of l and r
-    if (l==m) {a[k] = aux[r++]; continue;} // done with a[lo..m-1]
+  for (int k=lo; k<=hi; k++){ // inv: k == l+(r-m), k is l plus progress of r
+    if (l==m) {a[k] = aux[r++]; continue;} // done with a[lo..m-1], actually: redundant!
     if (r==hi+1) {a[k] = aux[l++]; continue;} // done with a[m..hi]
     if (less(aux[l],aux[r])) {a[k] = aux[l++];} else {a[k] = aux[r++];} // max N compares
   } 
