@@ -17,9 +17,9 @@ public static <Key extends Comparable<Key>> void quicksort(Key[] a, int lo, int 
 public static <Key extends Comparable<Key>> int partition(Key[] a, int lo, int hi) {
   Key v = a[lo];
   int l=lo, h=hi;
-  for(;;){ // inv: if lo<=i<=l, then leq(a[i],v); if h<j<=hi, then less(v,a[j]) 
+  for(;;){ // inv: if lo<=i<=l, then !less(v,a[i]); if h<j<=hi, then less(v,a[j]) 
     while (less(v,a[h])) h--; // inv: l<=h
-    while (l<h && less(a[l+1],v)) l++; // inv: l<=h
+    while (l<h && !less(v,a[l+1])) l++; // inv: l<=h
  // postcondition: l<=h && !less(v,a[h]) && !(l<h && less(a[l+1],v))  
     if (l+1<h) {exch(a,l+1,h); l++;} else break;
   }
