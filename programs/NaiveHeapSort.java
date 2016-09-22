@@ -15,7 +15,7 @@ private static <Key extends Comparable<Key>> boolean less(Key v, Key w){
 private static <Key extends Comparable<Key>> void show(Key[] a){
   for (Key o : a) StdOut.print(o+" "); StdOut.println();}
 
-public static <Key extends Comparable<Key>> boolean isSorted(Key[] a){
+private static <Key extends Comparable<Key>> boolean isSorted(Key[] a){
   for (int i=1; i<a.length; i++) if (less(a[i],a[i-1])) return false;
   return true;}
 
