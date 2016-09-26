@@ -47,6 +47,7 @@ public static void main(String[] args)  {
   while (!infile.isEmpty()) {
     String key = infile.readString(); 
     Integer i = st.get(key); if (i!=null){st.put(key,i+1);} else {st.put(key,1);}
+    assert st.show();
   }
   Iterator<String> iter = st.keysIterator();
   while (iter.hasNext()) {
@@ -54,4 +55,11 @@ public static void main(String[] args)  {
     StdOut.println(st.get(next) + "\t" + next);
   }
 }//End of main
+
+private boolean show(){// used with assert for simple one-line traces
+  for (Key k : keys) StdOut.print(k+" "); StdOut.println(); 
+  for (Value v : values) StdOut.print(v+" "); StdOut.println();
+  return true;
+  }
+
 }//End of ArrayListST, based on Algorithms, 4th Edition, Alg. 3.2
