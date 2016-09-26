@@ -14,7 +14,7 @@ public int size() {return size(root);}
 private int size(Node r) {if (r==null){return 0;} else {return r.N;}}
 
 public void show(){show(root); StdOut.println(root.N);}
-private void show(Node r){// Depth-first left-to-right tree transversal
+private void show(Node r){// depth-first left-to-right tree transversal
   if (r!=null) {
     show(r.left); StdOut.println(r.value + "\t" + r.key); show(r.right);
   }
@@ -30,7 +30,7 @@ public void put(Key k, Value v) {root = put(k,v,root);}
 private Node put(Key k, Value v, Node r) { 
   if (r==null) {return new Node(k,v,1);}
   int cmp = k.compareTo(r.key);
-  if (cmp==0) {r.value = v; return r;}
+  if (cmp==0) {r.value = v; return r;} // N unchanged
   if (cmp<0) {r.left = put(k,v,r.left);} else {r.right = put(k,v,r.right);}
   r.N = size(r.left) + size(r.right) + 1; // recompute when unwinding recursion
   return r;
