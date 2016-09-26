@@ -1,4 +1,5 @@
 import edu.princeton.cs.algs4.In; import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.Queue;
 public class UBST<Key extends Comparable<Key>, Value> {
 
 private Node root;
@@ -13,7 +14,7 @@ public boolean isEmpty() {return root==null;}
 public int size() {return size(root);}
 private int size(Node r) {if (r==null){return 0;} else {return r.N;}}
 
-public void show(){show(root); StdOut.println(root.N);}
+public void show(){show(root); StdOut.println("size " + root.N);}
 private void show(Node r){// depth-first left-to-right tree transversal
   if (r!=null) {
     show(r.left); StdOut.println(r.value + "\t" + r.key); show(r.right);
@@ -43,6 +44,23 @@ public static void main(String[] args)  {
     String key = infile.readString(); 
     Integer i = st.get(key); if (i!=null){st.put(key,i+1);} else {st.put(key,1);}
   }
-  st.show();
+  st.show(); assert st.keylevels();
 }//End of main
+
+private boolean keylevels(){// used with assert for simple traces
+  Queue<Node> q = new Queue<Node>(); 
+  q.enqueue(root); // precondition: root != null
+  q.enqueue(null); // marks end of level
+  while (q.size() > 1){ // level-wise tree transversal
+    while(q.peek()!=null){
+      Node n = q.dequeue();
+      if (n.left != null) {q.enqueue(n.left); StdOut.print("<");}
+      StdOut.print(n.key);
+      if (n.right != null) {q.enqueue(n.right); StdOut.print(">");}
+    }
+    StdOut.println(); 
+    q.dequeue(); q.enqueue(null);
+  }
+  return true;
+}
 }//End of UBST, based on Algorithms, 4th Edition, Alg. 3.2
