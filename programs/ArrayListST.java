@@ -11,7 +11,7 @@ public int     size()    {return N;}
 public Iterator<Key> keysIterator() {return keys.iterator();}
 
 public int rank(Key key){ // NB keys are sorted and unique
-  int lo = 0, hi = N-1;
+  int lo = 0, hi = N-1; // works correctly also if symbol table is empty
   while (lo <= hi) { // inv: all keys to the left of lo are smaller than key,
                       // and all keys to the right of hi are larger than key
     int mid = (lo+hi)/2;
@@ -27,10 +27,18 @@ public void put(Key key, Value v) {
   if (maybe < N && key.equals(keys.get(maybe))) {values.set(maybe,v);}
   else {keys.add(maybe,key); values.add(maybe,v); N++;}
 }
-public Value get(Key key){
-  if (isEmpty()) return null;
+public Value get(Key key){// not to be confused with ArrayList.get 
   int maybe = rank(key); // key is or "should be" at position maybe
   if (maybe < N && key.equals(keys.get(maybe))) {return values.get(maybe);}
+  else {return null;} // 
+}
+public Value del(Key key){// returns value and deletes key-value pair
+  int maybe = rank(key); // key is or "should be" at position maybe
+  if (maybe < N && key.equals(keys.get(maybe))) {
+  Value val = values.get(maybe);
+  keys.remove(maybe); values.remove(maybe); // eager delete
+  return val;
+  }
   else {return null;}
 }
 public static void main(String[] args)  { 
