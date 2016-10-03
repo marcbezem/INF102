@@ -36,7 +36,7 @@ public Value del(Key key){// returns value and deletes key-value pair
   int maybe = rank(key); // key is or "should be" at position maybe
   if (maybe < N && key.equals(keys.get(maybe))) {
   Value val = values.get(maybe);
-  keys.remove(maybe); values.remove(maybe); // eager delete
+  keys.remove(maybe); values.remove(maybe); N--;// eager delete
   return val;
   }
   else {return null;}
