@@ -28,6 +28,7 @@ public static void main(String[] args)  {
 }//End of main
 
 public boolean show(){
+  StdOut.println("hashvalue : #collisions, followed by list of keys, if non-empty");
   for (int i=0; i<M; i++) {
     int n = st[i].size();
     if (n>0){ StdOut.print(i+":"+n+"\t");
