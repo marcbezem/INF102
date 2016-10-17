@@ -28,9 +28,10 @@ public static void main(String[] args)  {
 }//End of main
 
 public boolean show(){
+  StdOut.println("hashvalue#length: keys (only if non-empty)");
   for (int i=0; i<M; i++) {
     int n = st[i].size();
-    if (n>0){ StdOut.print(i+":"+n+"\t");
+    if (n>0){ StdOut.print(i+"#"+n+":\t");
     Iterator<Key> iter = st[i].keysIterator();
     while (iter.hasNext()) {Key next = iter.next(); StdOut.print(next+" ");}
     StdOut.println();
