@@ -1,7 +1,7 @@
 Short solutions to the problems of the INF102 exam on 22 February 2016.
 
 1. Cubic solution: take ThreeSum.java on p. 173 of Algs4 and change "==0" to "<0".
-O(N^2 log N) solution: minor change of 
+O(N^2 log N) solution: minor variation of 
 github.com/marcbezem/INF102/blob/master/programs/ThreeSumPos.java
 
 2. github.com/marcbezem/INF102/blob/master/programs/CountSort.java
@@ -26,13 +26,22 @@ github.com/marcbezem/INF102/programs/ArrayListHashST.java
 
 4. Method dfs() in 
 github.com/marcbezem/INF102/blob/master/programs/LinkedListDiG.java
-marks all nodes reachable from a given node. Use as follows:
+marks all nodes reachable from a given node. Use dfs() as follows:
 
 public boolean reachable(Integer s, Integer t){
     boolean[] marked = new boolean[V];
     dfs(s,marked);
     return marked[t];
 }
-    
+
+More efficient, one can combine dfs and reachable in one method:
+
+public boolean reach(Integer s, Integer t, boolean[] marked){
+  if (s==t) return true; // returns as early as possible
+  marked[s] = true;
+  for (Integer v : adj[s])
+    if (!marked[v] &&  reach(v,t,marked)) return true;
+  return false;
+}
 
 
