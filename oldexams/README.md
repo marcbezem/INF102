@@ -1,7 +1,6 @@
 # Abbreviations
 
 - h/v = the semester (Fall/Spring), followed by the year and by a code b/n/e/s
-- k = continuation exam, followed by the (previous) year and by a code b/n/e/s
 - b/n/e = language (bokmål/nynorsk/English)
 - s = short solution in English
 
