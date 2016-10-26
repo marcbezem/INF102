@@ -122,8 +122,11 @@ public int countcc(){
 public static void main(String[] args)  {
     LinkedListG g = new LinkedListG(new In(args[0]));
     StdOut.print(g.toString());
-    StdOut.print("Enter test (dfs/bfs/pathdfs/pathbfs/countcc): ");
-    switch (StdIn.readString()) {
+    while (true){
+    StdOut.print("Enter test (stop/dfs/bfs/pathdfs/pathbfs/countcc): ");
+      switch (StdIn.readString()) {
+            case "stop"     :  return;
+ 
             case "dfs"      :  g.testdfs();
                      break;
             case "bfs"      :  g.testbfs();
@@ -132,11 +135,12 @@ public static void main(String[] args)  {
                      break;
             case "pathbfs"  :  g.testpathbfs();
                      break;
-            case "countcc"  :  StdOut.println(g.countcc() + " connected components");
+            case "countcc"  :  StdOut.println(g.countcc() + 
+                                        " connected components");
                      break;
            default          :   StdOut.println("test not known");
+       }
      }
-    
   }//End of main
 
 public LinkedListG(int V) { // for later use in StringSTG.java

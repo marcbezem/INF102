@@ -20,7 +20,7 @@ public StringSTG(In in) {
     if (str2nr.get(v) == null) str2nr.put(v,V++); // build symbol table
   }
 // Print symbol table
-  StdOut.println("Symbol table:"); 
+  StdOut.println("Symbol table, alphabetically:"); 
   Iterator<String> iter = str2nr.keysIterator();
   while (iter.hasNext()) {
     String next = iter.next(); 
@@ -46,7 +46,7 @@ public void stringPathBfs(String s){
   LinkedList_Queue<Integer> q = new LinkedList_Queue();
   Integer n = str2nr.get(s); q.enqueue(n); paths[n] = n; 
   G.pathbfs(q,paths); // now paths contains shortest paths to source s
-  StdOut.println("Possible travels to " + s + ":");
+  StdOut.println("Shortest travels to/from " + s + ":");
   for(int v=0;v<V;v++) if (paths[v]!=null) {
     int i = v;
     while (i!=paths[i]) { StdOut.print(nr2str[i]+"-"); i = paths[i]; }
