@@ -29,8 +29,8 @@ public String toString(){
 public String dfs(Integer v, boolean[] marked) {// return type String !
   marked[v] = true; 
   String sv = v.toString(); String trace = sv; // only for nice output (ofno)
-  for (Integer w : adj[v]) if (! marked[w]) trace += "->"+dfs(w,marked); // ofno
-  trace += "(" + sv + ")"; return trace; // ofno
+  for (Integer w : adj[v]) if (! marked[w]) trace += "->" + dfs(w,marked);
+  trace += "(" + sv + ")"; return trace; // ofno: backtrack from "(node)"
 }
 
 public void testDfs(){
