@@ -1,4 +1,5 @@
-import edu.princeton.cs.algs4.StdIn; import edu.princeton.cs.algs4.In; import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.StdIn; import edu.princeton.cs.algs4.In; 
+import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.DirectedEdge; import java.util.LinkedList;
 
 public class LinkedListEWD {
@@ -15,7 +16,8 @@ public LinkedListEWD(In in) {
   distToSource = new double[V];
   pathToSource = new DirectedEdge[V];
   for (int v=0; v<V; v++) adj[v] = new LinkedList<DirectedEdge>();
-  for (int e=0; e<E; e++) addEdge(new DirectedEdge(in.readInt(),in.readInt(),in.readDouble()));
+  for (int e=0; e<E; e++) 
+    addEdge(new DirectedEdge(in.readInt(),in.readInt(),in.readDouble()));
 }
 
 private void addEdge(DirectedEdge e) {adj[e.from()].add(0,e);}
@@ -30,7 +32,8 @@ public void slowEWD (int s) {// non-negative weights
   // Marked nodes: known shortest path to s
   // Unmarked nodes: known shortest path to s THROUGH marked nodes if such path exists
   boolean[] marked = new boolean[V];
-  for(int v=0; v<V; v++) { distToSource[v] = Double.POSITIVE_INFINITY; pathToSource[v] = null; }
+  for(int v=0; v<V; v++) { 
+    distToSource[v] = Double.POSITIVE_INFINITY; pathToSource[v] = null; }
   distToSource[s] = 0.0;
   for(;;) { // infinite loop, will be left when all reachable nodes are marked
     double minDistance = Double.POSITIVE_INFINITY; 
@@ -44,7 +47,8 @@ public void slowEWD (int s) {// non-negative weights
     if  (minUnmarked == -1) return; // no reachable unmarked nodes left
     for(DirectedEdge e: adj[minUnmarked]) { // update distance and path for all neighbours
       int w = e.to(); double ew = e.weight();
-      if (distToSource[w] > minDistance + ew) { distToSource[w] = minDistance + ew; pathToSource[w] = e; }
+      if (distToSource[w] > minDistance + ew) { 
+        distToSource[w] = minDistance + ew; pathToSource[w] = e; }
     }
     marked[minUnmarked] = true;
   }
