@@ -48,7 +48,7 @@ public void slowEWD (int s) {// non-negative weights
     for(DirectedEdge e: adj[minUnmarked]) { // update distance and path for all neighbours
       int w = e.to(); double ew = e.weight();
       if (distToSource[w] > minDistance + ew) { 
-        distToSource[w] = minDistance + ew; pathToSource[w] = e; }
+           distToSource[w] = minDistance + ew; pathToSource[w] = e; }
     }
     marked[minUnmarked] = true;
   }
