@@ -72,34 +72,27 @@ private void prettyPrint(double d){
   if (d == Double.POSITIVE_INFINITY) StdOut.print("infty\t"); 
   else StdOut.printf("%2.2f\t", d); }
 
-public void simpleBF (int s) {// negative weights allowed 
-  // computes least distances to s; detects negative cycle reachable from s
+public void simpleBF () {// negative weights and cycles allowed 
+  // computes least distances to 0; can detect negative cycle
   for(int v=0; v<V; v++) distToSource[v] = Double.POSITIVE_INFINITY;
-  distToSource[s] = 0.0;
+  distToSource[0] = 0.0;
   int round = 0;
   boolean improved = true; 
   while (improved && round++ <= V){
-    for(int v=0; v<V; v++) prettyPrint(distToSource[v]); StdOut.println(); // print current state
+    for(int v=0; v<V; v++) prettyPrint(distToSource[v]);// print current state
+    StdOut.println(); 
     improved = false; // detects whether some distance has been improved
     for(int v=0; v<V; v++)
-        for(DirectedEdge e: adj[v]) { // try and improve distances of all neighbours
-        int w = e.to(); double ew = e.weight();
-        if (distToSource[w] > distToSource[v] + ew) { distToSource[w] = distToSource[v] + ew; improved = true; }
+      for(DirectedEdge e: adj[v]) { // relax edge e
+      int w = e.to(); double ew = e.weight();
+      if (distToSource[w] > distToSource[v] + ew) { 
+        distToSource[w] = distToSource[v] + ew; improved = true; }
       }
   }
-  if (round>=V) StdOut.println("Negative cycle reachable from source!");
+  if (round>=V) StdOut.println("Negative cycle!");
 }
 
-public void testSimpleBF(){
-  for(;;) {
-    StdOut.print("Enter source: "); Integer s = StdIn.readInt();
-    if (s < 0 || s >= V) break; else simpleBF(s);
-    for(;;) {
-      StdOut.print("Enter target: "); Integer t = StdIn.readInt();
-      if (t < 0 || t >= V) break; else StdOut.println(distToSource[t]);
-    }
-  }  
-}
+public void testSimpleBF(){ simpleBF(); }
 
 public static void main(String[] args)  {
   LinkedListEWD ewd = new LinkedListEWD(new In(args[0]));
