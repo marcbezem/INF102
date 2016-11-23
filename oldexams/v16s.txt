@@ -22,7 +22,7 @@ resolved by putting a colliding key on the first empty position to the right
 in the table (starting again at a[0] if the search goes past the last position).
 An important property of the hash function is that it spreads the keys well
 over the index range. Implementation: methods get(), put() and del() in
-github.com/marcbezem/INF102/programs/ArrayListHashST.java
+github.com/marcbezem/INF102/blob/master/programs/ArrayListHashST.java
 
 4. Method dfs() in 
 github.com/marcbezem/INF102/blob/master/programs/LinkedListDiG.java
