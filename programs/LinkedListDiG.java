@@ -1,4 +1,4 @@
-import edu.princeton.cs.algs4.StdIn; import edu.princeton.cs.algs4.In; import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.StdIn; import edu.princeton.cs.algs4.In; import edu.princeton.cs.algs4.StdOut; import java.util.Arrays;
 import java.util.LinkedList; // supports efficient add(0,_) and toString()
 
 public class LinkedListDiG {
@@ -29,8 +29,8 @@ public String toString(){
 public String dfs(Integer v, boolean[] marked) {// return type String !
   marked[v] = true; 
   String sv = v.toString(); String trace = sv; // only for nice output (ofno)
-  for (Integer w : adj[v]) if (! marked[w]) trace += "->"+dfs(w,marked); // ofno
-  trace += "(" + sv + ")"; return trace; // ofno
+  for (Integer w : adj[v]) if (! marked[w]) trace += "->" + dfs(w,marked);
+  trace += "(" + sv + ")"; return trace; // ofno: backtrack from "(node)"
 }
 
 public void testDfs(){
@@ -55,12 +55,13 @@ public boolean slowCyclist(Integer u, Integer v, Integer[] paths) {
   return false;
 }
 
-public boolean fastCyclist(Integer u, Integer v, Integer[] paths, boolean[] op) {
+public boolean fastCyclist(Integer u, Integer v, Integer[] paths, 
+  boolean[] op) { // Efficient! But op ("on path") uses extra space.
 // call: fastCyclist(s,s,paths,op) detects a cycle reachable from s
   op[v] = true; paths[v] = u;
   for (Integer w : adj[v]) 
     if (paths[w]==null) {if (fastCyclist(v,w,paths,op)) return true;}
-    else {if (op[w]) return true;} // Efficient! But uses extra space.
+    else if (op[w]) {StdOut.print("at " + w + " "); return true;}
   op[v] = false; return false;
 }
 
@@ -69,8 +70,10 @@ public void testFast(){
   boolean[] op = new boolean[V]; Integer[] paths = new Integer[V];
     StdOut.print("Enter node: "); Integer n = StdIn.readInt();
     if (n < 0 || n >= V) return;
-    if (fastCyclist(n,n,paths,op)) StdOut.println("cycle in subtree below " + n);
-    else StdOut.println("no cycle in subtree below " + n);
+    if (fastCyclist(n,n,paths,op)){ 
+      StdOut.println("cycle in subgraph below " + n);
+      StdOut.println(Arrays.toString(paths));      }
+    else StdOut.println("no cycle in subgraph below " + n);
   }  
 }
 
