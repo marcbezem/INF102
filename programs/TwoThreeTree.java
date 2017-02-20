@@ -36,6 +36,13 @@ public Node search(Key k, Node r){
 public boolean contains(Key k){
   return null!=search(k,root);}
 
+public Key max(Node r){
+  if (r==null) return null;
+  if (r.right == null)
+    if (r.key2 == null) return r.key1; else return r.key2;
+  return max(r.right);  
+}
+
 public static void main(String[] args)  {
   new TwoThreeTree(0,1,null,null,null);
   TwoThreeTree<Integer> child = new TwoThreeTree(0,null,null,null,null); 
