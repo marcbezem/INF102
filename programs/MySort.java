@@ -11,7 +11,7 @@ public static void insertionSort(int[] a){
 }
 
 public static void main(String[] args)  {
-  int N=100000;
+  int N=1000000;
   int[] a = new int[N];
   StdOut.println("start linear");
   for (int i=0;i<N;i++) a[i]=i;
