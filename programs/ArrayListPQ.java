@@ -1,45 +1,71 @@
-import edu.princeton.cs.algs4.StdOut; import edu.princeton.cs.algs4.StdRandom;
-import java.util.ArrayList; import java.util.Collections; 
+import edu.princeton.cs.algs4.StdOut;
+import edu.princeton.cs.algs4.StdRandom;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class ArrayListPQ<Key extends Comparable<Key>> { //implements Iterable<Key>{
   
-private int N = 0;     // number of items           
-private ArrayList<Key> pq = new ArrayList<Key>(); // contents pq[0..N-1]
+private int numberOfItems = 0;     // number of items
+private ArrayList<Key> pq = new ArrayList<>(); // contents pq[0..numberOfItems-1]
 
-private int parent(int k) {return (k-1)/2;}
-private int leftchild(int k) {return 2*k+1;}
-private int rightchild(int k) {return 2*k+2;}
-private boolean less(int i, int j){return pq.get(i).compareTo(pq.get(j)) < 0;}
-private void exch(int i, int j) {Collections.swap(pq,i,j);}
+private int parent(int key) { return (key-1)/2; }
+private int leftChild(int key) { return 2*key+1; }
+private int rightChild(int key) { return 2*key+2; }
 
-public void insert(Key v) { pq.add(v); N++; swim(N-1);}
-
-public Key max() {return pq.get(0);} // unchecked precondition !isEmpty()
-
-public Key delMax() {Key max=max(); exch(0,N-1); pq.remove(--N); sink(0); return max;}
-
-private void swim(int k) {
-  while (k>0 && less(parent(k),k)) {exch(parent(k),k); k=parent(k);}
+private boolean less(int i, int j) {
+  return pq.get(i).compareTo(pq.get(j)) < 0;
+}
+private void exch(int i, int j) {
+  Collections.swap(pq,i,j);
 }
 
-private void sink(int k) {
-  int max = k; 
-  for(;;){ 
-    if (leftchild(k)<N && less(max,leftchild(k))) max = leftchild(k);
-    if (rightchild(k)<N && less(max,rightchild(k))) max = rightchild(k);
-    if (max != k) { exch(k,max); k = max;} else break;
+public void insert(Key key) {
+  pq.add(key);
+  numberOfItems++;
+  swim(numberOfItems - 1);
+}
+
+public Key max() { return pq.get(0); } // unchecked precondition !isEmpty()
+
+public Key delMax() {
+  Key max=max();
+  exch(0, numberOfItems - 1);
+  pq.remove(--numberOfItems);
+  sink(0);
+  return max;
+}
+
+private void swim(int key) {
+  while (key>0 && less(parent(key), key)) {
+    exch(parent(key),key);
+    key = parent(key);
   }
 }
 
-public boolean isEmpty() {return N == 0;}
-public int     size()    {return N;}
+private void sink(int key) {
+  int max = key;
+  while (true) {
+    if (leftChild(key) < numberOfItems && less(max, leftChild(key))) max = leftChild(key);
+    if (rightChild(key) < numberOfItems && less(max, rightChild(key))) max = rightChild(key);
+    if (max != key) {
+      exch(key,max);
+      key = max;
+    } else break;
+  }
+}
+
+public boolean isEmpty() {return numberOfItems == 0;}
+public int     size()    {return numberOfItems;}
 
 public static void main(String[] args){
-  ArrayListPQ<Double> pq = new ArrayListPQ<Double>();
+  ArrayListPQ<Double> pq = new ArrayListPQ<>();
   int M = Integer.parseInt(args[0]);
   for(long i=0; true; i++){ // infinite loop with counter
     double r = StdRandom.uniform();
-    if (pq.size() < M) {pq.insert(r); continue;}
+    if (pq.size() < M) {
+      pq.insert(r);
+      continue; }
     if (r >= pq.max()) continue;
     double maxMsmallest = pq.delMax();
     pq.insert(r);
