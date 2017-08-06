@@ -10,12 +10,13 @@ public static int countPosSumTriples(int[] a) {
   int N = a.length;
   Arrays.sort(a); 
   int counter = 0;
-  for (int i = 0; i < N-2; i++)
-    for (int j = i+1; j < N-1; j++){
-      int maybe = myBinarySearch(-(a[i] + a[j]), a, j+1, N-1); 
-      if (j <= maybe && maybe < N-1) counter += N-1-maybe; // this one was difficult!
+  for (int i = 0; i < N-2; i++) {
+    for (int j = i + 1; j < N - 1; j++) {
+      int maybe = myBinarySearch(-(a[i] + a[j]), a, j + 1, N - 1);
+      if (j <= maybe && maybe < N - 1) counter += N - 1 - maybe; // this one was difficult!
       StdOut.println(a[i] + " + " + a[j] + "\t right of pos " + maybe + "\t yields " + counter);
     }
+  }
   return counter;
 }
 
@@ -24,10 +25,10 @@ public static int myBinarySearch(int key, int[] a, int lo, int hi){
 // binary search for position where key should occur in a[lo..hi] (if at all)
   int mid = -1; 
   while (lo <= hi) {
-    mid = (lo+hi)/2;
+    mid = (lo + hi) / 2;
     if (key == a[mid]) return mid;
-    if (key < a[mid]) hi = mid-1;
-    if (key > a[mid]) lo = mid+1;
+    if (key < a[mid]) hi = mid - 1;
+    if (key > a[mid]) lo = mid + 1;
   }
   return (key > a[mid]) ? lo : hi ; // this one was difficult!
 } 

@@ -6,7 +6,8 @@ private int N; // length of id
 private int count; // count is the number of components
 
 public FastUFanimated(int N){
-  id = new int[N]; for (int i=0; i<N; i++) id[i]=i;
+  id = new int[N];
+  for (int i=0; i<N; i++) id[i]=i;
   this.N = N;
   count = N; // initially, each element is only connected to itself
 }
@@ -29,7 +30,10 @@ public void show() {
     done = true;
     for (int i=0; i<N; i++) {
       auxi = aux[i]; 
-      if (auxi != id[auxi]) {StdOut.print(id[auxi]+" "); done = false; aux[i] = id[auxi];}
+      if (auxi != id[auxi]) {
+        StdOut.print(id[auxi]+" ");
+        done = false;
+        aux[i] = id[auxi];}
       else StdOut.print("  ");
     }
     StdOut.println();
@@ -37,11 +41,11 @@ public void show() {
 }
 
 public int find(int p){
-  while (p != id[p]) {p=id[p];} // one aa for the test, one in the loop
+  while (p != id[p]) { p=id[p]; } // one aa for the test, one in the loop
   return p;
 }
 
-public boolean connected(int p, int q) {return find(p) == find(q);}
+public boolean connected(int p, int q) { return find(p) == find(q); }
 
 public void union(int p, int q) {
   int idp = find(p);

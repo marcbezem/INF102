@@ -10,18 +10,23 @@ public class Parentheses{
      ResizingArray_Stack<Character> stack;      
      String string = "notnullnorempty";
      while (!string.isEmpty()){
-       stack = new ResizingArray_Stack<Character>();
+       stack = new ResizingArray_Stack<>();
        StdOut.println("Enter string of parentheses (,),[,]{,}, empty to halt: ");
        string = StdIn.readLine(); 
        boolean balanced = true;
        for (char c : string.toCharArray()){
-         if (c=='(' || c=='[' || c=='{') {stack.push(c);}
+         if (c=='(' || c=='[' || c=='{') { stack.push(c); }
          else {
-           if (stack.isEmpty()) {balanced=false; break;}
-              else {char top = stack.pop();
-                    if (!matchingparentheses(top,c)) {balanced=false; break;}
-              }
-          }
+           if (stack.isEmpty()) {
+               balanced = false;
+               break; }
+           else {
+             char top = stack.pop();
+             if (!matchingparentheses(top, c)) {
+                 balanced=false;
+                 break; }
+           }
+         }
        }
        if (balanced && stack.isEmpty()) {StdOut.println("is balanced");} 
        else                              StdOut.println("is unbalanced or illegal");

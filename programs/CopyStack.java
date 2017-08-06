@@ -12,7 +12,7 @@ import edu.princeton.cs.algs4.StdOut; import edu.princeton.cs.algs4.StdIn;
 public class CopyStack{
 
   public static ResizingArray_Stack<String> reverse_copy(ResizingArray_Stack<String> s){
-    ResizingArray_Stack<String> reverse_copy = new ResizingArray_Stack<String>();
+    ResizingArray_Stack<String> reverse_copy = new ResizingArray_Stack<>();
     for (String str : s ) reverse_copy.push(str); 
     return reverse_copy;
   }
@@ -22,16 +22,31 @@ public class CopyStack{
   }
       
   public static void main(String[] args){
-     ResizingArray_Stack<String> s = new ResizingArray_Stack<String>();
-     s.push(" hello"); s.push(" world"); s.push("goodbye");
+     ResizingArray_Stack<String> s = new ResizingArray_Stack<>();
+     s.push(" hello");
+     s.push(" world");
+     s.push("goodbye");
      ResizingArray_Stack<String> t = copy(s);
-// we now test independence of s and t
-     for (String word : t) StdOut.print(word); StdOut.println(" : t has same content as s");
+
+     // we now test independence of s and t
+     for (String word : t)
+         StdOut.print(word);
+     StdOut.println(" : t has same content as s");
+
      s.push("s_top ");
-     for (String word : t) StdOut.print(word); StdOut.println(" : t is still the same");
+     for (String word : t)
+         StdOut.print(word);
+     StdOut.println(" : t is still the same");
+
      t.push("t_top ");
-     for (String word : s) StdOut.print(word); StdOut.println(" : s is independent from t");
-     String str = s.pop(); str = s.pop(); str = "this does not change t";
-     for (String word : t) StdOut.print(word); StdOut.println(" : t is independent from s");
+     for (String word : s)
+         StdOut.print(word);
+     StdOut.println(" : s is independent from t");
+
+     s.pop();
+     s.pop(); // this does not change t
+     for (String word : t)
+         StdOut.print(word);
+     StdOut.println(" : t is independent from s");
   } 
 }

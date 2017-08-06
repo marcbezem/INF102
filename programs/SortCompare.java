@@ -33,7 +33,7 @@ public static void run(String sortalg, Double[] a){ // sort a using "sortalg"
 
 public static double time(String sortalg, Double[] a){ // timing the run
   Stopwatch timer = new Stopwatch();
-  run(sortalg,a);
+  run(sortalg, a);
   return timer.elapsedTime();
 }
 
@@ -43,7 +43,7 @@ public static double timeRandomInputs(String sortalg, int N, int T){
   Double[] a = new Double[N];
   for (int t=0; t<T; t++){
     for (int i=0; i<N; i++) a[i] = StdRandom.uniform();
-    total += time(sortalg,a);
+    total += time(sortalg, a);
   }
   return total;
 }
@@ -53,9 +53,9 @@ public static void main(String[] args){
   String alg2 = args[1];
   int N = Integer.parseInt(args[2]);
   int T = Integer.parseInt(args[3]);
-  double t1 = timeRandomInputs(alg1,N,T);
-  double t2 = timeRandomInputs(alg2,N,T);
-  StdOut.println(alg1 + "/" + alg2 + " = " + t1/t2);
+  double t1 = timeRandomInputs(alg1, N, T);
+  double t2 = timeRandomInputs(alg2, N, T);
+  StdOut.println(alg1 + "/" + alg2 + " = " + t1 / t2);
 }//End of main
 }//End of SortCompare based on Algorithms, 4th Edition, p. 256
 

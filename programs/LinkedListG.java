@@ -8,33 +8,42 @@ private int E; public int E() {return E;} // number of edges
 private LinkedList<Integer>[] adj;        // adjacency lists
 
 public LinkedListG(In in) {
-  V = in.readInt(); E = in.readInt(); 
+  V = in.readInt();
+  E = in.readInt();
   adj = (LinkedList<Integer>[]) new LinkedList[V];
   for (int v=0; v<V; v++) adj[v] = new LinkedList<Integer>();
   for (int e=0; e<E; e++) {
     int v = in.readInt();
     int w = in.readInt();
-    addEdge(v,w);
-    }
+    addEdge(v, w);
+  }
 }
 
-public void addEdge(Integer v, Integer w) {adj[v].add(0,w); adj[w].add(0,v);}
+public void addEdge(Integer v, Integer w) {
+    adj[v].add(0, w);
+    adj[w].add(0,v);}
 
 public String toString(){
   String s = ""; // in the following line we use adj[v].toString()
-  for (int v=0; v<V; v++) s += (v + " : " + adj[v] + "\n");
+  for (int v=0; v<V; v++)
+      s += (v + " : " + adj[v] + "\n");
   return s;
 }
 
 public void dfs(Integer v, boolean[] marked) {
   marked[v] = true;
-  for (Integer w : adj[v]) if (! marked[w]) dfs(w,marked);
+  for (Integer w : adj[v])
+      if (!marked[w])
+          dfs(w,marked);
 }
 
 public void bfs(LinkedList_Queue<Integer> q, boolean[] marked) {
   while (!q.isEmpty()) {
      Integer v = q.dequeue();
-     for (Integer w : adj[v]) if (! marked[w]) {marked[w]=true; q.enqueue(w);}
+     for (Integer w : adj[v])
+         if (!marked[w]) {
+         marked[w]=true;
+         q.enqueue(w); }
   }
 }
 
@@ -43,8 +52,8 @@ public void testdfs(){
     boolean[] marked = new boolean[V];
     StdOut.print("Enter node: "); Integer n = StdIn.readInt();
     if (n < 0 || n >= V) break;
-    dfs(n,marked);
-    for(int v=0;v<V;v++) StdOut.print(marked[v]?v+" ":". "); 
+    dfs(n, marked);
+    for(int v=0; v<V; v++) StdOut.print(marked[v] ? v + " " : ". ");
     StdOut.println();
   }  
 }
@@ -52,12 +61,14 @@ public void testdfs(){
 public void testbfs(){
   for(;;) { // infinite loop
     boolean[] marked = new boolean[V];
-    StdOut.print("Enter node: "); Integer n = StdIn.readInt();
+    StdOut.print("Enter node: ");
+    Integer n = StdIn.readInt();
     if (n < 0 || n >= V) break;
     LinkedList_Queue<Integer> q = new LinkedList_Queue();
-    marked[n] = true; q.enqueue(n);
-    bfs(q,marked);
-    for(int v=0;v<V;v++) StdOut.print(marked[v]?v+" ":". "); 
+    marked[n] = true;
+    q.enqueue(n);
+    bfs(q, marked);
+    for(int v=0; v<V; v++) StdOut.print(marked[v] ? v + " " : ". ");
     StdOut.println();
   }  
 }
@@ -65,7 +76,9 @@ public void testbfs(){
 // meaning of paths: edge v-paths[v] has been used, self loop = source 
 public void pathdfs(Integer u, Integer v, Integer[] paths) {
   paths[v] = u; // paths[v] == null means not marked
-  for (Integer w : adj[v]) if (paths[w]==null) pathdfs(v,w,paths);
+  for (Integer w : adj[v])
+      if (paths[w]==null)
+          pathdfs(v, w, paths);
 }
 
 public void testpathdfs(){
@@ -73,13 +86,18 @@ public void testpathdfs(){
   Integer[] paths = new Integer[V];
     StdOut.print("Enter node: "); Integer n = StdIn.readInt();
     if (n < 0 || n >= V) break;
-    pathdfs(n,n,paths); // self loop = source
-    for(int v=0;v<V;v++) StdOut.print(paths[v]!=null?paths[v]+" ":". "); 
+    pathdfs(n, n, paths); // self loop = source
+    for(int v=0; v<V; v++) StdOut.print(paths[v] != null ? paths[v]+" " : ". ");
     StdOut.println();
-    for(int v=0;v<V;v++) if (paths[v]!=null) {
-      int i = v;
-      while (i!=paths[i]) { StdOut.print(i+"-"); i = paths[i]; }
-    StdOut.println(n);      }
+    for(int v=0; v<V; v++) {
+        if (paths[v] != null) {
+            int i = v;
+            while (i != paths[i]) {
+                StdOut.print(i + "-");
+                i = paths[i]; }
+            StdOut.println(n);
+        }
+    }
   }  
 }
 
@@ -87,24 +105,36 @@ public void testpathdfs(){
 public void pathbfs(LinkedList_Queue<Integer> q, Integer[] paths) {
   while (!q.isEmpty()) {
      Integer v = q.dequeue();
-     for (Integer w : adj[v]) if (paths[w]==null) {paths[w] = v; q.enqueue(w);}
-     pathbfs(q,paths);          }
+     for (Integer w : adj[v]) {
+         if (paths[w]==null) {
+             paths[w] = v;
+             q.enqueue(w); }
+     }
+     pathbfs(q, paths);
+  }
 }
 
 public void testpathbfs(){
   for(;;) { // infinite loop
   Integer[] paths = new Integer[V];
-    StdOut.print("Enter node: "); Integer n = StdIn.readInt();
+    StdOut.print("Enter node: ");
+    Integer n = StdIn.readInt();
     if (n < 0 || n >= V) break;
     LinkedList_Queue<Integer> q = new LinkedList_Queue();
-    q.enqueue(n); paths[n] = n; // self loop = source, null means not marked 
-    pathbfs(q,paths);
-    for(int v=0;v<V;v++) StdOut.print(paths[v]!=null?paths[v]+" ":". "); 
+    q.enqueue(n);
+    paths[n] = n; // self loop = source, null means not marked
+    pathbfs(q, paths);
+    for(int v=0; v<V; v++) StdOut.print(paths[v] != null ? paths[v]+" " : ". ");
     StdOut.println();
-    for(int v=0;v<V;v++) if (paths[v]!=null) {
-      int i = v;
-      while (i!=paths[i]) { StdOut.print(i+"-"); i = paths[i]; }
-    StdOut.println(n);      }
+    for(int v=0; v<V; v++) {
+      if (paths[v] != null) {
+        int i = v;
+        while (i != paths[i]) {
+            StdOut.print(i + "-");
+            i = paths[i]; }
+      }
+    StdOut.println(n);
+    }
   }  
 }
 
@@ -114,7 +144,7 @@ public int countcc(){
   for(int v=0; v<V; v++) {
     if (marked[v]) continue;
     count++;
-    dfs(v,marked);
+    dfs(v, marked);
   }
   return count;
 }
@@ -126,7 +156,7 @@ public static void main(String[] args)  {
     StdOut.print("Enter test (stop/dfs/bfs/pathdfs/pathbfs/countcc): ");
       switch (StdIn.readString()) {
             case "stop"     :  return;
- 
+
             case "dfs"      :  g.testdfs();
                      break;
             case "bfs"      :  g.testbfs();
@@ -137,16 +167,17 @@ public static void main(String[] args)  {
                      break;
             case "countcc"  :  StdOut.println(g.countcc() + 
                                         " connected components");
-                     break;
+                    break;
            default          :   StdOut.println("test not known");
        }
      }
   }//End of main
 
 public LinkedListG(int V) { // for later use in StringSTG.java
-  this.V = V; this.E = 0; 
+  this.V = V;
+  this.E = 0;
   adj = (LinkedList<Integer>[]) new LinkedList[V];
-  for (int v=0; v<V; v++) adj[v] = new LinkedList<Integer>();
+  for (int v=0; v<V; v++) adj[v] = new LinkedList<>();
 }
 
 }//End of LinkedListG, based on Algorithms, 4th Edition, Sec. 4.1

@@ -5,13 +5,15 @@ public class MultiwayMerge {// uses MinPQ, remembers stream number, no IndexMinP
   
 public static void merge(In[] streams) {
   int N = streams.length;
-  MinPQ<PolyPair<String,Integer>> pq = new MinPQ<PolyPair<String,Integer>>(N);
+  MinPQ<PolyPair<String,Integer>> pq = new MinPQ<>(N);
   for (int i=0; i<N; i++)
-    if (!streams[i].isEmpty()) pq.insert(new PolyPair(streams[i].readString(),i));
+    if (!streams[i].isEmpty()) pq.insert(new PolyPair(streams[i].readString(), i));
   while (!pq.isEmpty()){
-    PolyPair<String,Integer> x = pq.delMin(); String s = x.getFst(); Integer i = x.getSnd();
+    PolyPair<String,Integer> x = pq.delMin();
+    String s = x.getFst();
+    Integer i = x.getSnd();
     StdOut.print(s + " ");
-    if (!streams[i].isEmpty()) pq.insert(new PolyPair(streams[i].readString(),i));
+    if (!streams[i].isEmpty()) pq.insert(new PolyPair(streams[i].readString(), i));
   }
   StdOut.println();
 }

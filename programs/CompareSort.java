@@ -30,9 +30,9 @@ public static void run(String sortalg, Double[] a){ // sort a using "sortalg"
    }
 }
 
-public static double time(String sortalg, Double[] a){ // timing the run
+public static double time(String sortAlg, Double[] a){ // timing the run
   Stopwatch timer = new Stopwatch();
-  run(sortalg,a);
+  run(sortAlg, a);
   return timer.elapsedTime();
 }
 
@@ -43,11 +43,13 @@ public static double compareSort(String alg1, String alg2, int N, int T){
   Double[] a1 = new Double[N];
   Double[] a2 = new Double[N]; // we NEED two arrays! (Why?)
   for (int t=0; t<T; t++){
-    for (int i=0; i<N; i++) { a1[i] = StdRandom.uniform(); a2[i] = a1[i]; }
-    total1 += time(alg1,a1); // summing runtime of alg1
-    total2 += time(alg2,a2); // summing runtime of alg2
+    for (int i=0; i<N; i++) {
+        a1[i] = StdRandom.uniform();
+        a2[i] = a1[i]; }
+    total1 += time(alg1, a1); // summing runtime of alg1
+    total2 += time(alg2, a2); // summing runtime of alg2
   }
-  return total1/total2;
+  return total1 / total2;
 }
 
 public static void main(String[] args){

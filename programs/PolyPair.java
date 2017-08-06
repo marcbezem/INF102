@@ -6,8 +6,8 @@ public class PolyPair <
 implements 
   Comparable<PolyPair<T1,T2>> {
   
-private T1 fst; public T1 getFst() {return fst;}
-private T2 snd; public T2 getSnd() {return snd;}
+private T1 fst; public T1 getFst() { return fst; }
+private T2 snd; public T2 getSnd() { return snd; }
 
 public PolyPair(T1 fst, T2 snd){
   this.fst = fst;
@@ -22,13 +22,13 @@ public int compareTo(PolyPair<T1,T2> p){
 
 @Override public String toString(){
   return "(" + this.getFst() + "," + this.getSnd() + ")";
-  }
+}
 
 public static void main(String[] args){
-    PolyPair<Integer,String> p = new PolyPair<Integer,String>(1,"aa");
+    PolyPair<Integer,String> p = new PolyPair<>(1,"aa");
     PolyPair<Integer,String> q;
     for (int i=0; i<3; i++) { 
-      q = new PolyPair<Integer,String>(i,"a");
+      q = new PolyPair<>(i,"a");
       StdOut.print(p + " compared to " + q + " yields ");
       StdOut.println(p.compareTo(q));
     }

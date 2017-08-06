@@ -7,7 +7,8 @@ private int count; // count is the number of components
 private long aacost; // aacost counts the number of array accesses
 
 public FastUF(int N){
-  id = new int[N]; for (int i=0; i<N; i++) id[i]=i;
+  id = new int[N];
+  for (int i=0; i<N; i++) id[i] = i;
   aacost = N; // cost of intializing the array
   count = N; // initially, each element is only connected to itself
 }
@@ -17,7 +18,9 @@ public int count() {return count;}
 public long cost() {return aacost;}
 
 public int find(int p){
-  while (p != id[p]) {p=id[p]; aacost+=2;} // one aa for the test, one in the loop
+  while (p != id[p]) {
+    p=id[p];
+    aacost += 2;} // one aa for the test, one in the loop
   aacost++; // one aa for failing test
   return p;
 }

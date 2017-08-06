@@ -10,15 +10,23 @@ public static void run(String[] args, String alg) {
   EdgeWeightedGraph G = new EdgeWeightedGraph(new In(args[0]));
   Iterator<Edge> edges;
   Stopwatch timer = new Stopwatch();
-  switch   (alg) {
-            case "LazyPrim"   :  LazyPrimMST mstLP = new LazyPrimMST(G); edges = mstLP.edges().iterator();
-                     break;
-            case "EagerPrim"  :  PrimMST mstEP = new PrimMST(G); edges = mstEP.edges().iterator();
-                     break;
-            case "Kruskal"    :  KruskalMST mstK = new KruskalMST(G); edges = mstK.edges().iterator();
-                     break;
-           default                 : StdOut.println(alg + " not known"); edges = null;
-   }
+    switch (alg) {
+        case "LazyPrim":
+            LazyPrimMST mstLP = new LazyPrimMST(G);
+            edges = mstLP.edges().iterator();
+            break;
+        case "EagerPrim":
+            PrimMST mstEP = new PrimMST(G);
+            edges = mstEP.edges().iterator();
+            break;
+        case "Kruskal":
+            KruskalMST mstK = new KruskalMST(G);
+            edges = mstK.edges().iterator();
+            break;
+        default:
+            StdOut.println(alg + " not known");
+            edges = null;
+    }
   StdOut.println("time for " + alg + ": " + timer.elapsedTime());
   assert show(edges); // convenient misuse of assert
   }
