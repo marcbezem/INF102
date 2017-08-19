@@ -47,7 +47,7 @@ public class LinkedList_Queue<Item> implements Iterable<Item>
      public void remove() {}
      public Item next() {
          Item it = p.item;
-         p=p.next;
+         p = p.next;
          return it; }
   }
   
