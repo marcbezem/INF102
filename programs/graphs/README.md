@@ -1,6 +1,11 @@
 ## 4 Graphs
 
-A table of programs in this chapter, in which data files it takes as input (algs4-data refers to data files from algs4s web page):
+A table of programs in this chapter, and which data files it takes as input (algs4-data refers to data files from algs4s web page):
+
+| Program              | Data files    |
+| :--------            |:-------------:|
+| LinkedListEWD        | <ul><li>algs4-data/tinyEWD.txt</li><li>algs4-data/mediumEWD.txt</li><li>algs4-data/largeEWD.txt</li><li>algs4-data/tinyEWDAG.txt</li><li>algs4-data/tinyEWDn.txt</li><li>algs4-data/tinyEWDnc.txt</li><li>algs4-data/tinyEWG.txt</li><li>algs4-data/mediumEWG.txt</li><li>algs4-data/largeEWG.txt</li></ul> |
+| LinkedListG          | <ul><li>algs4-data/tinyG.txt</li> <li>algs4-data/mediumG.txt</li> <li>algs4-data/largeG.txt</li></ul> |
 
 ### Directed Graphs
 | Program              | Data files    |
@@ -14,16 +19,8 @@ A table of programs in this chapter, in which data files it takes as input (algs
 ### Minimum Spanning Tree
 | Program              | Data files    |
 | :--------            |:-------------:|
-| CompareMSTs          | <ul><li>algs4-data/tinyEWD.txt</li><li>algs4-data/mediumEWD.txt</li><li>algs4-data/largeEWD.txt</li><li>algs4-data/tinyEWDAG.txt</li><li>algs4-data/tinyEWDn.txt</li><li>algs4-data/tinyEWDnc.txt</li><li>algs4-data/tinyEWG.txt</li><li>algs4-data/mediumEWG.txt</li><li>algs4-data/largeEWG.txt</li></ul> |
+| CompareMSTs          | *Same as LinkedListEWD* |
+| MyLazyPrimMST        | *Same as LinkedListEWD* |
 
 
-| Program              | Data files    |
-| :--------            |:-------------:|
-| LinkedListEWD        | *Same as CompareMSTs* |
-| LinkedListG          | <ul><li></li> <li></li> <li></li></ul> |
 
-<li></li>
-
-algs4-data/
-algs4-data/
-algs4-data/

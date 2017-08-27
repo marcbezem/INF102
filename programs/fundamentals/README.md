@@ -1,6 +1,6 @@
 ## 1 Fundamentals
 
-A table of programs in this chapter, in which data files it takes as input (algs4-data refers to data files from algs4s web page):
+A table of programs in this chapter, and which data files it takes as input (algs4-data refers to data files from algs4s web page):
 
 ### Bags Queues and Stacks
 | Program              | Data files    |
