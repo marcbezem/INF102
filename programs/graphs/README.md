@@ -6,6 +6,7 @@ A table of programs in this chapter, and which data files it takes as input (alg
 | :--------            |:-------------:|
 | LinkedListEWD        | <ul><li>algs4-data/tinyEWD.txt</li><li>algs4-data/mediumEWD.txt</li><li>algs4-data/largeEWD.txt</li><li>algs4-data/tinyEWDAG.txt</li><li>algs4-data/tinyEWDn.txt</li><li>algs4-data/tinyEWDnc.txt</li><li>algs4-data/tinyEWG.txt</li><li>algs4-data/mediumEWG.txt</li><li>algs4-data/largeEWG.txt</li></ul> |
 | LinkedListG          | <ul><li>algs4-data/tinyG.txt</li> <li>algs4-data/mediumG.txt</li> <li>algs4-data/largeG.txt</li></ul> |
+| StringSTG            | algs4-data/routes.txt |
 
 ### Directed Graphs
 | Program              | Data files    |
