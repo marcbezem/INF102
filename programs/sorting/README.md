@@ -1,11 +1,11 @@
-## 3 Searching
+## 2 Sorting
 
 A table of programs in this chapter, and which data files it takes as input (algs4-data refers to data files from algs4s web page):
 
 | Program              | Data files    |
 | :--------            |:-------------:|
 | CompareSort          | *none, but takes two algorithms and two numbers as arguments* |
-| JavaArraySort        | sorts every *word/number* it reads from standard input. You can therefore use `&lt;` and literally any text file. *algs4-data/&#42;Kints.txt* is a good place to start. |
+| JavaArraySort        | sorts every *word/number* it reads from standard input. You can therefore use '&lt;' and literally any text file. *algs4-data/&#42;Kints.txt* is a good place to start. |
 | MySort               | *none* |
 | SortCompare          | *same as CompareSort* |
 
