@@ -6,15 +6,15 @@ A table of programs in this chapter, and which data files it takes as input (alg
 
 | Program              | Data files    |
 | :--------            |:-------------:|
-| TwoThreeTree         | * none * |
+| TwoThreeTree         | *none* |
 
 ### Elementary Symbol Tables
 
 | Program              | Data files    |
 | :--------            |:-------------:|
 | ArrayListST          | <ul><li>algs4-data/tinytinyTale.txt</li> <li>algs4-data/medTale.txt</li> <li>algs4-data/tale.txt</li></ul> |
-| UBST                 | * Same as ArrayListST * |
-| STCompare            | * Same as ArrayListST * |
+| UBST                 | *Same as ArrayListST* |
+| STCompare            | *Same as ArrayListST* |
 
 * Notice that `STCompare` takes two algorithms and one file as arguments *
 
