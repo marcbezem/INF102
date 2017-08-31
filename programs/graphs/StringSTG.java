@@ -1,6 +1,7 @@
+package graphs;
+
 import fundamentals.bagsQueuesAndStacks.LinkedList_Queue;
 import edu.princeton.cs.algs4.In; import edu.princeton.cs.algs4.StdOut;
-import graphs.LinkedListG;
 import searching.elementarySymbolTables.ArrayListST;
 
 import java.util.ArrayList; import java.util.Iterator;

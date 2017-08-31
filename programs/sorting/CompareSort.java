@@ -8,6 +8,7 @@ package sorting;// CompareSort compares two sorting algorithms on T randomized a
 import edu.princeton.cs.algs4.StdOut; import edu.princeton.cs.algs4.Stopwatch; import edu.princeton.cs.algs4.StdRandom;
 import sorting.elementarySorts.ExampleSort;
 import sorting.elementarySorts.InsertionSort;
+import sorting.elementarySorts.ShellSort;
 import sorting.mergeSort.BottomUpMergeSort;
 import sorting.mergeSort.TopDownMergeSort;
 import sorting.priorityQueues.NaiveHeapSort;

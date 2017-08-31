@@ -1,7 +1,8 @@
-package oddsAndEnds;
+package sorting.priorityQueues;
 
 import edu.princeton.cs.algs4.In; import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.MinPQ;
+import oddsAndEnds.PolyPair;
 
 public class MultiwayMerge {// uses MinPQ, remembers stream number, no IndexMinPQ
   
