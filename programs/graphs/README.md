@@ -12,6 +12,7 @@ A table of programs in this chapter, and which data files it takes as input (alg
 | Program              | Data files    |
 | :--------            |:-------------:|
 | LinkedListDiG        | <ul><li>algs4-data/tinyDG.txt</li><li>algs4-data/mediumDG.txt</li><li>largeDG.txt</li></ul> |
+
 *LinkedListDiG takes file path as argument, not as input with '&lt;', ex:*
 
 `java -cp algs4.jar:. graphs/directedGraphs/LinkedListDiG algs4-data/tinyDG.txt`
