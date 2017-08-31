@@ -1,5 +1,6 @@
 ## 3 Searching
 
+A table of programs in this chapter, and which data files it takes as input (algs4-data refers to data files from algs4s web page):
 
 | Program              | Data files    |
 | :--------            |:-------------:|

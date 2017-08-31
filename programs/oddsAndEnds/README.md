@@ -1,5 +1,6 @@
 ## Odds and ends
-A package for the programs that does not belong to any specific chapter
+A package for the programs that does not belong to any specific chapter <br><br>
+A table of programs in this chapter, and which data files it takes as input (algs4-data refers to data files from algs4s web page):
 
 | Program              | Data files    |
 | :--------            |:-------------:|
