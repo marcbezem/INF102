@@ -13,6 +13,7 @@
 | ArrayListST          | <ul><li>algs4-data/tinytinyTale.txt</li> <li>algs4-data/medTale.txt</li> <li>algs4-data/tale.txt</li></ul> |
 | UBST                 | * Same as ArrayListST * |
 | STCompare            | * Same as ArrayListST * |
+
 * Notice that `STCompare` takes two algorithms and one file as arguments *
 
 ### Hash Table

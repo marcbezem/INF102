@@ -7,10 +7,9 @@ package sorting;// SortCompare compares two sorting algorithms on 2T randomized 
 // should be no difference. On small samples we hope to get more stability.
 
 import edu.princeton.cs.algs4.StdOut; import edu.princeton.cs.algs4.Stopwatch; import edu.princeton.cs.algs4.StdRandom;
-import sorting.JavaArraySort;
 import sorting.priorityQueues.NaiveHeapSort;
 import sorting.quickSort.QuickSort;
-import sorting.ShellSort;
+import sorting.elementarySorts.ShellSort;
 import sorting.elementarySorts.ExampleSort;
 import sorting.elementarySorts.InsertionSort;
 import sorting.mergeSort.BottomUpMergeSort;
