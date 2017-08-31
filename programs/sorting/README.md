@@ -19,7 +19,7 @@ A table of programs in this chapter, and which data files it takes as input (alg
 | InsertionSort        | *same as JavaArraySort* |
 | ShellSort            | *same as JavaArraySort* |
 
-### mergeSort
+### Merge Sort
 
 | Program              | Data files    |
 | :--------            |:-------------:|
@@ -27,7 +27,7 @@ A table of programs in this chapter, and which data files it takes as input (alg
 | TopDownMergeSort     | *same as JavaArraySort* |
 
 
-### priorityQueues
+### Priority Queues
 
 | Program              | Data files    |
 | :--------            |:-------------:|
@@ -37,7 +37,7 @@ A table of programs in this chapter, and which data files it takes as input (alg
 | NaiveHeapSort        | *same as JavaArraySort* |
 
 
-### quickSort
+### Quick Sort
 
 | Program              | Data files    |
 | :--------            |:-------------:|
