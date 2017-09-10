@@ -1,6 +1,7 @@
 package sorting.elementarySorts;
 
 import edu.princeton.cs.algs4.In; import edu.princeton.cs.algs4.StdOut;
+
 public class ExampleSort {
   
 public static void sort(Comparable[] a){ // good old bubblesort
@@ -9,6 +10,7 @@ public static void sort(Comparable[] a){ // good old bubblesort
         if (less(a[j], a[j-1]))
             exch(a,j-1, j);
 }
+
 
 private static boolean less(Comparable v, Comparable w){
   return v.compareTo(w) < 0; }

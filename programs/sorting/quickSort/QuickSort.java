@@ -26,7 +26,7 @@ public static <Key extends Comparable<Key>> int partition(Key[] a, int lo, int h
     if (l + 1 < h) {
       exch(a,l+1,h);
       l++; }
-     else break;
+    else break;
   }
   exch(a, l, lo); // not always needed
   return l;  
