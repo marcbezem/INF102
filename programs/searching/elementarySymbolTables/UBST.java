@@ -72,7 +72,7 @@ private boolean keylevels(){// used with assert for simple traces
         q.enqueue(n.left);
         StdOut.print("<");
       }
-      StdOut.print(n.key);
+      StdOut.print("-"+n.key+"-");
       if (n.right != null) {
         q.enqueue(n.right);
         StdOut.print(">"); }
