@@ -3,8 +3,7 @@ package sorting.mergeSort;
 import edu.princeton.cs.algs4.In; import edu.princeton.cs.algs4.StdOut;
 public class BottomUpMergeSort {
   
-// public static void merge(): similar to merge() in TopDownMergeSort,
-// one subtlety (assert) to be explained after sort()
+// public static void merge(): similar to merge() in TopDownMergeSort
 
 public  static void sort(Comparable[] a) {
   int N = a.length;
@@ -49,7 +48,7 @@ private static void merge(Comparable[] a,  int lo, int m, int hi, Comparable[] a
   int l = lo, r = m;
   for (int k=lo; k<=hi; k++){
     if (l == m) {
-      assert a[k] == aux[r++]; // assert!!!
+      assert a[k] == aux[r++]; // assert!!! This part of a is already correct 
       continue; }
     if (r == hi + 1) {
       a[k] = aux[l++];
