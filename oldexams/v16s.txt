@@ -2,9 +2,9 @@ Short solutions to the problems of the INF102 exam on 22 February 2016.
 
 1. Cubic solution: take ThreeSum.java on p. 173 of Algs4 and change "==0" to "<0".
 O(N^2 log N) solution: minor variation of 
-github.com/marcbezem/INF102/blob/master/programs/oddsAndEnds.ThreeSumPos.java
+github.com/marcbezem/INF102/blob/master/programs/oddsAndEnds/ThreeSumPos.java
 
-2. github.com/marcbezem/INF102/blob/master/programs/sorting.elementarySorts.CountSort99.java
+2. github.com/marcbezem/INF102/blob/master/programs/sorting/elementarySorts/CountSort99.java
 
 3. A hash table is a datastructure for fast search, insert and delete of unordered
 keys or key-value pairs. Ideally these operations run in (amortized) constant time, 
@@ -22,10 +22,10 @@ resolved by putting a colliding key on the first empty position to the right
 in the table (starting again at a[0] if the search goes past the last position).
 An important property of the hash function is that it spreads the keys well
 over the index range. Implementation: methods get(), put() and del() in
-github.com/marcbezem/INF102/blob/master/programs/searching.hashTable.ArrayListHashST.java
+github.com/marcbezem/INF102/blob/master/programs/searching/hashTable/ArrayListHashST.java
 
 4. Method dfs() in 
-github.com/marcbezem/INF102/blob/master/programs/graphs.directedGraphs.LinkedListDiG.java
+github.com/marcbezem/INF102/blob/master/programs/graphs/directedGraphs/LinkedListDiG.java
 marks all nodes reachable from a given node. Use dfs() as follows:
 
 public boolean reachable(Integer s, Integer t){
