@@ -3,8 +3,10 @@ package searching.elementarySymbolTables;
 import edu.princeton.cs.algs4.In; import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.Queue;
 
-// a simple implementation of unbalanced ternary trees with only keys (no values)
-// no delete, only leaves can be 2-nodes, all internal nodes are 3-nodes
+// an incomplete implementation of unbalanced ternary trees,
+// to be used (and modified) in a compulsory exercise 
+// no values, no delete, all internal nodes are 3-nodes
+
 public class UTST<Key extends Comparable<Key>> {
 
 private Node root;
