@@ -31,7 +31,7 @@ public static void main(String[] args){
         a[i] = StdRandom.uniform(100);}
 
   Stopwatch stw = new Stopwatch();
-  sort(a);
+  sort(a); //show(a);
   StdOut.println(stw.elapsedTime());
 
 }//End of main

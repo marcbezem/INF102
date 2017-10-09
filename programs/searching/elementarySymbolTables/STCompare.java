@@ -3,6 +3,7 @@ package searching.elementarySymbolTables;
 import edu.princeton.cs.algs4.StdOut;  import edu.princeton.cs.algs4.Stopwatch;
 import searching.elementarySymbolTables.ArrayListST;
 import searching.elementarySymbolTables.UBST;
+import searching.hashTable.ArrayListHashST;
 
 public class STCompare {
   
@@ -14,8 +15,8 @@ public static void run(String st_alg, String filename){ // symbol table "st_alg"
                      break;
             case "UBST"             :  UBST.main(args);
                      break;
- //           case "ArrayListHashST"  :  ArrayListHashST.main(args);
- //                    break;
+            case "ArrayListHashST"  :  ArrayListHashST.main(args);
+                     break;
            default                 : StdOut.println(st_alg + " not known");
    }
 }

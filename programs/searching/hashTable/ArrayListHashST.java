@@ -1,6 +1,6 @@
 package searching.hashTable;
 
-import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 import searching.elementarySymbolTables.ArrayListST;
 
@@ -30,10 +30,13 @@ public ArrayListHashST(int M) {
     }
 
     public static void main(String[] args)  {
-        int M = Integer.parseInt(args[0]);
+      int M, f;
+      if (args.length < 2) { M = 1048573; f=0; }
+      else { M = Integer.parseInt(args[0]); f=1; }
+      In infile = new In(args[f]);
         ArrayListHashST<String,Integer> st = new ArrayListHashST<>(M);
-        while (!StdIn.isEmpty()) {
-            String key = StdIn.readString();
+        while (!infile.isEmpty()) {
+            String key = infile.readString();
             Integer i = st.get(key);
             if (i != null)
                 st.put(key,i+1);

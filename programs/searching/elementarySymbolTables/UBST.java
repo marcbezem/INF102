@@ -58,7 +58,7 @@ public static void main(String[] args)  {
     if (i != null) st.put(key,i+1);
     else st.put(key, 1);
   }
-  st.show(); assert st.keylevels();
+  // st.show(); assert st.keylevels();
 }//End of main
 
 private boolean keylevels(){// used with assert for simple traces

@@ -58,11 +58,11 @@ public class ArrayListST<Key extends Comparable<Key>, Value> {
       else st.put(key,1);
       assert st.show();
     }
-    Iterator<String> iter = st.keysIterator();
-    while (iter.hasNext()) {
-      String next = iter.next();
-      StdOut.println(st.get(next) + "\t" + next);
-    }
+   //  Iterator<String> iter = st.keysIterator();
+   //  while (iter.hasNext()) {
+   //   String next = iter.next();
+   //   StdOut.println(st.get(next) + "\t" + next);
+   //  }
   }//End of main
 
   private boolean show(){// used with assert for simple one-line traces
