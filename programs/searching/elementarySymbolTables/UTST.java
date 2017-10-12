@@ -18,11 +18,9 @@ private class Node{
   public Node(Key k1, Key k2, Node l, Node m, Node r){
     key1 = k1;
     key2 = k2;
-    assert key1 != null && (key2 == null || key1.compareTo(key2) < 0);
     left = l;
     mid = m;
     right = r;
-    assert key2 != null || mid==null ;
   }
 }
 
@@ -38,7 +36,6 @@ private void show(Node r){// depth-first left-to-right tree transversal
 
 public Node get(Key k){ return get(k,root); }
 public Node get(Key k, Node r){
-  assert k != null; // defensive, not required
   if (r == null) return null;
   int cmp = k.compareTo(r.key1);
   if (cmp == 0) return r;
