@@ -3,19 +3,19 @@ package searching.hashTable;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 import searching.elementarySymbolTables.ArrayListST;
-
 import java.util.Iterator;
+
 public class ArrayListHashST<Key extends Comparable<Key>, Value> {
   
 private int M;     // size of hash table, NOT number of keys in ST (Symbol Table)
 private ArrayListST<Key,Value>[] st; // array of ArrrayListST objects
 
-public ArrayListHashST(int M) {
+    public ArrayListHashST(int M) {
     this.M = M; // typical values of M are 31, 997, 65521, 1048573
     st  = (ArrayListST<Key,Value>[]) new ArrayListST[M]; // array generics :-(
     for (int i=0; i<M; i++)
         st[i] = new ArrayListST<>();
-}
+    }
 
     private int hash(Key key){
         return ( key.hashCode() & 0x7fffffff ) % M;
@@ -31,7 +31,7 @@ public ArrayListHashST(int M) {
 
     public static void main(String[] args)  {
       int M, f;
-      if (args.length < 2) { M = 1048573; f=0; }
+      if (args.length < 2) { M = 65521; f=0; }
       else { M = Integer.parseInt(args[0]); f=1; }
       In infile = new In(args[f]);
         ArrayListHashST<String,Integer> st = new ArrayListHashST<>(M);
