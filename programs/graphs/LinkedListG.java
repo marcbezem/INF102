@@ -135,8 +135,8 @@ public void testpathbfs(){
         while (i != paths[i]) {
             StdOut.print(i + "-");
             i = paths[i]; }
+        StdOut.println(n);
       }
-    StdOut.println(n);
     }
   }  
 }
