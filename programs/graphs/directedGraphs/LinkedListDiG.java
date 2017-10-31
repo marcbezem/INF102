@@ -31,15 +31,14 @@ public String toString(){
   return s;
 }
 
-public String dfs(Integer v, boolean[] marked) {// return type String !
+public String dfs(Integer pv, Integer v, boolean[] marked) {// return type String !
   marked[v] = true; 
-  String sv = v.toString();
-  String trace = sv; // only for nice output (ofno)
+  String trace = v.toString(); // only for nice output (o.f.n.o.)
   for (Integer w : adj[v])
-    if ( !marked[w])
-      trace += "->" + dfs(w,marked);
-  trace += "(" + sv + ")";
-  return trace; // ofno: backtrack from "(node)"
+    if ( !marked[w] )
+      trace += "->" + dfs(v,w,marked);
+  trace += "<-" + pv ; // pv is parent of v
+  return trace; // o.f.n.o. backtrack to parent
 }
 
 public void testDfs(){
@@ -47,7 +46,7 @@ public void testDfs(){
     boolean[] marked = new boolean[V];
     StdOut.print("Enter node: "); Integer n = StdIn.readInt();
     if (n < 0 || n >= V) break;
-    StdOut.println(dfs(n, marked));
+    StdOut.println(dfs(n,n, marked));
     for(int v=0; v<V; v++) StdOut.print(marked[v] ? v + " " : ". ");
     StdOut.println();
   }  
@@ -148,7 +147,7 @@ public void testPost(){
 
 public boolean[][] transitiveClosure() { // returns reflexive-transitive closure
   boolean[][] adjacencyMatrix = new boolean[V][V];
-  for (int v=0; v<V; v++) dfs(v, adjacencyMatrix[v]); // "row of v" as array "marked"
+  for (int v=0; v<V; v++) dfs(v,v, adjacencyMatrix[v]); // "row of v" as array "marked"
   for (int v=0; v<V; v++) {
     for (int w=0; w<V; w++)
       StdOut.print(adjacencyMatrix[v][w] ? 1 : 0);
