@@ -24,28 +24,27 @@ public StringSTG(In in) {
     a.add(v); // v saved as part of edge
     if (str2nr.get(v) == null) str2nr.put(v, V++); // build symbol table
   }
-// Print symbol table
+// Print symbol table and build inverse index
   StdOut.println("Symbol table, alphabetically:"); 
   Iterator<String> iter = str2nr.keysIterator();
+  nr2str = new String[V];
   while (iter.hasNext()) {
     String next = iter.next(); 
     StdOut.println(next + "\t" + str2nr.get(next));
+    nr2str[str2nr.get(next)] = next; // inverse index 
   }
-// Build index and isomorphic graph on indices (using saved input)
+// Print index
+  StdOut.println("Index:"); 
+  for (int v=0; v<V; v++) StdOut.println(v + "\t" + nr2str[v]);
+// Build isomorphic graph on indices (using saved input)
   E = a.size()/2;
-  nr2str = new String[V];
   G = new LinkedListG(V);
   for (int i=0; i<a.size(); i+=2) {
     String ai = a.get(i), aj = a.get(i + 1);
     Integer nrai = str2nr.get(ai);
     Integer nraj = str2nr.get(aj);
-    nr2str[nrai] = ai;
-    nr2str[nraj] = aj; // build the index
     G.addEdge(nrai, nraj); // add the edge to the graph on indices
   }
-// Print index
-  StdOut.println("Index:"); 
-  for (int v=0; v<V; v++) StdOut.println(v + "\t" + nr2str[v]);
 }
 
 public void stringPathBfs(String s){
