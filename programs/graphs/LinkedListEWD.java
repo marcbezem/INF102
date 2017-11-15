@@ -75,6 +75,7 @@ public void testSlowEWD(){
       Integer t = StdIn.readInt();
       if (t < 0 || t >= V) break;
       else {
+        StdOut.println("distance to source is " + distToSource[t]);
         DirectedEdge e = pathToSource[t];
         while (e != null) {
           StdOut.println(e);
