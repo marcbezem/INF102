@@ -1,0 +1,111 @@
+Fahad Panolan,720,585
+Frances Rosamond,284,597
+Daniel Lokshtanov,85,458
+Håkon Robbestad Gylterud,849,158
+Zhaoran Zhou,427,697
+Chunlei Li,983,29
+Øyvind Ytrehus,889,774
+Bjørn Møller Greve,5,447
+Eivind Valen,939,743
+Lars Jaffke,965,525
+Ketil Malde,296,113
+Sushmita Gupta,592,435
+Maximilian Krause,379,167
+Jan Byska,266,694
+Jaakko Timo Henrik Järvi,469,212
+Bo Sun,969,286
+Meirav Zehavi,85,779
+Michal Walicki,235,152
+Eileen Marie Hanna,241,682
+Amer Abdo Mouawad,360,744
+Pierre Bedoucha,586,352
+Torill Hamre,248,727
+Juraj Palenik,220,460
+Takaya Saito,785,290
+Petter Erling Bjørstad,616,754
+Sondre Rønjom,544,86
+Lars Albin Severinson,449,15
+Bram Burger,360,13
+Pranabendu Misra,537,483
+Fabian Bolte,211,651
+Helwig Hauser,134,540
+Sergej Stoppel,838,610
+Noeska Smit,765,44
+Stian Fauskanger,176,116
+Sjur Didrik Flåm,798,680
+Marcus Aloysius Bezem,742,187
+Charitra Kumar Mishra; PhD,206,658
+Kjell Jørgen Hole,302,727
+Sjur Kristoffer Dyrkolbotn,512,755
+Anya Helene Bagge,380,490
+Mateus De Oliveira Oliveira,795,203
+Magne Haveraaen,378,713
+Saket Saurabh,183,510
+Matthias Labschütz,671,610
+Jan-Joachim Rückmann,940,182
+Isaac Andrés Canales Martinez,897,797
+Asieh Abolpour Mofrad,359,91
+Fredrik Manne,401,481
+Chaoran Fan,827,693
+Fedor Fomin,602,144
+Gunnar Schulze,794,207
+Paloma Lima,785,78
+Michael Fellows,237,304
+Marco Calderini,429,646
+Nicolas Delaleu,279,294
+Ivan Viola,501,687
+Brit Helle Aarskog,601,137
+Navid Ghaedi Bardeh,196,251
+Pinar Heggernes,548,611
+Nikolay Stoyanov Kaleyski,143,732
+Dan Zhang,474,539
+Tor Helleseth,7,416
+Nian Li,907,711
+Matthew Geoffrey Parker,363,731
+Igor A. Semaev,38,15
+Ute-Alexandra Schaarschmidt,683,595
+Stefan Bruckner,384,177
+Fatemeh Zamanzad Ghavidel,922,41
+Pål Ellingsen,852,139
+Ahmad Hemmati,214,392
+Veronika Solteszova,603,379
+Anna-Lena Braatz,753,555
+Kai A. Olsen,188,519
+Robin Adams,318,368
+Kornel Labun,561,97
+Trond Steihaug,162,243
+Eivind Jahren,470,519
+Jan Arne Telle,829,75
+Khalid Azim Mughal,890,616
+Torstein Strømme,245,674
+Dong Yang,38,467
+Teshome Tilahun Bizuayehu,173,148
+Yaxin Xue,511,248
+Marika Ivanova,798,462
+Andreas Johnsen Lind,345,37
+Bjørn André Bredesen,375,469
+Lilya Budaghyan,633,742
+Angèle Abboud,474,283
+Arne Klein,658,545
+Michael Dondrup,757,793
+Uwe Egbert Wolter,283,586
+Adam Giess,394,325
+Md. Naim,723,92
+Kjell Petersen,445,517
+Lu Yi,707,796
+Irene Villa,820,627
+Dag Haugland,219,403
+Diana Davidova,689,193
+Dusan Knop,972,640
+Katarzyna Chyzynska,429,472
+Anna Maria Eilertsen,635,5
+Christian W. Otterstad,228,580
+Konstantina Dimitrakopoulou,116,230
+Srimathi Varadharajan,445,405
+Akanksha Agrawal,932,15
+Andrea Tenti,222,197
+Mohsen Toorani,544,182
+Daniel Hernandez Escobar,973,657
+Xiaokang Zhang,315,186
+Puja Thiel,560,663
+Roohani Sharma,509,237
