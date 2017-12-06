@@ -25,7 +25,7 @@ public LinkedListDiG(In in) {
 public void addEdge(Integer v, Integer w) { adj[v].add(0, w); }
 
 public String toString(){
-  String s = ""; // in the following line we use adj[v].toString()
+  String s = ""; // in the following loop we use adj[v].toString()
   for (int v=0; v<V; v++)
     s += (v + " : " + adj[v] + "\n");
   return s;
@@ -68,7 +68,7 @@ public boolean slowCyclist(Integer u, Integer v, Integer[] paths) {
 }
 
 public boolean fastCyclist(Integer u, Integer v, Integer[] paths, boolean[] op) {
-  // Efficient! But op ("on path") uses extra space.
+  // Efficient! But array op ("on path") uses extra space.
   // call: fastCyclist(s, s, paths, op) detects a cycle reachable from s
   op[v] = true;
   paths[v] = u;
