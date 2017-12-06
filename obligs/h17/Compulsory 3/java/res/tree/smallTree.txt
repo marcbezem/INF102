@@ -1,0 +1,6 @@
+7
+root folder1 folder2 folder3 file1.txt file2.txt file3.txt
+0 : 1 2
+1 : 4
+2 : 3 5
+3 : 6

@@ -5,7 +5,9 @@ package sorting;// CompareSort compares two sorting algorithms on T randomized a
 // Methodological remark: by comparing the two sorting algorithms directly,
 // running them on the same arrays, we hope to get a more realistic comparison.
 
-import edu.princeton.cs.algs4.StdOut; import edu.princeton.cs.algs4.Stopwatch; import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.StdOut; 
+import edu.princeton.cs.algs4.Stopwatch; 
+import edu.princeton.cs.algs4.StdRandom;
 import sorting.elementarySorts.ExampleSort;
 import sorting.elementarySorts.InsertionSort;
 import sorting.elementarySorts.ShellSort;
@@ -54,8 +56,14 @@ public static double compareSort(String alg1, String alg2, int N, int T){
     for (int i=0; i<N; i++) {
         a1[i] = StdRandom.uniform();
         a2[i] = a1[i]; }
-    total1 += time(alg1, a1); // summing runtime of alg1
-    total2 += time(alg2, a2); // summing runtime of alg2
+     if (StdRandom.uniform(2) == 0)
+       {total1 += time(alg1, a1); // summing runtime of alg1
+        total2 += time(alg2, a2); // summing runtime of alg2
+       }
+     else
+       {total2 += time(alg2, a2); // summing runtime of alg2
+        total1 += time(alg1, a1); // summing runtime of alg1
+       }
   }
   return total1 / total2;
 }
