@@ -1,0 +1,2592 @@
+\documentclass[handout]{beamer}
+%\documentclass[slides]{beamer}
+% Vary the color applet  (try out your own if you like)
+%\colorlet{structure}{red!20!black}
+%\beamertemplateshadingbackground{yellow!20}{white}
+%\usepackage{beamerthemeshadow}
+%\usepackage[utf8x]{inputenc} CONFLICT!
+%\usepackage[english,norsk,nynorsk]{babel}
+\usepackage{marvosym}
+\usepackage[all]{xy}
+%\usepackage{amsmath}
+\usepackage{multicol}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+\usetheme{Montpellier}
+
+\newcommand{\va}{\mathit{variable}}
+\newcommand{\Fa}{\mathrm{F}}
+\newcommand{\TEXT}{{\mathrm{TEXT}}}
+\newcommand{\INC}{{\mbox{INC}\,}}
+\newcommand{\DEC}{{\mbox{DEC}\,}}
+\newcommand{\CLR}{{\mbox{CLR}\,}}
+\newcommand{\JND}{{\mbox{JND}\,}}
+\newcommand{\JZ}{{\mbox{JZ}\,}}
+\newcommand{\JMPp}{{\mbox{JMP}_{\!+}\,}}
+\newcommand{\JMPn}{{\mbox{JMP}_{\!-}\,}}
+\newcommand{\CONT}{{\mbox{CONT}}}
+\newcommand{\Nat}{\mathbb{N}}
+\newcommand{\Int}{\mathbb{Z}}
+\newcommand{\Rat}{\mathbb{Q}}
+\newcommand{\Rea}{\mathbb{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\set}[1]{\{#1\}}
+\newcommand{\seg}[2]{[#1.\,.#2]}
+\newcommand{\pair}[2]{\langle #1,#2\rangle}
+\newcommand{\der}[2]{\frac{\partial#1}{\partial#2}}
+\newcommand{\plusD}[1]{#1+\Delta{#1}}
+\newcommand{\dD}[1]{\Delta{#1}}
+\newcommand{\range}{\mathit{range}}
+\newcommand{\ovx}{\overline{x}}
+\newcommand{\ovy}{\overline{y}}
+\newcommand{\ovl}[1]{\overline{#1}}
+\newcommand{\ul}[1]{\underline{#1}}
+\newcommand{\Sigmeps}{\Sigma_\epsilon}
+\newcommand{\Gammeps}{\Gamma_\epsilon}
+\newcommand{\ea}{\epsilon_1}
+\newcommand{\eb}{\epsilon_2}
+\newcommand{\ec}{\epsilon_3}
+\newcommand{\ba}{\frac{100}{2}b_1}
+\newcommand{\bb}{\frac{10}{2}b_2}
+\newcommand{\bc}{\frac{1}{2}b_3}
+\newcommand{\binomsq}[2]{\left[\begin{array}{c}#1\\#2\end{array}\right]}
+\newcommand{\wrd}[1]{\mathbf{#1}}
+\newcommand{\myiff}{\Leftrightarrow}
+\newcommand{\myimp}{\Rightarrow}
+\newcommand{\To}{\Rightarrow}
+\newcommand{\Trt}{\stackrel{*}{\Rightarrow}}
+\newcommand{\ToG}{\Rightarrow_G}
+
+\newcommand{\git}{https://github.com/marcbezem/INF102/blob/master}
+
+\title[INF102]%
+{INF102\\Algorithms, Data Structures and Programming}
+\author[Marc Bezem]{%
+  Marc~Bezem\inst{1} %\and
+  }
+\institute[University of Bergen]{
+  \inst{1}%
+  Department of Informatics\\
+  University of Bergen
+  %\and
+  }
+\date[INF102]{Fall 2017}
+
+\subject{Algorithms and Data Structures}
+
+%\pgfdeclaremask{fsu}{fsu_logo_ybkgrd}
+%\pgfdeclareimage[mask=fsu,width=1cm]{fsu-logo}{fsu_logo_ybkgrd}
+
+%\logo{\vbox{\vskip0.1cm\hbox{\pgfuseimage{fsu-logo}}}}
+
+\begin{document}
+
+  \frame
+  {
+    \titlepage
+  }
+
+\section{Introduction}
+
+ \frame
+  {
+    
+    \frametitle{INF102, practical stuff}\label{practicalstuff}
+
+\begin{itemize}[<+->]
+\item Lecturer: Marc Bezem; Team: see homepage
+\item  Homepage:
+\href{https://mitt.uib.no/courses/7191}%
+{\color{red}{INF102}} (requires login)
+\item Also: 
+\href{https://github.com/marcbezem/INF102}%
+{\color{red}{INF102 on GitHub}}
+\item Tentative
+\href{\git/lecturenotes/plan.pdf}%
+{\color{red}{schedule}}
+\item Textbook:
+\href{http://algs4.cs.princeton.edu/home/}{\color{red}{Algorithms, 4th edition}}
+%, R. Sedgewick and K. Wayne, Pearson, 2011
+\item Prerequisites: INF100 + 101 ($\approx$ Ch.\ 1.1 + 1.2)
+\item  Syllabus (pensum): Ch.\ 1.3 -- 1.5, Ch. 2 -- 4
+\item Three compulsory exercises, must be passed
+\item Digital exam (Inspera)
+\href{http://www.uib.no/student/108376/eksamensdatoer-det-matematisk-naturvitenskapelige-fakultet-høsten-2017-exam-dates}%
+{\color{red}{06.12.2017}}
+\item Old exams: 
+\href{https://github.com/marcbezem/INF102/tree/master/oldexams}%
+{\color{red}{2004--2017}}
+\item \hyperlink{contentstable}{\color{red}{Table of Contents of these slides}}
+\end{itemize}
+}
+
+ \frame
+  {
+    
+    \frametitle{Resources}
+\begin{itemize}[<+->]
+\item Good textbook, USA-style: many pages, exercises etc.
+\item Average speed must be ca 50 pages p/w
+\item Lectures (ca 24) focus on the essentials
+\item Slides (ca 120, dense!) summarize the lectures
+\item Prepare yourself by reading in advance
+\item Workshops: help with \href{\git/lecturenotes/plan.pdf}%
+{\color{red}{selected}} exercises
+\item Test yourself by trying some exercises in advance
+\item If you can do the exercises (incl.\ compulsory), you are fine
+\item Review of exercises on Tuesday morning
+\end{itemize}
+}
+
+\section{Ch.1.3 Bags, Queues and Stacks}
+
+\frame
+  {
+    
+    \frametitle{Generic Bags, Queues and Stacks}
+
+\begin{itemize}[<+->]
+\item Generic programming in Java, example: 
+ \href{\git/programs/oddsAndEnds/PolyPair.java}%
+{\color{red}{PolyPair.java}}
+\item Bag, Queue and Stack are generic, iterable collections
+\item All three support adding an element
+\item Queue and Stack support removing an element (if any)
+\item FIFO Queue (en/dequeue), LIFO Stack (push/pop)
+\item Stack: INF101; Bag is a Stack without {\tt pop}
+\item APIs include: {\tt boolean isEmpty()} and {\tt int size()}
+\end{itemize}
+}
+
+\frame
+  {
+    
+    \frametitle{Implementations and one application}
+
+\begin{itemize}[<+->]
+
+\item Implementation of Stack:
+\href{\git/programs/fundamentals/bagsQueuesAndStacks/LinkedList_Stack.java}%
+{\color{red}{LinkedList\_Stack.java}}
+\item Implementation of Queue:
+\href{\git/programs/fundamentals/bagsQueuesAndStacks/LinkedList_Queue.java}%
+{\color{red}{LinkedList\_Queue.java}}
+\item Dijkstra's Two-Stack Expression Evaluation
+\item Example:  ( 1 + (  ( 2 + 3 )  *  ( 4 * 5 ) ) )
+\item Now you learned something about compilers!
+\item \href{http://algs4.cs.princeton.edu/lectures/13DemoDijkstraTwoStack.mov}{\color{red}{Movie}}
+\end{itemize}
+}
+
+
+\frame
+  {
+    
+    \frametitle{Resizing Arrays}
+
+\begin{itemize}[<+->]
+\item Arrays have direct access, but have fixed size
+\item Linked lists have flexible size, but no direct access
+\item Best of both: use new, resized arrays, \emph{wisely}:
+  \begin{itemize}[<+->]
+  \item double size when the array becomes overfull
+  \item halve size when the array becomes quarter full
+  \end{itemize}  
+\item Resizing takes time and space proportional to size
+\item Not too seldom (correctness), not too often (efficiency)
+\item Later: we retain \emph{constant time direct access}
+\item Later: add operation in \emph{constant time on average}
+\item Once we have understood resizing arrays: \href{http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html}%
+{\color{red}{ArrayList}}
+\end{itemize}    
+}
+
+\frame
+  {
+    
+    \frametitle{Implementations}
+
+\begin{itemize}[<+->]
+\item 
+\href{\git/programs/fundamentals/bagsQueuesAndStacks/ResizingArray_Stack.java}%
+{\color{red}{ResizingArray\_Stack.java}}
+\item Arrays give direct access, resizing at reasonable cost
+\item
+\href{\git/programs/fundamentals/bagsQueuesAndStacks/LinkedList_Stack.java}%
+{\color{red}{LinkedList\_Stack.java}}
+\item No fixed size, but indirect access incurs a cost
+\item Pointers take space and dereferencing takes time
+\item Programming with pointers: make a picture
+\end{itemize}    
+}
+
+\section{Ch.1.4 Analysis of Algorithms}
+
+\frame
+  {
+    
+    \frametitle{Computation time and memory space}
+
+\begin{itemize}[<+->]
+\item Two central questions:
+  \begin{itemize}
+  \item How long will my program take?
+  \item Will there be enough memory?
+  \end{itemize}
+\item Example: 
+\href{http://algs4.cs.princeton.edu/14analysis/ThreeSum.java.html}%
+{\color{red}{ThreeSum.java}}
+\item Inner loop (here {\tt a[i]+a[j]+a[k]==0}) is important
+\item Sorting helps: \href{\git/programs/oddsAndEnds/ThreeSumOptimized.java}%
+{\color{red}{ThreeSumOptimized.java}}
+\item Run some experiments: {\tt 1Kints.txt, 2Kints.txt, ...}
+%\item Observe the `doubling factor'
+\end{itemize}  
+}
+
+\frame
+  {
+    
+    \frametitle{Methods of Algorithm Analysis}
+
+\begin{itemize}[<+->]
+
+\item Empirical:
+  \begin{itemize}
+  \item Run program with randomized inputs, measuring time \& space
+  \item Run program repeatedly, varying (doubling) the input size
+  \item Measuring time: \href{http://algs4.cs.princeton.edu/code/javadoc/edu/princeton/cs/algs4/Stopwatch.html}%
+  {\color{red}{StopWatch}}
+  \item Plot, or log-log plot and 
+\href{http://www.alcula.com/calculators/statistics/linear-regression/}{\color{red}{linear regression}}  
+  \end{itemize}
+\item Theoretical:
+  \begin{itemize}
+  \item Define a cost model by abstraction (e.g., array accesses, comparisons, operations)
+  \item Try to count/estimate/average this cost as function of the input (size)
+  \item Use $O(f(n))$ (MNF130) and $f(n)\sim g(n)$ (see next slide)
+  \end{itemize}
+\end{itemize}  
+}
+
+\frame
+  {
+    
+    \frametitle{Orders og Growth, Big Oh and $\sim$}
+
+\begin{itemize}[<+->]
+
+%\item Q: `wins for large $n$' uhh???
+%\item A: Big Oh, and $\sim$ will clear this up
+\item Big Oh and $\sim$ aim to capture `order of growth'
+\item Costs are positive quantities, so $f,g,... : \Nat \to \Rea^+$
+\item MNF130:  $f(n)$ is $O(g(n))$ if there exist 
+$c\in\Rea^+,~N\in\Nat$ such that $f(n) \leq c g(n)$ for all $n\geq N$
+(that is, for $n$ large enough)
+\item Example: $n^2$ and even $99n^3$ are $O(n^3)$, but  $n^3$ is not $O(n^{2.9})$
+\item INF102:  $f(n)\sim g(n)$ if $1 = \lim_{n\to\infty} (f(n) / g(n))$
+\item If $f(n)\sim g(n)$, then $f(n)$ is $O(g(n))$ and $g(n)$ is $O(f(n))$
+\item Not conversely: Big Oh disregards constant factors, $\sim$ not
+\item Factor $c$ hidden in Big Oh is important in practice
+\item Bound $N$ is important if it is large
+\end{itemize}  
+}
+
+\frame
+  {
+    
+    \frametitle{Important orders of growth}
+
+\begin{tabular}{l | l}
+order of growth as function of $n$ & value for $n=20$ \\\hline\hline
+constant: $c$, meaning $f(n) = c$ for all $n$ & $c$ sec\\\hline
+linear: $n$                                                               & $20$ sec \\\hline
+linearithmetic: $n \log n$                                    & $26$ sec \\\hline
+quadratic: $n^2$                                                   & $400$ sec\\\hline
+cubic: $n^3$                                                           & $8000$ sec\\\hline
+exponential: $2^n$                                               & $1048576$ sec\\\hline
+general form: $a n^b (\log n)^c$ & $a\cdot 20^b \cdot(1.3)^c$ sec
+
+\end{tabular}  
+}
+
+\frame
+  {
+    
+    \frametitle{ThreeSum, theoretically}
+
+\begin{itemize}[<+->]
+
+\item Number of different picks of triples: $g(n) = n(n-1)(n-2)/6$
+\item Inner loop {\tt a[i]+a[j]+a[k]==0} executed $g(n)$ times
+\item $f(n) = n^3 / 6 - n^2 / 2 + n / 3$
+\item Cubic term $n^3 / 6$ wins for large $n$: $f(n) \sim n^3 / 6$        
+\item Cost model \# array accesses: ${} \sim n^3 / 2$
+\item Cost array access $t$ sec: total time  ${} \sim  t * n^3 / 2$ sec
+\item Cost models are (necessary) simplifications!
+\end{itemize}  
+}
+
+
+\frame
+  {
+    
+    \frametitle{ThreeSum, empirically}
+
+\begin{itemize}[<+->]
+
+\item Input sizes 1K, 2K, 4K, 8K take time 0.1, 0.8, 6.4, 51.1 sec
+\item The log's are 3, 3.3, 3.6, 3.9 and -1, -0.1, 0.8, 1.71
+\item See the plots in \href{\git/lecturenotes/plots_1_4.ods}%
+{\color{red}{plot sheet}}
+\item Linear regression gives $y \approx 3x -10$
+\item $\log(f(n))= 3\log(n) -10$ iff 
+         $$f(n)=10^{\log(f(n))} = 10^{3\log(n) - 10} =n^{3}*10^{-10}$$
+         
+\item Conclusion: cubic in the input size, with constant $\approx 10^{-10}$
+\item No surprise: see the 3-nested loop in
+\href{http://algs4.cs.princeton.edu/14analysis/ThreeSum.java.html}%
+{\color{red}{ThreeSum.java}}
+\item Strong dependence on input can be a problem
+\item Constant $10^{-10}$ depends on computer, exponent 3 does not
+
+\end{itemize}  
+}
+
+
+\frame
+  {
+    
+    \frametitle{Worst case, average case, amortized cost}
+
+\begin{itemize}[<+->]
+
+\item Worst case: guaranteed, independent of input; Examples:
+  \begin{itemize}
+  \item Linked list implementations of Stack, Queue and Bag: all operations
+  take constant time in the worst case
+  \item Resizing array implementations of Stack, Queue and Bag: adding and deleting
+  take linear time in the worst case (easy)
+  \end{itemize}
+\item Average case: not guaranteed, dependent of input \emph{distribution}
+\item Amortized: worst-case cost  \emph{per operation}. 
+E.g., each 10-th operation has cost $\leq 21$, all others cost $1$, 
+amortized $\leq 3$ p/o.
+\item Resizing arrays: adding and deleting
+take constant time \emph{per operation} in the worst case (proof is difficult)
+\item Special case of resizing array that is only growing: 
+         1(2)2(4)34(8)5678(16)9 ... 16(32) ..., with $(n)$ the new size.
+         Risizing to $(n)$ costs $2n$ array accesses, so in total
+         (1+4)+(1+8)+(2+16)+(4+32)+(8+64) ..., so $9$ p/push.
+                 
+\end{itemize}  
+}
+
+\begin{frame}
+
+    \frametitle{Remarks and Pitfalls}
+
+\begin{itemize}[<+->]
+\item Theoretical approach:
+  \begin{itemize}
+  \item Wrong cost model
+  \item JVM optimization can obscure the exponent
+  \item Caching can have large impact on memory access
+  \item Large constant factor in Big Oh
+  \item Worst case can be easy, average case difficult
+  \end{itemize}
+\item Empirical approach:
+  \begin{itemize}
+  \item The focus is on run time (using space costs time)
+  \item Dependence on input, randomization does not always help
+  \item Machine/platform dependence
+  \item Linear regression not good for, e.g., $O(n^2 \log n)$
+  \end{itemize}
+\end{itemize}     
+
+\end{frame}
+
+\frame
+  {
+    
+    \frametitle{Exercise}
+
+Aim: better understand the empirical method.
+
+\begin{enumerate}[<+->]
+
+\item Let input sizes 1, 2, 4, 6, 8K take 2, 7.9, 32, 72,  129 sec
+\item Make a plot such as in \href{\git/lecturenotes/plots_1_4.ods}%
+{\color{red}{plot sheet}} (download)
+\item Compute the log's of the input sizes and of the run times
+and make the log-log plot such as in \href{\git/lecturenotes/plots_1_4.ods}%
+{\color{red}{plot sheet}} (second plot)
+\item Estimate $a$ and $b$ such that the log-log plot is $y \approx ax - b$
+\item Estimate $a$ and $b$ through
+\href{http://www.alcula.com/calculators/statistics/linear-regression/}{\color{red}{linear regression}}, compare with 4.
+\item Find $f(n)$ given that $\log(f(n))= a\log(n) - b$. Surprised?
+\end{enumerate}  
+In cases where the run time mostly depends on the size $n$ of the input
+and not on the input itself, the function $f$ is a reasonable 
+(polynomial) estimation of the run time.
+}
+
+\begin{frame}
+
+    \frametitle{Logarithms and Exponents Cheat Sheet}
+
+\begin{itemize}[<+->]
+\item Definition: $\log_x z = y$ iff $x^y = z$ for $x>0$
+\item Base of logarithm: the $x$ in $\log_x$
+\item Inverses: $x^{\log_x y} = y$ and $\log_x x^y = y$
+\item Exponent, laws: $x^{(y+z)} = x^y x^z$, $x^{(yz)} = (x^y)^z$
+\item Logarithm, laws: $\log_x (yz) = \log_x y + \log_x z$, $\log_x z = \log_x y \log_y z$
+\item Various bases: $\log_2 = \lg$, $\log_e = \ln$, $\log_{10} = \log$
+\item Double exponent: e.g.\ $2^{(2^n)}$ (not used in INF102)
+\item Double logarithm: $\log(\log n)$ (not used in INF102)
+\end{itemize}     
+
+\end{frame}
+
+\section{Ch.1.5 Case Study: Union-Find}
+
+\frame
+  {
+    
+    \frametitle{Staying Connected}
+
+\begin{itemize}[<+->]
+\item We want efficient algorithms and datastructures 
+for testing whether two objects are `connected' (e.g., in networks)
+\item We assume connectedness to be an equivalence
+\item MNF130: relation $E\subseteq V\times V$ is an \emph{equivalence} if
+  \begin{itemize}
+  \item $E$ is \emph{reflexive}: $\forall x\in V.~ E(x,x)$
+  \item $E$ is \emph{symmetic}: $\forall x,y\in V.~ E(x,y) \to E(y,x)$
+  \item $E$ is \emph{transitive}: $\forall x,y,z\in V.~ E(x,y)\land E(y,z) \to E(x,z)$
+  \end{itemize}
+\item Dynamic connectivity means (here) that $E$ can grow %(not: shrink)
+%\item Example: if the `Bergensbanen' is broken, Oslo and Bergen are no longer connected by rail
+\item Relationship with paths in graphs, (connected) components (MNF130): 
+nodes are connected if there is a path between them
+\item Input: $N$ and  pairs in $V=\set{0,\ldots,N{-}1}$ defining $E$
+\item Challenge: efficient {\tt boolean connected(int p, int q)} 
+\end{itemize}  
+}
+
+\frame
+  {
+    
+    \frametitle{Example}
+
+\begin{itemize}[<+->]
+
+\item Example (\url{algs4-data/tinyUF.txt}) : $N=10$
+\item Nodes $0,1,2,3,4,5,6,7,8,9$
+\item Edges: $4{-}3$, $3{-}8$,  $6{-}5$, $9{-}4$, $2{-}1$, $8{-}9$, $5{-}0$, ...
+\item Linear space: don't add pairs that are already connected!
+\item Q: what are the costs of storing all pairs that are connected, space and time?
+\item See: \href{https://bitbucket.org/algoritmevisualisering/algoritmevisualisering}%
+{{\color{red}{algoritmevisualisering}}} by Ragnhild \AA lvik, Kristian Rosland, Knut Anders Stokke
+\end{itemize}  
+}
+
+\frame
+  {
+    
+    \frametitle{Union-Find}
+
+\begin{itemize}[<+->]
+\item Find, idea: every component has one element as its identifier, 
+ {\tt int  find(int n)} computes this identifier
+\item Union, idea: for any new pair $n~m$ that are not already connected, 
+{\tt union(int n, int m)} takes the union of the two components, ensuring
+{\tt find(n) == find(m)}
+\item API: \href{http://algs4.cs.princeton.edu/code/javadoc}{{\color{red}{UF}}};
+Cost model: number of array accesses
+\item Implementations:
+  \begin{itemize}
+  \item \href{\git/programs/fundamentals/unionFind/SlowUF.java}%
+{\color{red}{SlowUF.java}}: {\tt id[p]} identifier of {\tt p}\\
+{\tt find()}$\sim1$, {\tt union()}$\sim 2$ or between $n{+}3$ and $2n{+}1$ (!)
+  \item \href{\git/programs/fundamentals/unionFind/FastUF.java}%
+{\color{red}{FastUF.java}}: {\tt int[] id} pointers, {\tt id[p]==p}:  identifier\\
+{\tt find()}  $\sim 1{+}2d$, {\tt union()} $\sim 1{+}$ two {\tt find()}'s
+  \item \href{\git/programs/fundamentals/unionFind/WeightedUF.java}%
+{\color{red}{WeightedUF.java}}: {\tt int[] id} pointers, {\tt int[] sz} subtree sizes\\
+{\tt find()} and {\tt union()} both $\sim \lg n$
+  \end{itemize}
+\end{itemize}  
+}
+
+\frame
+  {
+    
+    \frametitle{Trees (cf.\ MNF130) and WeightedUF}
+A (rooted) \emph{tree} consist of \emph{nodes} (also called \emph{vertices})
+one of which is called the \emph{root} $r$. 
+Every node $n$ is connected by an \emph{edge} to zero 
+or more other nodes, called the \emph{children} of the \emph{parent }$n$.
+Moreover, each node $n\neq r$ has a unique parent in a tree.
+Trees are naturally depicted in levels starting with the root at level 0,
+then the level 1 of the children of the root, level 2 of the children
+of the children of the root, and so on. The level of a node is also called its
+\emph{depth}. In a finite tree there is always a highest level (maximum depth)
+and this is called the \emph{heigth} of the tree.
+\begin{itemize}[<+->]
+\item WeightedUF: height of subtree of size $k$ is  at most $\lg k$ 
+(proof by induction on blackboard)
+\item Ultimate improvement of UF (almost $O(1)$, amortized): 
+path-compression (sketch on bb)
+\end{itemize} 
+}
+
+\section{Ch.2.1 Elementary Sorts}
+
+\frame{
+    \frametitle{Sorting}
+
+\begin{itemize}[<+->]
+\item Sorting: putting objects in a certain order
+\item MNF130: relation $R\subseteq V\times V$ is a \emph{total order(ing)} if
+  \begin{enumerate}
+  \item $R$ is \emph{reflexive}: $\forall x\in V.~ R(x,x)$
+  \item $R$ is \emph{transitive}: $\forall x,y,z\in V.~ R(x,y)\land R(y,z) \to R(x,z)$
+    \item $R$ is \emph{antisymmetic}: $\forall x,y\in V.~ R(x,y) \land R(y,x) \to x=y$
+    \item $R$ is \emph{total}: $\forall x,y\in V.~ R(x,y) \lor R(y,x)$
+ \end{enumerate}
+\item Natural orderings: 
+  \begin{itemize}
+  \item Numbers of any type: ordinary $\leq$ and $\geq$
+  \item Strings: lexicographic
+  \item Objects of a Comparable type: {\tt v.compareTo(w) <= 0} 
+  \end{itemize}
+\end{itemize}  
+}
+
+
+\begin{frame}[fragile]
+    \frametitle{Sorting and searching: linear vs  binary search}
+\small
+\begin{verbatim}
+int linearSearch(Comparable key, Comparable[] a){
+  for (int i=0; i < a.length; i++){ 
+    if (key.compareTo(a[i])==0) {return i;}
+  }
+  return -1; // key not in array: O(a.length)
+}    
+\end{verbatim}
+\begin{verbatim}
+int binarySearch(Comparable key, Comparable[] a) {
+  int lo=0; int hi=a.length-1; int mid; int test
+  while (lo <= hi){
+    mid = (lo+hi)/2; test = key.compareTo(a[mid]);
+    if (test == 0) {return mid;}
+    if (test < 0) { hi = mid-1;} else {lo = mid+1;}
+  }
+  return -1; // key not in SORTED array: O(lg(a.length))
+}    
+\end{verbatim}
+\end{frame}
+
+
+\frame{
+    \frametitle{Sorting (ctnd)}
+
+\begin{itemize}[<+->]
+\item Elementary sorts: 
+  \begin{enumerate}
+  \item Bubble sort (like gas bubbles in sparkling water)
+  \item Selection sort (iterated selection of minima)
+  \item Insertion sort (iterated insertion of elements) 
+  \item Shell sort (Shell's refinement of insertion sort)
+ \end{enumerate}
+\item Bubble sort: 
+\href{\git/programs/sorting/elementarySorts/ExampleSort.java}%
+{\color{red}{ExampleSort.java}}
+\item Certification: {\tt assert isSorted(a)} in {\tt main()}\\
+(no guarantee against modifying the array, but {\tt exch()} is safe)
+\item Costmodel(s): number of {\tt less()}'s and of {\tt exch()}'s\\
+(or array accesses; discuss pointer vs.\ object)
+%\item Costmodel 2: number of array accesses
+%\item Pitfalls: cache misses, expensive {\tt v.compareTo(w) < 0}
+\item Why studying sorting? ({\tt java.util.Arrays.sort()})
+\item Comparing sorting algorithms:
+\href{\git/programs/sorting/SortCompare.java}%
+{\color{red}{SortCompare.java}}
+\end{itemize}  
+}
+
+\begin{frame}[fragile]
+    \frametitle{Selection Sort}
+
+\begin{itemize}[<+->]
+\item Bubble sort: $\sim n^2 / 2$ compares, $0\leq \text{exchanges} \leq n^2 / 2$
+\item Selection sort:
+  \begin{itemize}
+  \item Find index of a minimum in {\tt a[0..n-1]}, exchange with {\tt a[0]}
+  \item Find index of a minimum in {\tt a[1..n-1]}, exchange with {\tt a[1]}
+  \item ... until {\tt n-2}
+  \end{itemize}
+\item Selection sort: $\sim n^2 / 2$ compares, $0\leq \text{exchanges} \leq n-1$ (!)
+\end{itemize}  
+\begin{verbatim}
+public  static void sort(Comparable[] a) {
+ int N = a.length;
+ for (int i=0; i<N-1; i++){
+   int min=i;
+   for (int j=i+1; j<N; j++) if less(a[j],a[min])) min=j;
+   if (i != min) exch(a,i,min);
+ }
+}    
+\end{verbatim}  
+\end{frame}
+
+
+\begin{frame}[fragile]
+    \frametitle{Insertion sort}
+
+\begin{itemize}[<+->]
+\item Insertion sort: 
+  \begin{itemize}
+  \item Insert {\tt a[1]} on its correct place in (sorted) {\tt a[0..0]}
+  \item Insert {\tt a[2]} on its correct place in (sorted) {\tt a[0..1]}
+  \item ... until {\tt a[n-1]}
+  \end{itemize}
+\item Very good for partially sorted arrays, costs:
+  \begin{itemize}
+  \item Best case: $n{-}1$ compares and 0 exchanges 
+  \item Worst case: $\sim n^2 / 2$ compares and exchanges
+  \item Average case: $\sim n^2 / 4$ compares and exchanges (distinct keys)
+  \end{itemize}
+\end{itemize}   
+\begin{verbatim}
+public  static void sort(Comparable[] a) {
+ int N = a.length;
+ for (int i=1; i<N; i++){
+  for (int j=i; j>0 && less(a[j],a[j-1]); j--)
+   exch(a,j,j-1);
+ }
+}    
+\end{verbatim}  
+\end{frame}
+
+
+\begin{frame}[fragile]
+    \frametitle{Shell sort}
+
+\begin{itemize}[<+->]
+\item Insertion sort: 
+  \begin{itemize}
+  \item Very good for partially sorted arrays
+  \item Slow due to one-step transport {\tt exch(a,j,j-1)}
+  \item Why not larger steps {\tt exch(a,j,j-h)} ?
+  \end{itemize}
+\item Idea: presort {\tt a[i],a[i+h],a[i+2h],...} for {\tt i = 0..h-1}% in {\tt [0..h)}
+\end{itemize}   
+\begin{verbatim}
+public static void hsort(int h, Comparable[] a) {
+ int N = a.length;
+ for (int i=h; i<N; i++)
+  for (int j=i; j-h>=0 && less(a[j],a[j-h]); j-=h)
+    exch(a,j,j-h);  
+}
+\end{verbatim}
+\begin{itemize}[<+->]
+\item Insertion sort: {\tt hsort(1,a)}
+\item Shell sort: e.g., {\tt hsort(10,a); hsort(1,a)}
+\end{itemize}     
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Shell sort (ctnd)}
+
+\begin{itemize}[<+->]
+\item {\tt hsort(10,a); hsort(1,a)} faster than just {\tt hsort(1,a)} !
+\item Q: How is this possible?
+\item A: {\tt hsort(10,a)} transports items in steps of 10, 
+which would be done by {\tt hsort(1,a)} in 10 steps of 1.
+\item What about {\tt hsort(100,a); hsort(10,a); hsort(1,a)}?
+\item To be expected: depends on the length N of the array
+\item The run-time analysis of Shell sort  is very difficult
+\item Best practice: $h=N/3,N/9,\ldots,364,121,40,13,4,1$
+\item Example: \href{https://bitbucket.org/algoritmevisualisering/algoritmevisualisering}%
+{{\color{red}{algoritmevisualisering}}} by Ragnhild \AA lvik, Kristian Rosland, Knut Anders Stokke
+\end{itemize}     
+\end{frame}
+
+
+%\end{document}
+
+\section{Ch.2.2 Mergesort}
+
+\begin{frame}[fragile]
+    \frametitle{Mergesort}
+
+\begin{itemize}[<+->]
+\item Top-down (recursive) algorithm:
+  \begin{itemize}[<+->]
+  \item Mergesort left half, mergesort right half
+  \item Merge the results (example: 2468,1357)
+  \end{itemize}     
+\item Using an auxiliary array:
+\href{\git/programs/sorting/mergeSort/TopDownMergeSort.java}%
+{\color{red}{TopDownMergeSort.java}},~
+\href{http://algs4.cs.princeton.edu/lectures/22DemoMerge.mov}{\color{red}{Movie}}
+\item Bottom-up algorithm (16 elements):
+  \begin{itemize}[<+->]
+  \item Merge {\tt a[0],a[1]}, merge {\tt a[2],a[3]}, merge {\tt a[4],a[5]}, ...
+  \item Merge {\tt a[0..1],a[2..3]}, merge {\tt a[4..5],a[6..7]},  ...
+  \item Merge {\tt a[0..3],a[4..7]}, merge {\tt a[8..11],a[12..15]}
+  \item Merge {\tt a[0..7],a[8..15]}, done!
+  \end{itemize}     
+\item Also using an auxiliary array:
+\href{\git/programs/sorting/mergeSort/BottomUpMergeSort.java}%
+{\color{red}{BottomUpMergeSort.java}}
+\end{itemize}     
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Run-time and memory use of mergesort}
+
+\begin{itemize}[<+->]
+\item Mergesort uses between $\sim (N/2) \lg N$ and $\sim N \lg N$ compares.
+Proof on bb. Important formula ($N=2^n$):
+$$2C(2^{n-1}) + 2^{n-1} \leq C(2^{n}) \leq 2C(2^{n-1}) + 2^{n}$$
+\item Mergesort uses at most $\sim 6N \lg N$ array accesses
+\item Mergesort uses $\sim 2N$ space (plus some var's)
+\item Q: How fast can compare-based sorting of $N$ distinct keys be?
+\item A: $\lg N! \sim N\lg N$; Proof in book and on bb. Keywords: 
+binary \emph{compare tree}, inner nodes for each {\tt compare(a[i],a[j])}, 
+permutations in the leaves,
+$$ N! = \text{number of permutations}  
+     \leq \text{number of leaves} \leq 2^\text{height of tree} $$
+\end{itemize}     
+\end{frame}
+
+
+\section{Ch.2.3 Quicksort}
+
+\begin{frame}
+    \frametitle{Quicksort}
+
+\begin{itemize}[<+->]
+\item Top-down (recursive) algorithm:
+  \begin{itemize}[<+->]
+  \item Choose a (pivot)  value $v$ in the array
+  \item Partition the array in non-empty parts $\leq v$ and $\geq v$
+  \item Quicksort the two parts
+  \end{itemize}     
+\item Examples: \href{https://bitbucket.org/algoritmevisualisering/algoritmevisualisering}%
+{{\color{red}{algoritmevisualisering}}} by Ragnhild \AA lvik, Kristian Rosland, Knut Anders Stokke
+\item Pros: in-place, average computation time $O(n\log n)$
+\item Cons: stack space for recursion, worst-case $O(n^2)$, not stable
+\item Implementation:
+\href{\git/programs/sorting/quickSort/QuickSort.java}%
+{\color{red}{QuickSort.java}}
+\item BTW: \href{http://www.envisage-project.eu/proving-android-java-and-python-sorting-algorithm-is-broken-and-how-to-fix-it/}%
+{\color{red}{Bug in java.util.Arrays.sort}}
+\end{itemize}     
+\end{frame}
+
+\begin{frame}
+    \frametitle{Quicksort, details}
+
+\begin{itemize}[<+->]
+
+\item Subtleties in {\tt Quicksort.sort()}: shuffling protects against worst-case behaviour
+\item Termination of recursive {\tt quicksort()}
+\item Subtleties in {\tt partition()}:
+  \begin{itemize}[<+->]
+  \item Invariants {\tt l<=h} in the two inner loops
+  \item Postcondition after the two inner loops
+  \item Invariant of the {\tt for(;;)} loop
+  \item Termination of the {\tt for(;;)} loop
+  \item There are some variations that are also correct
+  \end{itemize}    
+
+\end{itemize}     
+\end{frame}
+
+\begin{frame}
+    \frametitle{Run-time and memory use of quicksort}
+
+\begin{itemize}[<+->]
+\item Compare Quicksort to other sorts $(n=10^2, 10^3,\ldots)$
+\item Quicksort: time $O(n^2)$ if pivot is always smallest (or largest)
+\item Randomization: choose pivot randomly, or shuffle array
+\item If all keys are distinct and randomization is perfect, then quicksort
+uses on average $\sim 2n\ln n$ compares and $\sim (n/3) \ln n$
+exchanges (proofs in book, complicated)
+\item Relevant improvements:
+  \begin{itemize}[<+->]
+  \item Cut-off to insertion sort for sizes $\leq 15$ (ca.)
+  \item Median-of-three pivot
+  \item Taking advantage of duplicate keys (3-way partitioning)
+  \end{itemize}
+\item Quicksort is generally quite good
+\item In special situations other sorts are better (e.g., countsort)
+\end{itemize}
+\end{frame}
+
+\section{Ch.2.4 Priority Queues}
+
+\begin{frame}
+    \frametitle{Priority Queues}
+
+\begin{itemize}[<+->]
+\item Aim: collecting and processing items having keys
+\item Examples of keys: time-stamp, price-tag, priority-tag
+\item Assume: keys are ordered
+\item Reasonable: processing currently highest (or lowest)
+\item Special cases: items time-stamped when added
+  \begin{itemize}[<+->]
+  \item Queue: dequeue currently oldest (lowest time-stamp)
+  \item Stack: pop currently newest (highest time-stamp)
+  \end{itemize}
+\item Priority queue generalizes this
+\item Examples: highest priority, largest transaction, lowest price
+\item Abstract from `item' and use only `key' (in applications:
+use objects with fields {\tt item} and {\tt key}
+and compare on {\tt key})
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Priority Queues}
+
+\begin{itemize}[<+->]
+\item Good info: \href{https://en.wikipedia.org/wiki/Priority_queue}%
+{\color{red}{Wikipedia}}; API (the bare essentials):
+\end{itemize}
+{\tt\begin{tabular}{ll}
+public class &MaxPQ<Key extends Comparable<Key>> \\
+ \\
+void       & insert(Key v)         // insert a key \\
+%Key        & max()                      // return the largest key, if any\\
+Key         &   delMax()                // delete a largest key, if any\\
+boolean& isEmpty()\\
+int          &size()
+\end{tabular}}
+\begin{itemize}[<+->]
+\item In case of duplicate keys: `a' largest, not `the'
+\item Typical application: the 1K smallest keys of 1G unsorted keys
+\item Client:
+\href{\git/programs/sorting/priorityQueues/BottomM.java}%
+{\color{red}{BottomM.java}} (Q: why is the output slowing down?)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Example of left-complete binary tree}
+\[
+\xymatrix@R=.4cm@C=.4cm{
+depth&&&&&&&&&&size\\ 
+0&&&&&\bullet\ar[dll]\ar[drr] &&&&&1\\ 
+1&&&\bullet \ar[dl] \ar[dr]&&&&\bullet \ar[dl] \ar[dr] &&&3\\
+2&&\bullet \ar[dl]&&\bullet&&\bullet&&\bullet&&7\\
+3&\bullet&&\ldots&&&&\ldots&&.& 7+1\\
+\\
+max:&|&\ar[l]&&&2^3&&&\ar[r]&|&\\
+}
+\] 
+\end{frame}
+
+\begin{frame}
+    \frametitle{Binary Trees}
+
+\begin{itemize}[<+->]
+
+\item MNF130: Tree \emph{size} is number of nodes, 
+\emph{depth} of a node is number of links to the root,
+tree \emph{height} is maximum depth.
+
+\item MNF130: In a \emph{binary} tree every node has at most two children.
+
+\item MNF130: A binary tree is \emph{complete} if all levels are filled. So, a complete
+binary tree of height $h$ has $2^{h{+}1} {-}1$ nodes.
+
+\item INF102: A binary tree is (left-)\emph{complete} if all levels $<h$ are filled, 
+level $h$ may be partly empty from the right (picture bb).
+A (left-)complete binary tree of height $h$  has between
+$2^{h}$ and $2^{h{+}1} {-}1$ nodes. 
+
+\item A left-complete binary tree of $n$ nodes has  height $\lfloor\lg n\rfloor$
+(from now on we leave out `left-' ).
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Heap-ordered Binary Trees}
+    
+\begin{itemize}[<+->]
+
+\item Naive implementations:
+\begin{itemize}[<+->]
+\item Unsorted (resizing) array: fast {\tt insert()}, linear {\tt delMax()}
+\item Sorted (resizing) array: linear {\tt insert()}, fast {\tt delMax()}
+\end{itemize}
+\item Aim: operations in logarithmic time,  no extra space
+\item A binary tree is \emph{heap-ordered} if the key in each node is $\geq$
+the keys in its children (if any). Thus the root has a maximal key.
+\item NB: a heap is NOT a search tree (different data invariants)!
+\item Array representation of heap-ordered complete binary tree (bb)
+
+\item Methods {\tt swim()} and {\tt sink()}: picture on bb, code below
+
+\item Implementation:
+\href{\git/programs/sorting/priorityQueues/ArrayListPQ.java}%
+{\color{red}{ArrayListPQ.java}}
+\end{itemize}     
+\end{frame}
+
+\begin{frame}
+    \frametitle{Run-time and memory use of heaps, applications}
+
+\begin{itemize}[<+->]
+\item In a heap of $n$ elements (since height is $\leq \lfloor\lg n\rfloor$):
+  \begin{itemize}[<+->]
+  \item {\tt insert()} takes $\leq 1+\lfloor\lg n\rfloor$ compares
+  and exchanges % $\leq \lfloor\lg n\rfloor$ 
+  \item {\tt delMax()} takes $\leq 2\lfloor\lg n\rfloor$ compares
+   and $\leq 1{+}\lfloor\lg n\rfloor$ exchanges
+  \end{itemize}
+\item Heap construction by {\tt insert()} can sometimes be improved
+\item Example: maxheap from A B C D E F G H
+\item Given an array of $n$ keys, {right-to-left} heap construction (bb) 
+           takes $<2n$ compares and $<n$ exchanges
+\item Applications: \href{\git/programs/sorting/priorityQueues/NaiveHeapSort.java}%
+{\color{red}{heapsort}} and
+\href{\git/programs/sorting/priorityQueues/MultiwayMerge.java}%
+{\color{red}{merging sorted streams}}
+\item Many variations with extended API (indexed priority queue)
+\end{itemize}
+\end{frame}
+
+\section{Ch.2.5 Applications}
+
+\begin{frame}
+    \frametitle{Purpose of Sorting}
+
+\begin{itemize}[<+->]
+\item Sorting makes the following easier and more efficient:
+  \begin{itemize}[<+->]
+  \item Searching (binary search, example: {\tt ThreeSumOptimized}
+  \item Searching and looking up, e.g., the pagenumber in an index
+  \item Finding and removing duplicates
+  \item Finding the median, quartiles etc.
+  \end{itemize}
+\item Our sorting algorithms are generic: {\tt sort(Comparable[] a)},
+for any user-defined data type with a {\tt compareTo()} method
+\item We do \emph{pointer sorting}, manipulating refs to objects. 
+  \begin{itemize}[<+->]
+  \item Pro: not moving full objects
+  \item Cons: pointer dereferencing, no {\tt sort(int[] a)}
+  \end{itemize}
+\item More flexibility: pass a {\tt Comparator} object to {\tt sort()}
+\end{itemize}     
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Comparator object}
+
+\begin{itemize}[<+->]
+\item API: {\tt void sort(Object[] a, Comparator c)}
+\item Call, e.g.: {\tt sort(a, new Transaction.WhenOrder())}
+\item Call, e.g.: {\tt sort(a, new Transaction.SizeOrder())}
+\item Obs: {\tt import java.util.Comparator}
+\item Obs: {\tt less(Object o1, Object o2, Comparator c)}
+\item Priority queues also with {\tt Comparator}
+\end{itemize}
+\begin{verbatim}
+public class Transaction {
+ ...
+ public static class MyOrder {
+ implements Comparator<Transaction>
+  public int compare(Transaction t, Transaction v){...}
+ } // End of Myorder
+...// similarly: WhenOrder, SizeOrder
+} // End of Transaction
+\end{verbatim}    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Applications of Sorting}
+
+\begin{itemize}[<+->]
+\item Consider sorting first to make other problems easier
+\item Commercial computing (sort on price, departure time, ...)
+\item Search for information: web-indexing, search engines
+\item Job scheduling heuristic: longest processing time first 
+%\item Combinatorial search in AI
+\item To come: Prim's, Dijkstra's  and Kruskal's algorithms
+\item Huffman compression: a lossless compression based on using the
+shortest codes for the symbols that occur oftest. Frequency counter:
+next chapter!
+\item Cryptology and genomics (e.g., longest repeated substring)
+\end{itemize}     
+\end{frame}
+
+\section{Ch.3.1 Symbol Tables}
+
+\begin{frame}
+    \frametitle{Symbol Tables}
+
+\begin{itemize}[<+->]
+\item Symbol table associates \emph{keys} with \emph{values: key-value pairs}
+\item Examples: keyword-list of page nrs, ID number-personal data, word-frequency
+\item Important operations:
+  \begin{itemize}[<+->]
+  \item Insert a key-value pair in the symbol table: {\tt void put(k,v)}
+  \item Search the value for a given key (if any): {\tt Value get(k)}
+  \end{itemize}
+\item Important conventions:
+  \begin{itemize}[<+->]
+  \item Inserting key-value for existing key: overwriting the value
+  \item No duplicate keys, no null keys
+  \item Value null: no value for this key
+  \item Lazy deletion: insert key-null; Eager: really delete key-value
+  \end{itemize} 
+\item\href{http://algs4.cs.princeton.edu/code/javadoc/edu/princeton/cs/algs4/SequentialSearchST.html}%
+{\color{red}{API}} of unordered symbol table
+\item Aim: all operations in time $\sim c \lg n$ with constant $c$ small
+\end{itemize}     
+\end{frame}
+
+\begin{frame}
+    \frametitle{ST Basics}
+
+\begin{itemize}[<+->]
+\item Archetypical ST-client: frequency counter, \href{\git/programs/searching/elementarySymbolTables/ArrayListST.java}%
+{\color{red}{ArrayListST.main}}
+\item Cost model: number of compares
+\item Naive ST: unordered linked list (or ArrayList), linear search %(INF101, Ch.9)
+  \begin{itemize}[<+->]
+  \item Search miss: $\sim n$ compares
+  \item Search hit: between 1 and $\sim n$ compares
+  \item Random search hit: $(1+\cdots+n)/n \sim n/2$ compares
+  \item Inserting $n$ distinct keys: $(1+\cdots+(n-1)) \sim n^2/2$ compares
+  \end{itemize}
+\item \url{algs4-data/leipzig1M.txt}: 21M words, 500K distinct
+\item Naive ST impracticable for genomics, internet
+\item Scale: G-T keys, M-G distinct (Kilo,Mega,Giga,Tera)
+\item Better for unordered ST: hashing (in Ch. 3.4)
+\end{itemize}     
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ordered Symbol Table}
+
+\begin{itemize}[<+->]
+\item Ordered ST: keys are ordered, f.e., in an ArrayList
+\item\href{http://algs4.cs.princeton.edu/code/javadoc/edu/princeton/cs/algs4/BinarySearchST.html}%
+{\color{red}{API}} of ordered symbol table
+\item Binary search: {\tt get(Key k)} takes $\sim \lg n$ comparisons
+\item What about {\tt put(Key k, Value v)}? See
+\href{http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html}%
+{\color{red}{ArrayList}}
+\item Pitfall: {\tt add(int i, E e)} is linear, not amortized $O(1)$!
+\item Consequence: {\tt put(Key k, Value v)} and {\tt del(Key k)} \emph{linear}
+\item Implementation with binary search in
+\href{\git/programs/searching/elementarySymbolTables/ArrayListST.java}%
+{\color{red}{ArrayListST.java}}
+\item Trace of inserts on bb: S E A R C H E X A M P L E
+\item Experiments with {\tt tinyTale.txt}, {\tt tale.txt}, ... 
+\end{itemize}     
+\end{frame}
+
+\section{Ch.3.2 Binary Search Trees}
+
+\begin{frame}
+    \frametitle{Binary Search Trees}
+
+\begin{itemize}[<+->]
+\item Aim: {\tt get,put,del} in logarithmic time, ST in linear space
+\item Binary \emph{search} tree: for every node, all keys to the left of this node
+are smaller, and all keys to the right are larger
+\item Search time: lenght of the path to the node where the key `should' be
+\item Balanced binary tree with $n$ keys has $\lg n$ height
+\item Unbalanced binary trees can have height $n$ (max depth)
+\item Search hits in a binary search tree, built without rebalancing, 
+of $n$ random keys take on average $\sim 2\ln n$ compares
+\item \href{\git/programs/searching/elementarySymbolTables/UBST.java}%
+{\color{red}{UBST.java}}: {\tt put(), get(), size(), isEmpty()}
+\item Trace of inserts on bb: S E A R C H E X A M P L E
+\end{itemize}     
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Binary Search Trees ({\tt min(), delMin(), delete()})}
+
+\begin{itemize}[<+->]
+\item Interrelated, increasing difficulty: {\tt min(Node x),\\
+deleteMin(Node x), delete(Node x, Key k)}
+\item Node of minimum key: not {\tt null}, and has left child {\tt null}, and is root or 
+left child of parent (picture on bb)
+\begin{verbatim}
+public Node min(Node x){// precondition x!=null
+ while (x.left!=null) x = x.left; // inv x!=null
+ return x; 
+} // cf. tail recursive min() in Alg. 3.3
+\end{verbatim}
+\item Delete minimum key, two cases:\\ (1) both children {\tt null}; (2) left child {\tt null} 
+\item Delete is really difficult: \href{http://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/BST.java.html}%
+{\color{red}{BST.java}},
+cf.\ \href{\git/programs/searching/elementarySymbolTables/ArrayListST.java}%
+{\color{red}{ArrayListST.java}}
+\item Don't forget: update {\tt x.N} along the path to the root!
+\end{itemize}     
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+    \frametitle{Delete from search tree, example:
+$\xymatrix@R=.1cm@C=.1cm{&&&2\ar@{->}[dll]\ar@{->}[rrd]&&\\
+&1\ar@{-|}[dl]\ar@{-|}[dr]&&&&3\ar@{-|}[dl]\ar@{-|}[dr]&\\&&&&&&}$              }
+\begin{verbatim}
+root=delete(root,3)                     (1st example)
+| x=root; x.right=delete(x.right,3) 
+  | x'=x.right; return x'.left;         (x.right=null)
+| update x.size;                        (x.size=2)
+| return x;                             (root=x)
+\end{verbatim}
+
+\begin{verbatim}
+root=delete(root,2)                     (2nd example)
+| x=root; t=x; x=min(t.right);          (x=t.right)
+| x.right=deleteMin(t.right);           (x.right=null)
+| x.left=t.left;
+| update x.size;                        (x.size=2)
+| return x;                             (root=x)
+\end{verbatim}
+
+\end{frame}
+%\begin{itemize}[<+->]
+%\item 
+%\item {\tt get,put,del} in logarithmic time, ST in linear space
+%\end{itemize}     
+
+\section{Ch.3.3 Balanced Search Trees}
+
+\begin{frame}
+    \frametitle{Balanced Search Trees: keep paths short!}
+
+\begin{itemize}[<+->]
+\item NB tree balancing not as easy as in UF and Heap (4hrs!)
+\item A \href{https://en.wikipedia.org/wiki/2-3-tree}{\color{red}{2-3 search tree}} 
+consists of 2-nodes and 3-nodes: 
+  \begin{itemize}[<+->]
+  \item Each 2-node has two children and a key $k$ such that all keys
+  in the left subtree are $<k$, and all keys in the right subtree $>k$
+  \item Each 3-node has three children and two keys $k_1 < k_2$ such that all keys
+  in the left subtree are $<k_1$, all keys in the middle subtree
+  $>k_1$ and $<k_2$, and all keys in the right subtree $>k_2$
+  \end{itemize}
+\item Examples and pictures on bb
+\item \emph{Perfect}  2-3 search tree: paths from root to leaves equally long
+\item Search: compare key with key(s) in node, if equal return corresponding value,
+  else search in one of left, middle, right subtree where the key should be 
+  (if it occurs at all)
+\item Insert should keep tree perfect, rough idea:  
+ \begin{itemize}[<+->]
+ \item into a 2-leaf: make it into a 3-leaf (easy)
+ \item any other case: (temporary) 4-nodes (see next, difficult)
+ \end{itemize}     
+\end{itemize}     
+\end{frame}
+
+\begin{frame}
+    \frametitle{Insert in Perfect 2-3 Search Trees}
+
+\begin{itemize}[<+->]
+\item Terminology: a \emph{leaf} is a node all whose children are {\tt null}
+\item Data invariant 1: tree is 2-3 search tree
+\item Data invariant 2: all paths from root to leaves equally long
+ \begin{itemize}[<+->]
+ \item Insert into a 2-leaf 
+ $\xymatrix@R=.1cm@C=.1cm{L \ar@{=}[d]&:\\&\\}$
+ either
+ $\xymatrix@R=.1cm@C=.1cm{&A~L\ar@{-}[dl]\ar@{-}[d]\ar@{-}[rd]&\\&&\\}$
+ or
+ $\xymatrix@R=.1cm@C=.1cm{&L~Z\ar@{-}[dl]\ar@{-}[d]\ar@{-}[rd]&\\&&\\}$
+ \item  into a 3-leaf whose parent is a 2-node: with new key $Z$ (e.g.)
+ $\xymatrix@R=.1cm@C=.1cm{
+ &\ar@{-}[dl]E\ar@{-}[rd]&&\Rightarrow\\
+ leaf\ar@{=}[d]&&L~Q\ar@{-}[dl]\ar@{-}[d]\ar@{-}[rd]&\\
+ &&&\\}$
+ $\xymatrix@R=.1cm@C=.1cm{
+ &\ar@{-}[dl]E\ar@{-}[rd]&&\Rightarrow\\
+ leaf\ar@{=}[d]&&L~Q~Z\ar@{-}[dl]\ar@{-}[d]\ar@{-}[rd]&\\
+ &&&\\}$
+ $\xymatrix@R=.1cm@C=.1cm{
+ &\ar@{-}[dl]E~~Q\ar@{-}[d]\ar@{-}[rd]&\\
+ leaf\ar@{=}[d]&L\ar@{=}[d]&Z~\ar@{=}[d]\\
+ &&\\}$
+  \item  into a 3-leaf whose parent is a 3-node: with new key $Z$ (e.g.)
+ $\xymatrix@R=.1cm@C=.1cm{
+ &&\ar@{-}[dll]C~~M\ar@{-}[d]\ar@{-}[rrd]&&&\Rightarrow\\
+ leaf_l\ar@{=}[d]&&leaf_m\ar@{=}[d]&&\ar@{-}[ld]XYZ\ar@{=}[d]\ar@{-}[rd]&\\
+ &&&&&&\\}$
+ $\xymatrix@R=.1cm@C=.1cm{
+ &&\ar@{-}[dll]C~~~M\ar@{-}[d]&Y\ar@{-}[d]\ar@{-}[rd]&&\\
+ leaf_l\ar@{=}[d]&&leaf_m\ar@{=}[d]&\ar@{=}[d]X&Z\ar@{=}[d]&\\
+ &&&&&&\\}$
+ \item  into a 3-node whose parent is a 3-node: move up middle key!
+% \item If all 3-nodes: split the root
+ \end{itemize}     
+\end{itemize}     
+\end{frame}
+
+\begin{frame}
+    \frametitle{Insert (ctnd)}
+
+\begin{itemize}[<+->]
+\item Data invariant 1: tree is 2-3 search tree
+\item Data invariant 2: all paths from root to leaves equally long
+\item Insert works up from the  leaf where the key `should' be
+\begin{itemize}[<+->]
+ \item if 2-node on path to root: make it into a 3-node;  
+ there are two cases, left and right, here is a picture of the latter
+ $\xymatrix@R=.1cm@C=.1cm{
+ &&\ar@{-}[dll]E\ar@{-}[rrd]&&&&&\Rightarrow\\
+ t\ar@{.}[d]&&&L\ar@{-}[dl]&Q\ar@{-}[dl]\ar@{-}[rd]&Z\ar@{-}[rd]&\\
+ \ldots&&t_1&t_2&&t_3&t_4\\}$
+ $\xymatrix@R=.1cm@C=.1cm{
+ &&\ar@{-}[dll]E\ar@{-}[rd]&Q\ar@{-}[dr]&&\\
+ t\ar@{.}[d]&&&L\ar@{-}[dl]\ar@{-}[d]&Z\ar@{-}[d]\ar@{-}[rd]&\\
+ \ldots&&t_1&t_2&t_3&t_4\\ \\}$
+ 
+ \item otherwise, work upwards and, finally, split the root: 
+ $\xymatrix@R=.1cm@C=.1cm{
+&&&&&\Rightarrow\\
+ &L\ar@{-}[dl]&Q\ar@{-}[dl]\ar@{-}[rd]&Z\ar@{-}[rd]&\\
+ t_1&t_2&&t_3&t_4\\}$
+ $\xymatrix@R=.1cm@C=.1cm{
+ &&\ar@{-}[dl]Q\ar@{-}[rd]&&\\
+ &\ar@{-}[d]L\ar@{-}[dl]&&Z\ar@{-}[d]\ar@{-}[rd]&&\\
+ t_1&t_2&&t_3&t_4&\\ \\}$
+
+\item working upwards, there are three cases: left, middle, and right
+ \end{itemize}  
+ 
+ \end{itemize}     
+\end{frame}
+
+\begin{frame}
+    \frametitle{Insert, summary and examples}
+
+\begin{itemize}[<+->]
+\item There exists a perfect 2-3 tree for any sequence of input keys 
+\item Six operations for eliminating 4-nodes:
+  \begin{itemize}[<+->]
+  \item if parent is 2-node: move middle key up (left and right case)
+  \item if parent is 3-node: move middle key up (left, middle,right)
+  \item if root: split root
+  \end{itemize}
+\item Search and insert visit at most $\lfloor\lg n\rfloor$ nodes
+\item Proof: maximal path length is $\geq \lfloor\log_3 n\rfloor$ 
+and $\leq \lfloor\log_2 n\rfloor$
+\item Trace of inserts on bb: S E A R C H (E) X (A) M P L (E)
+\item Trace of inserts on bb: A C E H L M P  R S X (keep balance!)
+\end{itemize}     
+\end{frame}
+
+\begin{frame}
+    \frametitle{Red-black trees}
+
+\begin{itemize}[<+->]
+\item Red-black trees implement 2-3 trees
+\item Idea: one 3-node = two 2-nodes + extra info
+\item Extra info coded in color, picture:
+\[\xymatrix@R=.5cm@C=.1cm{
+&L\ar@{-}[dl]\ar@{-}[d]~R\ar@{-}[rd]&&implemented~as
+&&L\ar@{>}[dl]\ar@{>}[rd]&&\ar@{>}@[red][ll]R\ar@{>}[rd]&\\
+ t_l&t_m&t_r
+&& t_l&&t_m&&t_r \\}
+\]
+\item A \emph{red-black tree} is a binary search tree with red and black
+links such that: 
+  \begin{itemize}[<+->]
+  \item Only left links can be red (but need not be)
+  \item Never $\xymatrix@R=.1cm@C=.5cm{&\ar@{>}@[red][l]&\ar@{>}@[red][l]}$
+  \item Perfect black balance (all paths from root to leaves same number of black
+  links; this number is called the \emph{black height})
+  \end{itemize}
+\item Equivalent: red-black tree and perfect 2-3 search tree
+ \end{itemize}     
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Red-black trees (ctnd)}
+
+\begin{itemize}[<+->]
+\item Color is attribute of \emph{incoming} link (why?)
+\begin{verbatim}
+private class Node {
+  Key key;
+  Value value;
+  Node left, right;
+  boolean color; // true for red, false for black
+  int N; // number of keys in subtree below this node
+}
+private boolean isRed(Node n) {
+ if (n==null) {return false;} else {return x.color}
+\end{verbatim}
+\end{itemize}     
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Rotating and Color Flipping}
+
+\begin{itemize}[<+->]
+\item Aim: restoring the data invariants of red-black search trees
+  \begin{enumerate}[<+->]
+  \item Only left links can be red, but never two successive
+  \item Search tree invariant
+  \item Perfect black balance
+  \end{enumerate}
+\item Repairments use \emph{rotations} and \emph{color flips}, examples (leaves):
+  \begin{itemize}[<+->]
+  \item inserting $Z$ in
+  $\xymatrix@R=.1cm@C=.5cm{L&\ar@{>}@[red][l]R}$:
+  $\xymatrix@R=.1cm@C=.5cm{L&\ar@{>}@[red][l]R\ar@{>}@[red][r]&Z}$,
+  violation (why?)\\
+ repairment:  color flip
+  $\xymatrix@R=.1cm@C=.5cm{L&\ar@{>}[l]R\ar@{>}[r]&Z}$ ($R$ must up)
+
+  \item inserting $A$ in
+  $\xymatrix@R=.1cm@C=.5cm{L&\ar@{>}@[red][l]R}$:
+  $\xymatrix@R=.1cm@C=.5cm{A&\ar@{>}@[red][l]L&\ar@{>}@[red][l]R}$,
+  violation (why?)\\
+  repairment:
+  rotation right + color flip
+  $\xymatrix@R=.1cm@C=.5cm{A&\ar@{>}[l]L\ar@{>}[r]&R}$
+
+  \item inserting $M$ in
+  $\xymatrix@R=.1cm@C=.5cm{L&&\ar@{>}@[red][ll]R}$:
+  $\xymatrix@R=.1cm@C=.5cm{L\ar@{>}@[red][rd]&&\ar@{>}@[red][ll]R\\&M}$,
+  violation\\
+  repairment:
+  rotation left into
+  $\xymatrix@R=.1cm@C=.5cm{L&\ar@{>}@[red][l]M&\ar@{>}@[red][l]R}$,
+  then as above
+  \end{itemize}
+  \item Rotations change the root of the subtree, preserving invariants
+\end{itemize}     
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Left Rotation}
+Call: {\tt l = rotateLeft(l); }
+
+%\begin{itemize}[<+->]
+\[\xymatrix@R=.5cm@C=.1cm{
+&&\ell \ar@{>}[d]&&&&&& \ell \ar@{>}[rrd]\\
+&&L\ar@{>}[dl]\ar@{>}@[red][rr]&&\ar@{>}[ld]R\ar@{>}[rd]&&\Rightarrow
+&&L\ar@{>}[dl]\ar@{>}[rd]&&\ar@{>}@[red][ll]R\ar@{>}[rd]&\\
+& t_l&&t_m&&t_r
+&& t_l&&t_m&&t_r \\}
+\]
+\begin{verbatim}
+private Node rotateLeft(Node l){
+  Node r = l.right; l.right = r.left; r.left = l;
+  r.color = l.color; l.color = true // == RED 
+  r.N = l.N; l.N -= 1+size(r.right); // Why?
+  return r;
+}
+\end{verbatim}
+%\end{itemize}     
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Right Rotation and Color Flip}
+Typically in the following situation (e.g., after insert(L) in a 3-leaf):
+\[\xymatrix@R=.5cm@C=.1cm{
+&&r \ar@{>}[rrd]&&&\mbox{R.R.}&&& r \ar@{>}[d]&&&\mbox{C.F.}&&& r \ar@{>}@[red][d]\\
+\ar@{.}[d]L&&\ar@{>}@[red][ll]\ar@{>}[d]M&&\ar@{>}@[red][ll]R\ar@{>}[d]&\Rightarrow&
+L\ar@{.}[d]&&\ar@{>}@[red][ll]M\ar@{>}@[red][rr]&&\ar@{>}[lld]R\ar@{>}[d]&\Rightarrow&
+L\ar@{.}[d]&&\ar@{>}[ll]M\ar@{>}[rr]&&\ar@{>}[lld]R\ar@{>}[d]\\
+\ldots&&t_m&&t_r&&
+\ldots&&t_m&&t_r &&
+\ldots&&t_m&&t_r
+}
+\]
+\begin{itemize}[<+->]
+\item Code of {\tt rotateRight()}like that of {\tt rotateLeft()}
+\item NB1: operations are local (here only {\tt r, M , R})
+\item NB2: operations preserve data invariants
+\item NB3: root is a special case (always black)
+\item Deletions: complicated, but doable (Exc.\ 3.3.39--41)
+\end{itemize}     
+\end{frame}
+
+\begin{frame}
+    \frametitle{Run-time and memory use of Red-Black BSTs}
+
+\begin{itemize}[<+->]
+\item The height of a red-black BST with $n$ nodes is $\leq 2\lg n$\\
+Proof: the worst-case is one 3-node path and the rest 2-nodes
+\item The average length of path  (any color) from the root to a {node}
+in a red-black BST with $n$ nodes is $\lg n$ (`empirical fact')
+\item In a red-black BST, search, insert, ..., and delete, take logarithmic time
+in the worst-case. Proof: a constant amount of work is done per visited node
+(book Prop.\ I, p. 447).
+\item For red-black BSTs, logarithmic time is guaranteed!
+\end{itemize}
+\end{frame}
+
+\section{Ch.3.4 Hash Tables}
+
+\begin{frame}
+    \frametitle{Hashing}
+
+\begin{itemize}[<+->]
+\item Idea: if keys in {\tt [0..99]} an array is the perfect symbol table
+\item In fact:
+\href{\git/programs/sorting/elementarySorts/CountSort99.java}%
+{\color{red}{CountSort99.java}} counts frequencies like an ST client
+\item A \emph{hash function} maps keys to array indices
+\item Injectivity of the hash function is not guaranteed
+\item \emph{Hash collision}: different keys are mapped to the same index
+\item In such a case we need \emph{collision resolution}
+%\item Hashing  = hash function + collision resolution
+\item Symbol tables: hashing is fast, but unordered (no {\tt max,min})
+\item Aim: ST operations in amortized $O(1)$ time, extra space OK
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Space-Time Trade-Off}
+
+\begin{itemize}[<+->]
+\item Hashing is an example of a \emph{space-time trade-off}
+\item Time: computation time required %(may use little space)
+\item Space: memory space used %(which also takes time)
+\item Unlimited space: (1) use key as index (e.g., the bits)
+\item Unlimited time: (2) use linked list and linear search 
+\item Hashing strikes a balance using (1) with some array of reasonable size,
+and (2) in case of collisions
+\item The balance between (1) and (2) can easily be tuned
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Hash functions}
+
+\begin{itemize}[<+->]
+\item Ideal (uniform hashing assumption, UHA): uniform and independent
+distribution of keys over integers from 0 to $M-1$
+\item Examples of \href{https://en.wikipedia.org/wiki/Java_hashCode()}%
+{\color{red}{hash functions in Java}}
+\item Horner: $a_0 + x ( a_1 + x ( a_2 + \cdots))= a_0 + a_1 x + a_2 x^2 + \cdots$ 
+\item Modular hashing ($M$ prime), reasonably $\approx$ UHA:
+\begin{verbatim}
+private int hash(Key k){
+ return (key.hashCode() & 0x7fffffff) % M;}
+\end{verbatim}
+\item Q: Why crazy {\tt \& 0x7fffffff}  ???
+\item A: In Java, e.g., {\tt (-5 \% 3) == -2}) and not 1 
+\item Q: Why $M$ prime? 
+\item A: E.g., $M=32$ takes only into account the last five bits
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Collision Resolution}
+
+\begin{itemize}[<+->]
+\item Two main methods of collision resolution:
+  \begin{enumerate}[<+->]
+  \item Hashing with separate chaining (picture on bb)
+  \item Hashing with linear probing (picture on bb)
+  \end{enumerate}
+\item Separate chaining: symbol table is an array of linked lists,
+  linear search. If array has length $M$, 
+  then the linked lists have average length $N/M$ with $N$ keys.
+\item Linear probing: symbol table is an array of length $M\geq N$.
+  Colliding keys are put at the first empty position. Linear search from
+  the position where the key `should have been'. Empty position: not found.
+  Deletion tricky: reinsert all keys to the right of the deleted key, until the first
+  empty position (picture on bb). 
+  Works better with $M >> N$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Symbol Table with Hashing}
+
+\begin{itemize}[<+->]
+
+\item Implementation: \href{\git/programs/searching/hashTable/ArrayListHashST.java}%
+{\color{red}{\tt ArrayListHashST.java}}
+\item $M=1$: measure overhead wrt.\ {\tt ArrayListST}
+\item Tests with various values of  $M$: 31, 997, 65521
+\item NB1: {\tt ArrayListST, UBST} are sorted (!)
+\item NB2: \emph{construction} versus \emph{use} of ST (hashing better for \emph{use})
+\item Hashing can be combined with any other ST-implementation
+\item UHA metaphor: for every key one throws a dice \emph{once}, and remembers
+the value as the hash code of the key 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Quantitative analysis}
+
+\begin{itemize}[<+->]
+\item Throwing a dice 10 times, what is the probability of 3 fives?
+\item Under UHA, with $N$ distinct keys, the probability that exactly $k$ keys collide at some given hash value is
+\[ \binom{N}{k} (\frac{1}{M})^k  (\frac{M-1}{M})^{N-k},\text{ where e.g. } \binom{100}{10}\approx 1.7 E 13\]
+\item This is a small number for, say, $N=M=100$ and $k=10$
+\item For linear probing one typically takes $M=2N$
+\item For separate chaining one keeps $N/8 \leq M \leq N/2$ (resizing $M$)
+\item Under UHA: search, insert, delete take amortized $O(1)$ time
+\item Space used can be upto $100N$ byte (objects, pointers); 
+this on top of the space used by $N$ key-value pairs
+\end{itemize}
+\end{frame}
+
+
+\section{Ch.3.5 Applications of Searching}
+
+\begin{frame}[fragile]
+    \frametitle{Applications of Searching}
+
+\begin{itemize}[<+->]
+\item Synonyms: 
+\href{https://en.wikipedia.org/wiki/Associative_array}{\color{red}{associative array}}, 
+map, symbol table, or dictionary
+\item Origin of
+\href{https://en.wikipedia.org/wiki/Symbol_table}{\color{red}{symbol table}}: 
+compilers and interpreters
+\item Web-indexing, \href{https://en.wikipedia.org/wiki/Search_engine_indexing#Inverted_indices}{\color{red}{search engines}}
+\item Sparse matrices (many 0's): \href{https://en.wikipedia.org/wiki/Sparse_matrix#Dictionary_of_keys_.28DOK.29}%
+{\color{red}{dictionary}} 
+  \begin{enumerate}[<+->]
+  \item keys: (row, column)-pairs
+  \item values: matrix entries
+  \end{enumerate}
+\item Set API (no values, only keys, for deduplication, filtering):
+\end{itemize}
+{\tt\begin{tabular}{ll}
+public class &SET<Key> \\
+ \end{tabular}\\
+\begin{tabular}{rl}
+\{  void       & add(Key k); \\
+   void       & delete(Key k); \\
+   boolean    & contains(Key k); \\
+   boolean    & isEmpty();\\
+   int        & size();              \}
+\end{tabular}
+}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Indexes and Reverse Indexes}
+
+\begin{itemize}[<+->]
+\item Index (key, value)
+\item Reverse index (value, key(s))
+\item Phone book (name+address, phone number(s))
+\item Reverse phone book (phone number, name+address)
+\item Dictionary (word, meaning or translation)
+\item Account information (client ID, account information)
+\item Genomics (protein, sequences of ACTG triplets)
+%\item Experimental data of various kinds
+\item File systems (file name, location on disk/ file attributes)
+\item Internet domain name system (domain name, IP address)
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+    \frametitle{Balanced Search Tree or Hash Table?}
+
+\begin{itemize}[<+->]
+\item Q: Which symbol table to use?
+\item A: The basic choice between BST and HT depends on ...
+  \begin{enumerate}[<+->]
+  \item Ordering of keys essential: BST
+  \item Availability of good hash function (good = fast + UHA)
+  \item Ordering of keys expensive (long strings): HT (or: Ch.5)
+  \item Ordering of keys possible, but not essential: HT + BST
+  \item Space considerations (ArrayListST uses the least extra space)
+  \item Number of distinct keys and the space each key takes
+  \item Distribution of insert/delete/search operations
+  \end{enumerate}
+\end{itemize}
+\end{frame}
+
+\section{Overview Chapter 1--3}
+
+\begin{frame}[fragile]
+    \frametitle{Overview Chapter 1--3}
+
+\begin{enumerate}[<+->]
+\item[] Chapter 1
+ \begin{itemize}[<+->]
+ \item Stack and Queue, ThreeSum, Union-Find
+ \item Theory: $\sim$ and $O$
+ \item Experiments: loglog-plots, randomization 
+ \end{itemize}
+\item[] Chapter 2: Sorting
+ \begin{itemize}[<+->]
+ \item Selection-, Insertion-, Shell-, Merge-, QuickSort
+ \item Priority Queue, Binary Heap, HeapSort
+ \item CountSort
+ \end{itemize}
+ \item[] Chapter 3
+ \begin{itemize}[<+->]
+ \item Symbol Table
+ \item Binary Search Tree, Perfect 2-3 Tree, Red-Black Tree
+ \item Hashing: hash function and collision resolution
+ \end{itemize}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Odds and Ends Chapter 1--3}
+
+\begin{itemize}[<+->]
+\item Path-compression in UF
+(\hyperlink{pathcompression}{\color{red}{\ref{pathcompression}}})
+%\item Find out if {\tt add(int i, E e)} in ArrayList is amortized $O(1)$
+\item Randomizing the order of the tests
+\item Compare-based sorting requires $N \lg N$ comparisons
+(\hyperlink{comparebasedsorting}{\color{red}{\ref{comparebasedsorting}}})
+%\item Discuss primitive types (objects are costly)
+%\item \href{https://en.wikipedia.org/wiki/Distributed_hash_table}{\color{red}{Distributed Hash Table}}
+\item Double hashing: linear probing $h_1(k), h_1(k)+h_2(k), h_1(k)+2h_2(k), \ldots$
+\item Indexed Priority Queues
+(\hyperlink{indexedprioqueues}{\color{red}{\ref{indexedprioqueues}}})
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Randomizing the order of the tests}
+\begin{verbatim}
+for (int i=0; i<N; i++) {
+    a1[i] = StdRandom.uniform();
+    a2[i] = a1[i]; }
+if (StdRandom.uniform(2) == 0)
+   {total1 += time(alg1, a1); // summing runtime of alg1
+    total2 += time(alg2, a2); // summing runtime of alg2
+    }
+else 
+   {total2 += time(alg2, a2); // summing runtime of alg2
+    total1 += time(alg1, a1); // summing runtime of alg1
+    }
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Path compression in UF}\label{pathcompression}
+\begin{verbatim}
+// Finding the "identifier" of the component of p in id:
+public int find(int p) {
+  while (p!=id[p]) { p=id[p]; }
+  return p;
+}  
+// now with path compression:
+
+public int find(int p) {
+  int q=p; // remember the starting point
+  while (p!=id[p]) { p=id[p]; }
+  // postcondition: p==id[p]==identifier of q
+  while (id[q]!=p) { int aux=id[q]; id[q]=p; q=aux; }
+  return p;
+} // Example: int[] id={1,2,3,3}; find(0);
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Compare-based sorting: worst-case $\geq N\lg N$}
+\label{comparebasedsorting}
+\begin{itemize}[<+->]
+\item Every compare-based sorting algorithm for $N$ distinct keys
+in an array $a$ leads to a \emph{binary compare tree} with 
+ \begin{itemize}[<+->]
+ \item nodes $(i{:}j)$ representing tests $a[i]<a[j]$
+ \item left subtree: $a[i]<a[j]$; right subtree: $a[i]>a[j]$
+ \item leaves: sorted permutations of the array
+ \end{itemize}
+\item Example with array of length 3 on bb
+\item Every permutation should occur at least once in a leaf!
+\item Binary tree of height $h$ has at most $2^h$ leaves
+\item Length of path to leaf = number of comparisons
+\item Now $h\geq \lg N! \sim N \lg N$ by Stirling from this formula:
+\end{itemize}
+$$ N! = \text{number of permutations}  
+     \leq \text{number of leaves} \leq 2^\text{height of tree} $$
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Indexed Priority Queues (missing inverse {\tt qp} of {\tt pq})}
+\label{indexedprioqueues}
+\begin{itemize}[<+->]
+\item IPQ ${\approx}$ array with direct access to minimum (maximum)
+\item API: void insert(int i, Key k); void del(int i); int minKey(); Key keyOf(int i);...
+Example of implementation:
+\end{itemize}
+$\xymatrix@R=.5cm@C=.1cm{
+&&\text{heap}\\
+&&A \ar@{>}[ld]\ar@{>}[rd]&&\\
+&C\ar@{>}[ld]\ar@{>}[rd]&&F\\
+D&&E&}
+$
+\begin{tabular}{c}
+{\tt
+\begin{tabular}{|r|c|c|c|c|c|c|c|}
+\hline
+index & 0&1&2&3&4&5&6 \\\hline
+pq    & 1&0&2&4&3&0&0 \\\hline
+keys  & C&A&F&E&D&-&- \\\hline
+%qp    & 1&0&2&4&3&-1&-1\\\hline
+\end{tabular}
+}\\
+\\
+Do: insert(6,G), insert(5,B), insert(1,Z)\\
+NB1: {\tt keys[pq[i]]} on position {\tt i} in heap\\
+NB2: inverse index {\tt qp} is needed 
+\end{tabular}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Indexed Priority Queues}
+\label{indexedprioqueues}
+\begin{itemize}[<+->]
+\item IPQ ${\approx}$ array with direct access to minimum (maximum)
+\item API: void insert(int i, Key k); void del(int i); int minKey(); Key keyOf(int i);...
+Example of implementation:
+\end{itemize}
+$\xymatrix@R=.5cm@C=.1cm{
+&&\text{heap}\\
+&&A \ar@{>}[ld]\ar@{>}[rd]&&\\
+&C\ar@{>}[ld]\ar@{>}[rd]&&F\\
+D&&E&}
+$
+\begin{tabular}{c}
+{\tt
+\begin{tabular}{|r|c|c|c|c|c|c|c|}
+\hline
+index & 0&1&2&3&4&5&6 \\\hline
+pq    & 1&0&2&4&3&0&0 \\\hline
+keys  & C&A&F&E&D&-&- \\\hline
+qp    & 1&0&2&4&3&-1&-1\\\hline
+\end{tabular}
+}\\
+\\
+Do: insert(6,G), insert(5,B)\\
+NB  {\tt qp} is needed to find \\
+the index of {\tt key[i]} in {\tt pq}\\
+e.g., for insert(1,Z) (then: sink!)
+\end{tabular}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Indexed Priority Queues (ctnd)}
+After insert(6,G):\quad\quad
+{\tt
+\begin{tabular}{|r|c|c|c|c|c|c|c|}
+\hline
+index & 0&1&2&3&4&\color{red}{5}&6 \\\hline
+pq    & 1&0&2&4&3&\color{red}{6}&0 \\\hline
+keys  & C&A&F&E&D&-&\color{red}{G} \\\hline
+qp    & 1&0&2&4&3&-1&\color{red}{5}\\\hline
+\end{tabular}
+}\\
+Step 1 insert(5,B):\quad\quad
+{\tt
+\begin{tabular}{|r|c|c|c|c|c|c|c|}
+\hline
+index & 0&1&2&3&4&5&\color{red}{6} \\\hline
+pq    & 1&0&2&4&3&6&\color{red}{5} \\\hline
+keys  & C&A&F&E&D&\color{red}{B}&G \\\hline
+qp    & 1&0&2&4&3&\color{red}{6}&5\\\hline
+\end{tabular}
+}\\
+\begin{tabular}{ll}
+Step 2 &(swaps)\\
+pq[2]&pq[6]\\
+qp[pq[2]] & qp[pq[6]]
+\end{tabular}
+{\tt
+\begin{tabular}{|r|c|c|c|c|c|c|c|}
+\hline
+index & 0&1&\color{red}{2}&3&4&5&\color{red}{6} \\\hline
+pq    & 1&0&\color{red}{5}&4&3&6&\color{red}{2} \\\hline
+keys  & C&A&\color{red}{F}&E&D&\color{red}{B}&G \\\hline
+qp    & 1&0&\color{red}{6}&4&3&\color{red}{2}&5\\\hline
+\end{tabular}
+}\\
+%NB  {\tt qp} is needed to find the index of {\tt key[i]} in {\tt pq}!
+\end{frame}
+
+
+\section{Ch.4.1 Undirected Graphs}
+
+\begin{frame}
+    \frametitle{Graph classes}
+
+( MNF130: useful review of graph theory)
+
+\begin{enumerate}[<+->]\label{graph_classes}
+\item Undirected graphs: a set of \emph{vertices} (or \emph{nodes}) $V$
+and a set of \emph{edges} $E$ connecting the nodes
+%$E \subseteq \set{\set{v,v'}\mid v\in V, v'\in V, v\neq v'}$
+\item Directed graphs (\emph{digraphs}): 
+a set of nodes $V$ and a set $E$ of directed edges (or \emph{arrows})
+pointing from one node to another
+\item \emph{Edge-weighted graphs}: undirected graphs in 
+which every edge comes with a number called the \emph{weight} of the edge
+\item \emph{Edge-weighted digraphs}: digraphs  in which every arrow has a weight,
+like the edges of an edge-weighted graph
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Examples}
+
+\begin{enumerate}[<+->]
+\item \href{http://internationalstudentblog.b.uib.no/files/2015/06/Linjekart_sentrum__3962034a.png}%
+{\color{red}{Map}} (discuss: nodes, un/directed, un/weighted, multigraph)
+\item Undirected graphs: social networks, communication networks (duplex communication)
+\item Directed graphs: hyperlinks, (class, module, package) dependencies,
+logical circuits, job scheduling, flow graphs
+\item Edge-weighted graphs: roadmaps with geographical distance, or with toll,
+communication networks with bandwidth
+\item Edge-weighted digraphs: job scheduling with duration, flow with volume,
+financial transactions with size
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Undirected Graphs}
+
+\begin{itemize}[<+->]
+\item Undirected graph: a set of \emph{vertices} (or \emph{nodes}) $V$
+and a set of \emph{edges} $E$ connecting the nodes
+\item\emph{Subgraph}: subset of $E$ and subset of $V$ forming a graph (!)
+\item\emph{Path}: sequence of nodes connected by edges (!)
+\item\emph{Simple path}: path with no node repeated
+\item\emph{Length of path}: number of edges
+%\item\emph{Distance} between  two nodes: length of a shortest connecting path
+%if there is a path connecting these nodes, otherwise $\infty$
+\item\emph{Cycle}: path of length $>0$ with same start and end node
+\item\emph{Simple} cycle: not repeating edges or nodes
+(apart from start and end node)
+\item\emph{Acyclic graph}: graph without simple cycles
+\item\emph{Connected graph}: having a path between every two nodes
+\item\emph{Connected component}: a maximal connected subgraph
+\end{itemize}
+\end{frame}
+
+\begin{frame}\label{tree_forest}
+    \frametitle{Trees and Forests}
+
+\begin{itemize}[<+->]
+\item Example: {\tt tinyG.txt} on bb
+\item `Anomalies' concerning edges:
+  \begin{itemize}
+  \item Self-loop: edge connecting a node to itself
+  \item Parallel edges: two edges connecting the same node(s)
+  \end{itemize}
+\item When no anomalies, $E \subseteq \set{\set{v,v'}\mid v\in V, v'\in V, v\neq v'}$
+\item\emph{Tree}: connected acyclic graph (then: no anomalies)
+\item\emph{Spanning tree}: maximal subgraph that is a tree
+\item Lemma: any spanning tree of a connected graph contains all nodes.
+Proof on bb.
+\item\emph{Forest}: graph consisting of disjoint trees
+%\item Lemma: any connected component of a forest is a tree
+\item\emph{Spanning Forest}: forest consisting of spanning trees of connected components of a graph
+\end{itemize}
+\end{frame}
+
+\begin{frame}\label{tree_characteristics}
+    \frametitle{Undirected Graphs (ctnd)}
+
+\begin{itemize}[<+->]
+\item\emph{Distance} between  two nodes: length of a shortest connecting path
+if there is a path connecting these nodes, otherwise $\infty$
+\item\emph{Degree} of a node: number of edges connected to that node
+\item Graph $G=(V,E)$, the following are equivalent:
+  \begin{itemize}
+  \item $G$ is a tree (def: connected and acyclic)
+  \item $G$ has $|V|-1$ edges and no cycles  
+  \item $G$ has $|V|-1$ edges and is connected
+  \item $G$ is acyclic and adding an edge creates a cycle
+  \item Any two nodes of $G$ are connected by exactly one simple path
+  \end{itemize}
+\item Example: some (connected) subgraphs of {\tt tinyG.txt}
+$\xymatrix@R=1cm@C=1cm{
+1 & 0\ar@{-}[l]\ar@{-}[d]\ar@{-}[r]\ar@{-}@(dr,dl)[rr] &2 & 6 & 
+7 \ar@{-}[d]& 9 \ar@{-}[d]\ar@{-}[rd] \ar@{-}[r]& 10\\
+   & 5 \ar@{-}@(ur,ul)[rr] \ar@{-}[r] & 3  \ar@{-}[r] & 4   \ar@{-}[u] & 
+8                   &  11\ar@{-}[r] & 12 }$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Graph representation and implementation}
+
+\begin{itemize}[<+->]
+\item Impractical: 
+\href{https://en.wikipedia.org/wiki/Adjacency_matrix}%
+{\color{red}{adjacency matrix}} ${\sim}V^2$, 
+\href{https://en.wikipedia.org/wiki/Incidence_matrix}%
+{\color{red}{incidence matrix}}  ${\sim}VE$
+\item Often practical: 
+\href{https://en.wikipedia.org/wiki/Adjacency_list}%
+{\color{red}{adjacency lists}}  $\sim(V{+}2E)$, that is, 
+%{\tt LinkedList<Integer>[] adj},
+{\tt adj[v]} lists all nodes {\tt w} connected to {\tt v} by an edge
+\item Example: {\tt tinyG.txt} by 
+\href{\git/programs/graphs/LinkedListG.java}%
+{\color{red}{\tt LinkedListG.java}}
+\item Graph API includes: {\tt V(), E(), addEdge()}
+\item Basic algorithms: Depth-First Search (DFS) and Breadth-First Search (BFS)
+\item Both DFS and BFS `walk through the graph', but differently
+\item Both DFS and BFS can compute a spanning tree and forest
+\end{itemize}
+\end{frame}
+
+%// dfs() is recursive, call: dfs(v,marked);
+%// bfs() not recursive, call: q.enqueue(v); bfs(q,marked); 
+
+\begin{verbatim}
+public void dfs(Integer v, boolean[] marked) {
+  marked[v] = true;
+  for (Integer w : adj[v])
+    if (! marked[w]) dfs(w,marked);
+} // dfs() is recursive, call: dfs(v,marked);
+
+public void bfs(Queue<Integer> q, boolean[] marked) {
+  while (!q.isEmpty()) {
+     Integer v = q.dequeue();
+     for (Integer w : adj[v]) 
+       if (! marked[w]) {marked[w]=true; q.enqueue(w);}
+  }
+} // call: marked[v]=true; q.enqueue(v); bfs(q,marked);
+ 
+// Example: 0-1, 0-3, 1-2, 1-3, 3-4
+// Example: complete ternary tree of height 2
+\end{verbatim}
+
+\begin{frame}
+    \frametitle{Implementation and Properties of DFS/BFS}
+
+\begin{itemize}[<+->]
+\item \href{\git/programs/graphs/LinkedListG.java}% 
+{\color{red}{LinkedListG.java}}: {\tt pathdfs(), pathbfs()}
+\item DFS and BFS mark nodes connected to a given source node
+in time proportional to the sum of their degrees ($\leq 2E$),
+and can return a path from a marked node to the given source
+in time proportional to the length of this path
+\item BFS always finds a shortest path 
+(proof: queue only contains nodes at distance $k$ 
+followed by nodes at distance $k+1$, 
+while all nodes at distance $\leq k$ not in queue have been processed)
+\item DFS finds a left-most path (long or short, example bb)
+\item BFS tends to use more space (but not always)
+\item UF (from Ch. 1) tests connectivity, but finds no paths
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Applications}
+
+\begin{itemize}[<+->]
+\item \href{\git/programs/graphs/StringSTG.java}% 
+{\color{red}{StringSTG.java}}, flight connections, shortest path = minimum number of
+stop-overs
+\item Degrees of separation in social networks, e.g., 
+Erd\"{o}s number = length of shortest path to Paul Erd\"{o}s in the co-author graph
+\item Connected components:
+\href{\git/programs/graphs/LinkedListG.java}%
+{\color{red}{\tt LinkedListG.countcc()}} 
+\item Example: {\tt tinyG.txt} has three connected components
+\[
+\xymatrix@R=1cm@C=1cm{
+1 & 0\ar@{-}[l]\ar@{-}[d]\ar@{-}[r]\ar@{-}@(dr,dl)[rr] &2 & 6 & 
+7 \ar@{-}[d]& 9 \ar@{-}[d]\ar@{-}[rd] \ar@{-}[r]& 10\\
+   & 5 \ar@{-}@(ur,ul)[rr] \ar@{-}[r] & 3  \ar@{-}[r] & 4   \ar@{-}[u] & 
+8                   &  11\ar@{-}[r] & 12 }
+\]
+\end{itemize}
+\end{frame}
+
+
+\section{Ch.4.2 Directed Graphs}
+
+\begin{frame}
+    \frametitle{Directed Graphs}
+
+\begin{itemize}[<+->]
+\item\emph{Digraph}: a set of \emph{vertices} (or \emph{nodes}) $V$
+and a set of \emph{directed edges} (or \emph{arrows}) $E$ pointing from one node to another
+\item\emph{Subdigraph, directed (simple) path (\emph{{\color{red}di}path}), 
+directed (simple) cycle, acyclic, length}: as expected
+\item Often we leave out `di' in digraph, dipath, etc.
+\item\emph{DAG}: {\color{red}D}irected {\color{red}A}cyclic {\color{red}G}raph;
+%\emph{{\color{red}di}path}: {\color{red}di}rected path
+\item\emph{Degree}: {\color{red}in}-degree and {\color{red}out}-degree
+\item Node $v$ is \emph{reachable} from $w$: a dipath  from $w$ to $v$ exists
+\item\emph{Strongly connected digraph}: dipath between every two nodes (for all
+$v,w$, there are dipaths from $v$ to $w$ and from $w$ to $v$)
+\item\emph{Strongly connected component}: maximal strongly connected subgraph
+($u\rightleftarrows v \to w$ has two scc's)
+\item Representation: adjacency lists even simpler!
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Directed Graph, example}
+
+{\tt tinyCG.txt}:
+
+\[
+\xymatrix@R=1cm@C=1cm{
+0 \ar[d] \ar[r] \ar@(ur,ul)[rr]& 1\ar[ld] &5 \\
+2 \ar[r] \ar@(dr,dl)[rr]  & 3 \ar[r] \ar[ur]\ar[r] & 4 
+}
+\]
+\end{frame}
+
+\begin{frame}
+    \frametitle{Reachability Problems}
+    Assume we are given a directed graph $G$.
+
+\begin{itemize}[<+->]
+
+\item Single-source: given a node $s$, the \emph{source}, 
+is a given node $v$ reachable from $s$? Example: {\tt tinyCG.txt}
+\item Multiple-source: given a set of nodes $S$, is a given node $v$ reachable from some node in $S$?
+\item Solutions: same DFS and BFS algorithms as in Chapter 1
+\item Application (example): 
+\href{https://en.wikipedia.org/wiki/Tracing_garbage_collection}%
+{\color{red}{mark-and-sweep garbage collection}}
+\item Single-source path:  given nodes $s,v$ such that $v$ is reachable from $s$.
+      Find a path from $s$ to $v$.
+\item Single-source shortest path: given nodes $s,v$ such that $v$ is reachable from $s$.
+      Find a \emph{shortest} path from $s$ to $v$.
+\item Solutions: same DFS (path) and BFS (shortest path) algorithms as for undirected graphs
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Cycle Detection}
+   % Assume we are given a directed graph $G$.
+
+\begin{itemize}[<+->]
+
+\item Recall: a \emph{DAG} is a graph without a directed cycle
+\item Acyclicity test, cycle detection: easy extension of DFS. We keep track of the
+search path from the source. If there is an arrow from $v$ to $w$ and $w$ is on the path
+from the source to $v$, then there is a cycle. (DFS finds the leftmost path to the leftmost
+cycle.) Two techniques (space-time trade-off!):
+  \begin{itemize}
+  \item Go back the search path:
+  \href{\git/programs/graphs/directedGraphs/LinkedListDiG.java}%
+{\color{red}{\tt LinkedListDiG.slowCyclist()}}
+  \item Memorize the search path:
+  \href{\git/programs/graphs/directedGraphs/LinkedListDiG.java}%
+{\color{red}{\tt LinkedListDiG.fastCyclist()}} 
+  \end{itemize}
+\item Application: precedence scheduling of jobs
+\item Example: {\tt cycleG.txt}
+\[
+\xymatrix@R=1cm@C=1cm{
+0\ar[d]\ar[r]& 2\ar@(dl,ul)[d]\\
+1  & 3 \ar@(ur,dr)[u] 
+}
+\]
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Pre-order, post-order, in-order}
+
+\begin{itemize}[<+->]
+\item Graph walks based on DFS from a source node
+\item Pre-order: order in which DFS arrives at nodes
+\item Post-order: order in which DFS leaves nodes
+\item In-order \emph{for binary trees}: e.g., in
+\href{\git/programs/searching/elementarySymbolTables/UBST.java}%
+{\color{red}{\tt UBST.show()}}
+\item Example:
+\[\xymatrix@R=.5cm@C=.1cm{
+\text{pre-order:~}           01234\quad&&&&0 \ar@{>}[ld]\ar@{>}[rd]&&\\
+\text{post-order:~}          23140&&&1\ar@{>}[ld]\ar@{>}[rd]&&4\\
+%\text{reversed post-order:~}0312&&2}
+\text{in-order:~}            21304&&2&&3}
+\]
+\item Example: {\tt tinyCG.txt} on bb and by 
+\href{\git/programs/graphs/directedGraphs/LinkedListDiG.java}%
+{\color{red}{\tt LinkedListDiG.java}}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Topological order of acyclic digraph}
+
+\begin{itemize}[<+->]
+\item Topological order: total order $\prec$ 
+compatible with the graph in the following sense:
+if there is an arrow from $u$ to $v$, then $v\prec u$ 
+(consequently: $v\preceq u$ if $v$ is reachable from $u$)
+\item NB one can also take $\succ$, this is only a matter of definition
+\item Lemma: if a digraph has a topological order, then it is acyclic
+(proof: a cycle cannot be ordered compatibly)
+\item Lemma: if a digraph is acyclic, then it has a topological order
+(proof idea: if acyclic, the post-order is a topological order since,
+if there is an arrow from $u$ to $v$, then $u$ is not reachable from $v$
+and DFS will leave/visit $u$ after it has left $v$)
+\item Topological order is a job schedule respecting precedence
+\item Many topological orderings of the acyclic graph\\  {\tt 1 <- 2 <- 4 -> 5 -> 3 <- 0 }
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Transitive closure}
+
+\begin{itemize}[<+->]
+\item Definition: given $G$, its (reflexive!) transitive closure $G^*$ is a 
+graph with the same nodes, with arrows from $u$ to $v$ for each $v$
+that is reachable from $u$ in $G$.
+\item NB: $G^*$ can have many more arrows than $G$
+\item Implementation: adjacency matrix in case of many arrows
+\begin{verbatim}
+...
+boolean[][] adjmat = new boolean[V][V];
+for (int v=0; v<V; v++) {
+   boolean[] marked = new boolean[V];
+   dfs(v,marked);
+   adjmat[v] = marked; // adjmat[v][v]==true: reflexive
+...
+ }    
+\end{verbatim}  
+\end{itemize}
+\end{frame}
+
+\section{Ch.4.3 Minimum Spanning Tree}
+
+\begin{frame}
+    \frametitle{Minimum Spanning Tree}
+
+\begin{itemize}[<+->]
+\item Recall slide \hyperlink{tree_forest}{\color{red}{\pageref{tree_forest}}}: 
+\emph{spanning tree} of a connected undirected graph
+is a maximal subgraph that is a tree (and thus contains all nodes and is acyclic)
+\item EWG = Edge-Weighted Graph, here always connected
+%\item Example: {\tt tinyEWG.txt} on bb
+\item Recall slide \hyperlink{tree_characteristics}{\color{red}{\pageref{tree_characteristics}}}:
+all spanning trees have $V-1$ edges
+\item \emph{Weight} of spanning tree: sum of the weights of its edges
+\item \emph{Minimum Spanning Tree}: spanning tree with minimal weigth
+\item Example: three MSTs of $\xymatrix@R=.5cm@C=.1cm{
+&0 \ar@{-}[ld]_1\ar@{-}[rd]^1&\\
+1 \ar@{-}[rr]_1&&2}$
+\item Exc.4.3.3: if all weights different, then MST is unique
+\item From now on we assume all weights different!
+\end{itemize} 
+\end{frame}
+
+\begin{frame}
+    \frametitle{MST Example (tinyEWG.txt)}
+\[
+\xymatrix@R=0.7cm@C=2cm{
+0 \ar@{-} `u/10pt[rrr] `/10pt[rrr] [rrddddd]^{0.16}
+\ar@{-}[ddddd]_{0.38}\ar@{-}[rr]_{0.26}&&2\ar@{-}[ddddd]_{0.34}&\\
+  &6\ar@{-}[ru]^{0.4}\ar@{-}[lu]^{0.58}&&\\
+  &3\ar@{-}[u]|{0.52}\ar@{-}[ruu]|{0.17}&&\\
+  &1\ar@{-}[u]|{0.29}\ar@{-}[rdd]|{0.19}\ar@{-}[ruuu]|{0.36}&&\\
+  &5\ar@{-}[rd]_{0.28}\ar@{-}[u]|{0.32}&&\\
+4\ar@{-}[rr]^{0.37}\ar@{-}[ru]^{0.35}\ar@{-}[ruuuu]^{0.93}&& 7&\\
+}
+\]
+\end{frame}
+
+\begin{frame}
+    \frametitle{Minimum Spanning Tree (ctnd)}
+
+\begin{itemize}[<+->]
+\item Applications: power plants and electrical grid, 
+airlines and flight routes, maps and distance
+\item Weights may be zero or negative (e.g., cost minus profit of a new network of roads between cities)
+\item Two important algorithms to find the MST: Prim's and Kruskal's
+\item We explain Kruskal's algorithm first (unlike the book), since in previous years
+students found Prim's algorithm more difficult to understand
+\end{itemize} 
+\end{frame}
+
+\begin{frame}
+    \frametitle{Cuts and Crossing Edges}
+
+\begin{itemize}[<+->]
+\item Recall slide \hyperlink{tree_characteristics}{\color{red}{\pageref{tree_characteristics}}}:
+deleting an edge from a tree creates two disjoint components, adding an edge creates a cycle
+\item \emph{Cut}: a partition of $V$ in two non-empty subsets of nodes 
+\item \emph{Crossing edge}: edge connecting two nodes in different subsets of a cut
+
+\item NB there can be more than one crossing edge: $\xymatrix@R=.5cm@C=.5cm{
+0\ar@{-}[r]&2 \ar@{.}[d]\\1\ar@{-}[r] \ar@{.}[ru] &3 }$
+\item Lemma: for any cut in an EWG, the crossing edge of minimum weight is in the MST.
+\item Proof: given a cut, assume by contradiction
+there is a crossing edge $e$ of weight smaller than the crossing
+edge(s) that is (are) in the MST (e.g., the dotted edges above). Adding $e$ creates a simple cycle,
+which must contain one other crossing edge $f$ in the MST. Replacing $f$ by $e$: \Lightning
+\end{itemize} 
+\end{frame}
+
+\begin{frame}
+    \frametitle{Kruskal's Algorithm}
+
+\begin{itemize}[<+->]
+\item Datastructures:
+  \begin{itemize}
+  \item EWG represented with adjacency lists {\tt adj[v]}
+  \item Minimum priority queue {\tt pq} for edges
+  \item Union-Find object {\tt uf} testing connectivity
+  \item Queue {\tt mst} for the minimum spanning tree
+\end{itemize}
+\item Algorithm:
+  \begin{enumerate}
+  \item delete the minimum edge {\tt e} from {\tt pq}
+  \item if the points connected by {\tt e} are not connected, 
+  add {\tt e} to {\tt mst} and connect the points in {\tt uf}
+  \item continue at point 1 until {\tt pq} is empty or {\tt uf} contains all nodes
+  \end{enumerate}
+  \item Examples: EWG on slide 
+  \hyperlink{EWGexample}{\color{red}{\pageref{EWGexample}}}, {\tt tinyEWD.txt}
+  \item Correctness: by lemma about minimum-weight crossing edge of cut
+  (NB it is also correct to use a sorted array of edges)
+  \item Implementation: \href{http://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/KruskalMST.java.html}%
+{\color{red}{KruskalMST.java}}, constructor method
+\end{itemize} 
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Prim's Lazy Algorithm}
+
+\begin{itemize}[<+->]
+\item Datastructures:
+  \begin{itemize}
+  \item EWG represented with adjacency lists {\tt adj[v]}
+  \item Minimum priority queue {\tt pq} for edges
+  \item Array {\tt marked[v]} for marking vertices
+  \item Queue {\tt mst} for the minimum spanning tree
+\end{itemize}
+\item Edge is \emph{eligible} if not both endpoints marked (crossing!)
+\item Algorithm based on previous lemma, cut: un/marked nodes
+
+  \begin{enumerate}
+  \item mark $0$ and add all eligible edges in {\tt adj[0]} to {\tt pq}
+  \item as long as {\tt pq} is not empty, do:
+\begin{enumerate}
+  \item get and delete minimum edge {\tt e} from {\tt pq}
+  \item add {\tt e} to {\tt mst}, say the unmarked endpoint of {\tt e} is {\tt k}
+  \item mark {\tt k} and add all eligible edges in {\tt adj[k]} to {\tt pq}
+  \item delete ineligible minimum edges from {\tt pq} 
+\end{enumerate}
+  \end{enumerate}
+\item After this algorithm, the queue {\tt mst} contains the MST
+\end{itemize} 
+\end{frame}
+
+\begin{frame}
+    \frametitle{Prim's Algorithm (ctnd)}
+
+\begin{itemize}[<+->]
+\item \href{http://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/LazyPrimMST.java.html}%
+{\color{red}{LazyPrimMST.java}}, methods {\tt scan()} and {\tt prim()}
+\item Invariant: at least one of the nodes of an edge in {\tt pq} is marked
+\item NOT: all edges in {\tt pq} are crossing edges wrt cut un/marked
+\item Lazy: ineligible edges are not eagerly deleted from {\tt pq}
+\item Runtime: LazyPrimMST runs in $O(E\log E)$ time (worst-case)
+\item Possible: \emph{only} crossing edges wrt cut un/marked  in {\tt pq}
+\item Eager: if {\tt v} unmarked, the only crossing edge of interest is the
+\emph{lightest} one connecting {\tt v} to the marked edges (= MST so far)
+\item Runtime: eager Prim runs in $O(E\log V)$ time (worst-case)
+\item Max size {\tt pq}: $E$ edges for lazy; $V$ nodes for eager
+\end{itemize} 
+\end{frame}
+
+\begin{frame}\label{EWGexample}
+    \frametitle{Prim's Eager Algorithm}
+
+\begin{itemize}[<+->]
+\item Datastructures:
+  \begin{itemize}
+  \item EWG represented with adjacency lists {\tt adj[v]}
+  \item Boolean array {\tt marked[v]} for marking vertices
+  \item Array {\tt distTo[v]}, minimum distances to MST so far
+  \item Array {\tt edgeTo[v]}, edges with minimum distance to MST so far
+  \item Indexed minimum priority queue {\tt pq}: index={\tt v}, key={\tt distTo[v]}
+  \item Queue {\tt mst} for the MST  based on {\tt edgeTo}
+\end{itemize}
+\item Example: $\xymatrix@R=1.5cm@C=1.5cm{
+0\ar@{-}[r]^2 \ar@{-}[d]_1 \ar@{-}[rd]^3 &2 \ar@{-}[d]^{-1}\\1\ar@{-}[r]_0  &3 }$
+\item \href{http://algs4.cs.princeton.edu/code/edu/princeton/cs/algs4/PrimMST.java.html}%
+{\color{red}{PrimMST.java}}, methods {\tt scan()} and {\tt prim()}
+\end{itemize} 
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Memory-Use and Run-time Analysis}
+\begin{itemize}[<+->] \item Space, worst-case:
+\begin{itemize}[<+->]
+\item All methods use $O(V+E)$ space for the graph, plus ...
+\item Priority queue for edges (Lazy Prim and Kruskal): $O(E)$ space
+\item Priority queue for vertices (Eager Prim): $O(V)$ space
+\item Arrays indexed by vertices (all): $O(V)$ space
+\end{itemize} 
+\item Time, worst-case:
+\begin{itemize}[<+->]
+\item Priority queue operations (Lazy Prim and Kruskal): $O(E\log E)$ time
+\item Priority queue operations (Eager Prim): $O(E\log V)$ time
+\end{itemize}
+\item NB: $E\leq V^2$ implies $\log E \leq \log V^2 \leq 2\log V$
+\item Example: complete graph on $0,\ldots,9$, edge $n$-$m$ weight $n{+}m$,
+MST consists of $0$-$m$ for $m=1,\ldots,9$
+\end{itemize} 
+\end{frame}
+
+\section{Ch.4.4 Shortest Paths}
+
+\begin{frame}
+    \frametitle{Job scheduling --- precedence}\label{Job_prec}
+
+\begin{itemize}[<+->]
+\item Example: assume we have jobs $0,\ldots,5$ and job 0 must be done before we can
+do 2 and 5, job 1 must be done between job 0 and 2, and 3 between 2 and 4,
+and 5 and 4 require 3 to be done.
+\item Sounds familiar? {\tt tinyCG.txt}!
+\item Can we find such a schedule?\\Yes, e.g., 012345
+\item What if also job 5 must precede job 4? (Yes)
+\item What if also job 5 must precede job 2? (No)
+\item Any (reversed) topological order gives a correct schedule
+\item A topological order exists iff the graph is acyclic
+\end{itemize} 
+\end{frame}
+
+\begin{frame}
+    \frametitle{Job scheduling --- precedence and duration}\label{Job_dur}
+
+\begin{itemize}[<+->]
+
+\item In the previous example we have abstracted time to precedence
+\item What if jobs also have duration and we want the fastest schedule?
+\item Example: {\tt tinyCG.txt}, with all jobs one hour, and two workers
+\item Fastest schedule takes five hours (why?)
+\item The longest path is the shortest path when we negate all weights
+\item More examples later: \href{\git/programs/tinyJob.txt}%
+{\color{red}{\tt tinyJob.txt}}, \href{\git/programs/tiNoJob.txt}%
+{\color{red}{\tt tiNoJob.txt}}
+\end{itemize} 
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Shortest paths}\label{SPintro}
+
+\begin{itemize}[<+->]
+\item Recall slide \hyperlink{graph_classes}{\color{red}{\pageref{graph_classes}}}, 
+\emph{Edge-weighted digraphs}: digraphs  in which every arrow has a weight
+\item \emph{Weight} of a (di)path: sum of weights of the arrows
+\item \emph{Shortest} path from node $s$ to node $t$: minimum path weight
+\item EWD = Edge-Weighted Digraph, example: {\tt tinyEWD.txt}
+\item Example: two SPs from 0 to 3: $\xymatrix@R=1.5cm@C=1.5cm{
+0\ar@{>}[r]|1 \ar@/^/[rd]|8 &2\ar@/^/[ld]|2 \ar@{>}[d]|5\\1\ar@{>}[r]|3  &3 }$
+\item Shortest paths need not be unique, even if all weights are different!
+\item Shortest paths need not exist, for two independent reasons:
+  \begin{itemize}[<+->]
+  \item When target $t$ is not reachable from source $s$
+  \item When there is a negative cycle on the path to $t$,
+        e.g., $\xymatrix@R=0.5cm@C=0.5cm{1\ar@(ur,ul)}^{-1}$
+  \end{itemize}
+\end{itemize} 
+\end{frame}
+
+\begin{frame}
+    \frametitle{Variations}
+
+\begin{itemize}[<+->]
+\item Single-source versus multiple sources
+\item Only non-negative weights versus all weights allowed
+\item Acyclic versus cycles, in particular negative cycles
+\item Longest path: shortest path with weights negated
+\item Simple example: scheduling of jobs A, B, and C
+  \begin{itemize}[<+->]
+  \item A (3 hrs), must precede by B (2 hr), independent C (4 hrs)
+  \item Graph: $\xymatrix@R=0.5cm@C=0.5cm{
+  &As\ar[r]^3&Ae\ar[r]^0\ar@{.>}[rrrd]&Bs\ar[r]^2&Be\ar@{.>}[rd]\\
+  s\ar@{.>}[ru]\ar@{.>}[rd]\ar@{.>}[rrru]&&&&&t\\
+  &Cs\ar[r]_4&Ce\ar@{.>}[rrru]}$
+  \item Arrow from $X$ to $Y$ with weight $d$ means $time_Y \geq time_X +d$ 
+  ($d$ can be negative!)
+  \item Now add: $As$ after 2 hrs before $Bs$, 
+  $time_{As} \geq time_{Bs} -2$. Feasible? (No)
+  And $As$ exactly 4 hrs before $Bs$? (Yes)
+  \end{itemize}
+\end{itemize} 
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Dijkstra's Algorithm}
+
+\begin{itemize}[<+->]
+\item Single-source, only non-negative weights, cycles no problem
+\item Datastructures:
+  \begin{itemize}
+  \item EWD with adjacency lists {\tt adj[v]} of weighted out-edges
+  \item Boolean array {\tt marked[v]} for marking vertices
+  \item Array {\tt distToSource[v]}, minimum distances to source so far
+  \item Array {\tt pathToSource[v]}, best arrow to source so far
+\end{itemize}
+\item Algorithm: relax (see below) and mark the unmarked node with least distance, until all marked;
+Simple example: slide \hyperlink{SPintro}{\color{red}{\pageref{SPintro}}}
+\item Invariants:
+\begin{itemize}[<+->]
+  \item Marked nodes: known shortest path to source (non-negativity!)
+  \item Unmarked nodes: known shortest path to source THROUGH marked nodes 
+  (requires in-arrow from marked node)
+  \end{itemize}
+\item Implementation \href{\git/programs/graphs/LinkedListEWD.java}%
+{\color{red}{\tt LinkedListEWD.slowEWD()}}, examples \href{\git/programs/myEWD.txt}%
+{\color{red}{\tt myEWD.txt}} and {\tt tinyEWD.txt}
+\end{itemize} 
+\end{frame}
+
+\begin{frame}
+    \frametitle{Relaxation}
+\begin{itemize}[<+->] 
+\item Assume an  array  {\tt distToSource[v]} with
+minimum distances, so far, to a given source
+\item To \emph{relax an edge e} from $u$ to $v$ with weight $x$ means
+to update {\tt distToSource[v]} to {\tt distToSource[u]}$+x$ if the latter is smaller
+\item To \emph{relax a node u} means to relax all edges in {\tt adj[u]}, that is,
+to update {\tt distToSource[v]} to {\tt distToSource[u]}$+x$ if the latter is smaller,
+for every edge from $u$ to $v$ with weight $x$
+\item Dijkstra: relax and mark unmarked node $v$ with minimal {\tt distToSource[v]},
+until all nodes marked
+\item Bellman-Ford: do max $V$ rounds of relaxation of all edges
+(may stop after a round without updates)
+\end{itemize} 
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{EWD Example (tinyEWD.txt, NB $4\leftrightarrow 5\leftrightarrow 7$!)}
+\[
+\xymatrix@R=0.7cm@C=2cm{
+0\ar[ddddd]_{0.38}\ar[rr]^{0.26}&&2\ar[ddddd]^{0.34}&\\
+  &6\ar[ru]^{0.4}\ar[lu]^{0.58}\ar[ldddd]_{0.93}&&\\
+  &3\ar[u]|{0.52}&&\\
+  &1\ar[u]|{0.29}&&\\
+  &5\ar[u]|{0.32}&&\\
+4\ar[rr]_{0.37}\ar@{<->}[ru]^{0.35}&& 7\ar@{<->}[lu]^{0.28}\ar[luuu]|{0.39}&\\
+}
+\]
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Bellman-Ford}
+
+\begin{itemize}[<+->]
+\item Single-source, also negative weights, negative cycles detected
+\item Datastructures:
+  \begin{itemize}
+  \item EWD with adjacency lists {\tt adj[v]} of weighted out-edges
+  \item Array {\tt distToSource[v]}, minimum distances to source so far
+  \item (Array {\tt pathToSource[v]}, best arrow to source so far)
+\end{itemize}
+\item Algorithm: do at most $V$ rounds for every node {\tt v} 
+and every arrow {\tt e} in {\tt adj[v]}, if {\tt e} shortens the
+distance to its endpoint {\tt w}, update that distance (and path);
+stop after a round when no distances improve. If distances improve in the
+$V$-th round, a negative cycle is reachable from the source.
+\item Invariant: after $n$ rounds the distances are less than or
+equal to the shortest path of length $n$ from the source
+\item Implementation 
+\href{\git/programs/graphs/LinkedListEWD.java}%
+{\color{red}{\tt LinkedListEWD.simpleBF()}}, examples 
+\href{\git/programs/myEWD.txt}%
+{\color{red}{\tt myEWD.txt}},
+\href{\git/programs/tinyJob.txt}%
+{\color{red}{\tt tinyJob.txt}},
+\href{\git/programs/tiNoJob.txt}%
+{\color{red}{\tt tiNoJob.txt}} and {\tt tinyEWD.txt}
+\end{itemize} 
+\end{frame}
+
+\begin{frame}
+    \frametitle{Memory-Use and Run-time Analysis}
+\begin{itemize}[<+->] \item Space
+\begin{itemize}[<+->]
+\item All methods use $O(V+E)$ for the graph, plus $O(V)$ extra 
+\item Still true for Dijkstra improved with an indexed priority queue,
+but indexed priority queue takes $\sim 3V$ space
+\end{itemize} 
+\item Time, worst-case:
+\begin{itemize}[<+->]
+\item $V$ times finding a minimum (original Dijkstra): $O(V^2)$ 
+\item Priority queue operations (improved Dijkstra): $O(E\log V)$
+%(best way to see this: every edge is processed once, using an IPQ with nodes)
+\item $V$ rounds relaxing $E$ edges (Bellman-Ford): $O(EV)$ 
+\end{itemize}
+\end{itemize} 
+\end{frame}
+
+
+
+\section{Odds and Ends Chapter 4}
+
+\begin{frame}
+    \frametitle{Odds and Ends Chapter 4}
+
+\begin{itemize}[<+->]
+%\item 
+\item Indexed Priority Queue
+\item Eager Prim MST Algorithm
+\end{itemize}
+\end{frame}
+
+
+\section{Table of Contents}
+
+\begin{frame}%[fragile]
+    
+    \frametitle{ToC and topics of general interest}
+
+ \begin{itemize}[<+->]\label{contentstable}
+    \item Table of Contents on next slide (all items clickable)
+    \item Practical stuff: slide \hyperlink{practicalstuff}{\color{red}{\pageref{practicalstuff}}}
+ \end{itemize}
+
+\end{frame}
+
+
+\begin{multicols}{2}
+\tableofcontents %cannot be a frame: bug in beamer ?
+\end{multicols}
+
+\end{document}
