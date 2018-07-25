@@ -1,27 +1,38 @@
 Short solutions to the problems of the INF102 exam on 22 February 2016.
 
-1. Cubic solution: take ThreeSum.java on p. 173 of Algs4 and change "==0" to "<0".
+1. Cubic solution: take ThreeSum.java on p. 173 of Algs4
+ and change "==0" to "<0".
 O(N^2 log N) solution: minor variation of 
 github.com/marcbezem/INF102/blob/master/programs/ThreeSumPos.java
 
 2. github.com/marcbezem/INF102/blob/master/programs/CountSort99.java
 
-3. A hash table is a datastructure for fast search, insert and delete of unordered
-keys or key-value pairs. Ideally these operations run in (amortized) constant time, 
-independent of the size of the hash table. The idea is to use keys as array indices.
-This is possible if the keys are small integers, for example between 0 and 99.
-Ohterwise we use a so-called hash function which maps keys to array indices,
-and we store the key in the table at the position indicated by the hash.
-One problem is that the hash function is not injective, and cannot be so
-as there are more possible keys than array positions. That is why we need
-something called collision resolution, when two keys are mapped to the same hash.
-The two main methods for collision resolution are separate chaining and linear probing.
-In separate chaining each array element a[h] points to a linked list in which all
-the keys in the hash table that have hash h. In linear probing collisions are
-resolved by putting a colliding key on the first empty position to the right
-in the table (starting again at a[0] if the search goes past the last position).
-An important property of the hash function is that it spreads the keys well
-over the index range. Implementation: methods get(), put() and del() in
+3. A hash table is a datastructure for fast search, insert 
+and delete of unordered keys or key-value pairs. 
+Ideally these operations run in (amortized) constant time, 
+independent of the size of the hash table. 
+The idea is to use keys as array indices.
+This is possible if the keys are small integers, 
+for example between 0 and 99.
+Otherwise we use a so-called hash function 
+which maps keys to array indices,
+and we store the key in the table at the 
+position indicated by the hash.
+One problem is that the hash function is not injective, 
+and cannot be so as there are more possible keys than 
+array positions. That is why we need
+something called collision resolution, 
+when two keys are mapped to the same hash.
+The two main methods for collision resolution are 
+separate chaining and linear probing.
+In separate chaining each array element a[h] points to a 
+linked list with all the keys in the hash table that have hash h. 
+In linear probing collisions are resolved by putting a colliding 
+key on the first empty position to the right in the table 
+(starting again at a[0] if the search goes past the last position).
+An important property of the hash function is that it spreads 
+the keys well over the index range. 
+Implementation:  methods get(), put() and del() in
 github.com/marcbezem/INF102/blob/master/programs/ArrayListHashST.java
 
 4. Method dfs() in 
